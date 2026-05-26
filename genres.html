@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Gaming Galaxy | Genres</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#050816;
+  color:white;
+  overflow:hidden;
+  font-family:'Inter',sans-serif;
+}
+/*navbar*/
+/* DROPDOWN */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+
+  position:absolute;
+
+  top:180%;
+  left:0;
+
+  background:rgba(10,14,30,.95);
+
+  backdrop-filter:blur(14px);
+
+  border:
+  1px solid rgba(255,255,255,.06);
+
+  border-radius:18px;
+
+  padding:14px;
+
+  min-width:180px;
+
+  list-style:none;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(10px);
+
+  transition:.35s ease;
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,.45);
+}
+
+.dropdown:hover .dropdown-menu{
+
+  opacity:1;
+  visibility:visible;
+
+  transform:translateY(0);
+}
+
+.dropdown-menu li{
+  margin:10px 0;
+}
+
+.dropdown-menu a{
+
+  color:#9CA3AF;
+
+  text-decoration:none;
+
+  font-size:.95rem;
+
+  transition:.3s ease;
+
+  display:block;
+
+  padding:8px 10px;
+
+  border-radius:10px;
+}
+
+.dropdown-menu a:hover{
+
+  background:
+  rgba(99,102,241,.12);
+
+  color:white;
+
+  padding-left:16px;
+}
+/* BACKGROUND */
+
+.bg-glow{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(140px);
+  z-index:-1;
+}
+
+.glow-1{
+  width:350px;
+  height:350px;
+
+  background:#4F46E5;
+
+  top:-120px;
+  left:-120px;
+
+  opacity:.18;
+}
+
+.glow-2{
+  width:300px;
+  height:300px;
+
+  background:#2563EB;
+
+  bottom:-120px;
+  right:-120px;
+
+  opacity:.12;
+}
+
+/* NAVBAR */
+
+.navbar{
+  width:100%;
+  padding:28px 8%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:fixed;
+  top:0;
+
+  z-index:999;
+
+  background:rgba(255,255,255,.02);
+
+  backdrop-filter:blur(12px);
+
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+}
+
+.nav-links{
+  display:flex;
+  gap:42px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#9CA3AF;
+
+  transition:.3s ease;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+/* MAIN SECTION */
+
+.genres-section{
+  width:100%;
+  height:100vh;
+
+  position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CENTER CONTENT */
+
+.center-content{
+  text-align:center;
+  z-index:10;
+  max-width:700px;
+}
+
+.subtitle{
+  color:#818CF8;
+
+  letter-spacing:5px;
+
+  font-size:.8rem;
+
+  margin-bottom:20px;
+}
+
+.center-content h1{
+  font-family:'Orbitron',sans-serif;
+
+  font-size:clamp(4rem,8vw,7rem);
+
+  line-height:.95;
+
+  text-transform:uppercase;
+
+  margin-bottom:26px;
+
+  background:linear-gradient(to bottom,#fff,#9CA3AF);
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.description{
+  color:#9CA3AF;
+
+  line-height:1.8;
+
+  font-size:1rem;
+}
+
+/* GENRE */
+
+.genre{
+  position:absolute;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  text-decoration:none;
+
+  animation:floating 5s ease-in-out infinite;
+
+  transition:
+  transform .4s ease,
+  filter .4s ease;
+}
+
+/* IMAGE */
+
+.genre img{
+  width:80px;
+
+  object-fit:contain;
+
+  transition:
+  transform .4s ease,
+  filter .4s ease;
+
+  filter:
+  drop-shadow(0 0 30px rgba(99,102,241,.35));
+}
+
+/* LABEL */
+
+.genre span{
+  margin-top:10px;
+
+  color:white;
+
+  font-family:'Orbitron',sans-serif;
+
+  letter-spacing:2px;
+
+  font-size:.85rem;
+}
+
+/* HOVER */
+
+.genre:hover{
+  transform:
+  translateY(-16px)
+  scale(1.05);
+}
+
+.genre:hover img{
+  transform:scale(1.06);
+
+  filter:
+  drop-shadow(0 0 55px rgba(129,140,248,.9));
+}
+
+/* FLOAT */
+
+@keyframes floating{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-14px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+/* POSITIONS */
+
+
+.action{
+  left:7%;
+  top:20%;
+}
+
+.rpg{
+  right:18%;
+  top:22%;
+}
+
+.horror{
+  left:16%;
+  bottom:27%;
+}
+
+.racing{
+  right:3%;
+  bottom:34%;
+}
+
+.shooter{
+  left:2%;
+  top:50%;
+}
+
+.strategy{
+  bottom:3%;
+  right:10%;
+}
+
+/* SMALLER CENTER ONES */
+
+.shooter img,
+.strategy img{
+  width:170px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+  body{
+    overflow:auto;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .genres-section{
+    height:auto;
+
+    padding:
+    140px 20px
+    100px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:60px;
+  }
+
+  .genre{
+    position:relative !important;
+
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+
+    animation:none;
+  }
+
+  .genre img{
+    width:180px !important;
+  }
+
+  .center-content h1{
+    font-size:3.5rem;
+  }
+
+}
+  </style>
+
+</head>
+
+<body>
+
+  <!-- BACKGROUND GLOW -->
+
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      Gaming Galaxy
+    </div>
+
+    <ul class="nav-links">
+
+      <li><a href="index.html">Home</a></li>
+
+      <li><a href="about.html">About</a></li>
+
+      <li class="dropdown">
+
+        <a href="genres.html">Genres</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="action.html">Action</a></li>
+          <li><a href="rpg.html">RPG</a></li>
+          <li><a href="horror.html">Horror</a></li>
+          <li><a href="racing.html">Racing</a></li>
+          <li><a href="shooter.html">Shooter</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+
+        </ul>
+
+      </li>
+
+      <li><a href="trailers.html">Trailers</a></li>
+
+      <li><a href="contact.html">Contact</a></li>
+
+    </ul>
+
+  </nav>
+
+  <!-- MAIN -->
+
+  <section class="genres-section">
+
+    <!-- CENTER -->
+
+    <div class="center-content">
+
+      <p class="subtitle">
+        ENTER THE GAMING UNIVERSE
+      </p>
+
+      <h1>
+        Explore <br>
+        Game Genres
+      </h1>
+
+      <p class="description">
+
+        Discover cinematic adventures,
+        immersive worlds, and next-generation
+        gaming experiences.
+
+      </p>
+
+    </div>
+
+    <!-- GENRES -->
+
+    <a href="action.html" class="genre action">
+
+      <img src="images/Action/actioncharacter.png" alt="Action">
+
+      <span>ACTION</span>
+
+    </a>
+
+    <a href="rpg.html" class="genre rpg">
+
+      <img src="images/RPG/rpg-character.png" alt="RPG">
+
+      <span>RPG</span>
+
+    </a>
+
+    <a href="horror.html" class="genre horror">
+
+      <img src="images/Horror/horror-character.png" alt="Horror">
+
+      <span>HORROR</span>
+
+    </a>
+
+    <a href="racing.html" class="genre racing">
+
+      <img src="images/Racing/racing-character.png" alt="Racing">
+
+      <span>RACING</span>
+
+    </a>
+
+    <a href="shooter.html" class="genre shooter">
+
+      <img src="images/Shooter/shooter-character.png" alt="ShoOTER">
+
+      <span>SHOOTER</span>
+
+    </a>
+
+    <a href="strategy.html" class="genre strategy">
+
+      <img src="images/Strategy/strategy-character.png" alt="Strategy">
+
+      <span>STRATEGY</span>
+
+    </a>
+
+  </section>
+
+</body>
+
+</html>

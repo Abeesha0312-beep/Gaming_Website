@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Gaming Galaxy | Shooter Games</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050816;
+  color:white;
+  overflow-x:hidden;
+  font-family:'Inter',sans-serif;
+}
+
+/* BACKGROUND */
+
+.bg-glow{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(140px);
+  z-index:-1;
+}
+
+.glow-1{
+  width:350px;
+  height:350px;
+
+  background:#00d9ff;
+
+  top:-120px;
+  left:-120px;
+
+  opacity:.15;
+}
+
+.glow-2{
+  width:320px;
+  height:320px;
+
+  background:#0066ff;
+
+  bottom:-120px;
+  right:-120px;
+
+  opacity:.12;
+}
+
+/* NAVBAR */
+
+.navbar{
+  width:100%;
+  padding:28px 8%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:fixed;
+  top:0;
+
+  z-index:999;
+
+  backdrop-filter:blur(12px);
+
+  background:rgba(255,255,255,.02);
+
+  border-bottom:
+  1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+}
+
+.nav-links{
+  display:flex;
+  gap:42px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#9CA3AF;
+
+  transition:.3s ease;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+
+  position:absolute;
+
+  top:180%;
+  left:0;
+
+  background:rgba(10,14,30,.95);
+
+  backdrop-filter:blur(14px);
+
+  border:
+  1px solid rgba(255,255,255,.06);
+
+  border-radius:18px;
+
+  padding:14px;
+
+  min-width:180px;
+
+  list-style:none;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(10px);
+
+  transition:.35s ease;
+}
+
+.dropdown:hover .dropdown-menu{
+
+  opacity:1;
+  visibility:visible;
+
+  transform:translateY(0);
+}
+
+.dropdown-menu li{
+  margin:10px 0;
+}
+
+.dropdown-menu a{
+
+  display:block;
+
+  padding:8px 10px;
+
+  border-radius:10px;
+}
+
+.dropdown-menu a:hover{
+
+  background:
+  rgba(0,217,255,.12);
+
+  padding-left:16px;
+}
+
+/* HERO */
+
+.hero{
+  width:100%;
+  min-height:100vh;
+
+  padding:
+  120px 8% 80px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  position:relative;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(to right,
+  rgba(5,8,22,.95),
+  rgba(5,8,22,.55));
+
+  z-index:1;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding-top:40px;
+  max-width:650px;
+}
+
+.subtitle{
+  color:#00d9ff;
+
+  letter-spacing:4px;
+
+  font-size:.8rem;
+
+  margin-bottom:24px;
+}
+
+.hero h1{
+
+  font-family:'Orbitron',sans-serif;
+
+  font-size:clamp(4rem,8vw,7rem);
+
+  line-height:.95;
+
+  text-transform:uppercase;
+
+  margin-bottom:30px;
+
+  background:
+  linear-gradient(to bottom,#fff,#9CA3AF);
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-description{
+
+  color:#9CA3AF;
+
+  line-height:1.9;
+
+  max-width:520px;
+
+  margin-bottom:36px;
+}
+
+.hero-btn{
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  width:190px;
+  height:58px;
+
+  border-radius:18px;
+
+  text-decoration:none;
+
+  color:#EAFBFF;
+
+  font-weight:500;
+
+  background:
+  rgba(0,217,255,.08);
+
+  border:
+  1px solid rgba(0,217,255,.22);
+
+  backdrop-filter:blur(12px);
+
+  transition:.4s ease;
+
+  box-shadow:
+  0 0 20px rgba(0,217,255,.10);
+}
+
+.hero-btn:hover{
+
+  transform:
+  translateY(-5px);
+
+  background:
+  rgba(0,217,255,.14);
+
+  border-color:
+  rgba(0,217,255,.45);
+
+  box-shadow:
+  0 0 28px rgba(0,217,255,.20);
+}
+
+.hero-character{
+
+  width:460px;
+
+  position:relative;
+  z-index:2;
+
+  animation:floating 5s ease-in-out infinite;
+
+  filter:
+  drop-shadow(0 0 45px rgba(0,217,255,.45));
+}
+
+/* FLOAT */
+
+@keyframes floating{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-18px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+/* GAMES */
+
+.games-section{
+  padding:120px 8%;
+}
+
+.section-title{
+  text-align:center;
+
+  margin-bottom:70px;
+}
+
+.section-title p{
+
+  color:#00d9ff;
+
+  letter-spacing:4px;
+
+  font-size:.8rem;
+
+  margin-bottom:18px;
+}
+
+.section-title h2{
+
+  font-family:'Orbitron',sans-serif;
+
+  font-size:clamp(2.5rem,6vw,4.5rem);
+}
+
+.games-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+
+  gap:34px;
+}
+
+/* CARD */
+
+.game-card{
+
+  background:
+  rgba(255,255,255,.03);
+
+  border:
+  1px solid rgba(255,255,255,.06);
+
+  border-radius:28px;
+
+  overflow:hidden;
+
+  text-decoration:none;
+
+  transition:.45s ease;
+
+  backdrop-filter:blur(12px);
+}
+
+.game-card:hover{
+
+  transform:
+  translateY(-14px);
+
+  border-color:
+  rgba(0,217,255,.45);
+
+  box-shadow:
+  0 0 40px rgba(0,217,255,.18);
+}
+
+.card-image{
+  height:230px;
+
+  overflow:hidden;
+}
+
+.card-image img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transition:.6s ease;
+}
+
+.game-card:hover img{
+  transform:scale(1.08);
+}
+
+.card-content{
+  padding:28px;
+}
+
+.card-content h3{
+
+  font-family:'Orbitron',sans-serif;
+
+  margin-bottom:14px;
+
+  color:white;
+}
+
+.card-content p{
+
+  color:#9CA3AF;
+
+  line-height:1.8;
+
+  font-size:.95rem;
+}
+
+/* FOOTER */
+
+.footer{
+
+  padding:30px;
+
+  text-align:center;
+
+  border-top:
+  1px solid rgba(255,255,255,.05);
+
+  color:#7C8595;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    gap:60px;
+
+    padding-top:140px;
+  }
+
+  .hero-content{
+    max-width:100%;
+  }
+
+  .hero-description{
+    margin:auto auto 36px;
+  }
+
+  .hero-character{
+    width:320px;
+  }
+
+  .games-section{
+    padding:100px 20px;
+  }
+
+}
+  </style>
+
+</head>
+
+<body>
+
+  <!-- BACKGROUND GLOWS -->
+
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      Gaming Galaxy
+    </div>
+
+    <ul class="nav-links">
+
+      <li><a href="index.html">Home</a></li>
+
+      <li><a href="about.html">About</a></li>
+
+      <li class="dropdown">
+
+        <a href="genres.html">Genres</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="action.html">Action</a></li>
+          <li><a href="rpg.html">RPG</a></li>
+          <li><a href="horror.html">Horror</a></li>
+          <li><a href="racing.html">Racing</a></li>
+          <li><a href="shooter.html">Shooter</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+
+        </ul>
+
+      </li>
+
+      <li><a href="trailers.html">Trailers</a></li>
+
+      <li><a href="contact.html">Contact</a></li>
+
+    </ul>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <p class="subtitle">
+        LOCK • LOAD • DOMINATE
+      </p>
+
+      <h1>
+        SHOOTER <br>
+        GAMES
+      </h1>
+
+      <p class="hero-description">
+
+        Enter high-intensity battlefields,
+        tactical missions, futuristic combat,
+        and adrenaline-filled multiplayer warfare.
+
+      </p>
+
+      <a href="#games" class="hero-btn">
+        Explore Games
+      </a>
+
+    </div>
+
+    <img
+      src="images/Shooter/shooter-character.png"
+      alt="Shooter Character"
+      class="hero-character"
+    >
+
+  </section>
+
+  <!-- GAMES -->
+
+  <section class="games-section" id="games">
+
+    <div class="section-title">
+
+      <p>
+        TOP FPS EXPERIENCES
+      </p>
+
+      <h2>
+        Popular Shooter Games
+      </h2>
+
+    </div>
+
+    <div class="games-grid">
+
+      <!-- CARD -->
+
+      <a href="https://www.callofduty.com/" target="_blank" class="game-card">
+
+        <div class="card-image">
+          <img src="images/Shooter/call.jpg" alt="Call of Duty">
+        </div>
+
+        <div class="card-content">
+
+          <h3>Call of Duty</h3>
+
+          <p>
+            Experience cinematic warfare,
+            intense multiplayer battles,
+            and tactical combat missions.
+          </p>
+
+        </div>
+
+      </a>
+
+      <!-- CARD -->
+
+      <a href="https://playvalorant.com/" target="_blank" class="game-card">
+
+        <div class="card-image">
+          <img src="images/Shooter/Valorant.jpg" alt="Valorant">
+        </div>
+
+        <div class="card-content">
+
+          <h3>Valorant</h3>
+
+          <p>
+            Tactical shooting meets
+            powerful agents and
+            strategic team gameplay.
+          </p>
+
+        </div>
+
+      </a>
+
+      <!-- CARD -->
+
+      <a href="https://www.ea.com/games/apex-legends" target="_blank" class="game-card">
+
+        <div class="card-image">
+          <img src="images/Shooter/apex.jpg" alt="Apex Legends">
+        </div>
+
+        <div class="card-content">
+
+          <h3>Apex Legends</h3>
+
+          <p>
+            Fast-paced battle royale
+            packed with movement,
+            abilities, and squad action.
+          </p>
+
+        </div>
+
+      </a>
+
+      <!-- CARD -->
+
+      <a href="https://pubg.com/" target="_blank" class="game-card">
+
+        <div class="card-image">
+          <img src="images/Shooter/pubg.jpg" alt="PUBG">
+        </div>
+
+        <div class="card-content">
+
+          <h3>PUBG</h3>
+
+          <p>
+            Survive brutal battlegrounds
+            and become the last
+            player standing.
+          </p>
+
+        </div>
+
+      </a>
+
+      <!-- CARD -->
+
+      <a href="https://blog.counter-strike.net/" target="_blank" class="game-card">
+
+        <div class="card-image">
+          <img src="images/Shooter/csgo.jpg" alt="CSGO">
+        </div>
+
+        <div class="card-content">
+
+          <h3>CS:GO</h3>
+
+          <p>
+            The legendary competitive FPS
+            known for precision,
+            teamwork, and strategy.
+          </p>
+
+        </div>
+
+      </a>
+
+      <!-- CARD -->
+
+      <a href="https://overwatch.blizzard.com/" target="_blank" class="game-card">
+
+        <div class="card-image">
+          <img src="images/Shooter/overwatch.jpg" alt="Overwatch 2">
+        </div>
+
+        <div class="card-content">
+
+          <h3>Overwatch 2</h3>
+
+          <p>
+            Team-based shooter with
+            vibrant heroes,
+            abilities, and futuristic combat.
+          </p>
+
+        </div>
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 Gaming Galaxy. All rights reserved.
+    </p>
+
+  </footer>
+
+</body>
+
+</html>
+

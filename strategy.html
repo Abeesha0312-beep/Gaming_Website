@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Strategy Games | Gaming Galaxy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050816;
+  color:white;
+  overflow-x:hidden;
+  font-family:'Inter',sans-serif;
+}
+
+/* BACKGROUND */
+
+.bg-glow{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(140px);
+  z-index:-1;
+}
+
+.glow-1{
+  width:380px;
+  height:380px;
+  background:#2563EB;
+  top:-120px;
+  left:-120px;
+  opacity:.14;
+}
+
+.glow-2{
+  width:320px;
+  height:320px;
+  background:#06B6D4;
+  bottom:-120px;
+  right:-120px;
+  opacity:.12;
+}
+
+/* NAVBAR */
+
+.navbar{
+  width:100%;
+  padding:26px 8%;
+
+  position:fixed;
+  top:0;
+  z-index:999;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(14px);
+
+  border-bottom:
+  1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:40px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#9CA3AF;
+  transition:.3s ease;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+
+  position:absolute;
+
+  top:180%;
+  left:0;
+
+  width:190px;
+
+  padding:14px;
+
+  border-radius:20px;
+
+  background:rgba(10,14,30,.96);
+
+  border:
+  1px solid rgba(255,255,255,.06);
+
+  backdrop-filter:blur(18px);
+
+  list-style:none;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(12px);
+
+  transition:.35s ease;
+}
+
+.dropdown:hover .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.dropdown-menu li{
+  margin:10px 0;
+}
+
+.dropdown-menu a{
+
+  display:block;
+
+  padding:10px 12px;
+
+  border-radius:12px;
+}
+
+.dropdown-menu a:hover{
+
+  background:
+  rgba(37,99,235,.15);
+
+  padding-left:18px;
+}
+
+/* HERO */
+
+.hero{
+  width:100%;
+  min-height:100vh;
+
+  padding:120px 8% 80px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  position:relative;
+}
+
+.hero-overlay{
+
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(to right,
+  rgba(5,8,22,.96),
+  rgba(5,8,22,.55));
+
+  z-index:1;
+}
+
+.hero-content{
+
+  position:relative;
+  z-index:2;
+
+  max-width:650px;
+
+  padding-top:40px;
+}
+
+.subtitle{
+
+  color:#60A5FA;
+
+  letter-spacing:4px;
+
+  font-size:.8rem;
+
+  margin-bottom:24px;
+}
+
+.hero h1{
+
+  font-family:'Orbitron',sans-serif;
+
+  font-size:clamp(4rem,7.3vw,7rem);
+
+  line-height:.95;
+
+  margin-bottom:30px;
+
+  text-transform:uppercase;
+
+  background:
+  linear-gradient(to bottom,
+  #ffffff,
+  #93C5FD);
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-description{
+
+    line-height:1.9;
+
+  max-width:520px;
+
+  margin-bottom:36px;
+  color:#A1A1AA;
+
+
+}
+
+/* BUTTON */
+
+.hero-btn{
+
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+
+  width:190px;
+  height:58px;
+
+  border-radius:18px;
+
+  text-decoration:none;
+
+  font-weight:500;
+  color:#DCEBFF;
+
+  background:
+  rgba(255,255,255,.04);
+
+  border:
+  1px solid rgba(96,165,250,.22);
+
+  backdrop-filter:blur(18px);
+
+  transition:.4s ease;
+
+  box-shadow:
+  0 0 18px rgba(59,130,246,.10);
+}
+
+.hero-btn:hover{
+
+  transform:
+  translateY(-5px);
+
+  background:
+  rgba(96,165,250,.08);
+
+  border-color:
+  rgba(147,197,253,.38);
+
+  box-shadow:
+  0 0 28px rgba(59,130,246,.18);
+
+  color:white;
+}
+
+
+/* CHARACTER */
+
+.hero-character{
+
+  width:470px;
+
+  position:relative;
+  z-index:2;
+
+  animation:floating 5s ease-in-out infinite;
+
+  filter:
+  drop-shadow(0 0 45px rgba(37,99,235,.35));
+}
+
+/* FLOAT */
+
+@keyframes floating{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-18px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+/* GAMES SECTION */
+
+.games-section{
+  padding:120px 8%;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.section-title p{
+
+  color:#60A5FA;
+
+  letter-spacing:4px;
+
+  font-size:.8rem;
+
+  margin-bottom:18px;
+}
+
+.section-title h2{
+
+  font-family:'Orbitron',sans-serif;
+
+  font-size:clamp(2.7rem,6vw,4.6rem);
+}
+
+/* GRID */
+
+.games-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+
+  gap:34px;
+}
+
+/* CARD */
+
+.game-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  text-decoration:none;
+
+  background:
+  rgba(255,255,255,.03);
+
+  border:
+  1px solid rgba(255,255,255,.06);
+
+  backdrop-filter:blur(14px);
+
+  transition:.45s ease;
+}
+
+.game-card:hover{
+
+  transform:
+  translateY(-14px);
+
+  border-color:
+  rgba(96,165,250,.35);
+
+  box-shadow:
+  0 0 40px rgba(37,99,235,.18);
+}
+
+.card-image{
+  height:230px;
+  overflow:hidden;
+}
+
+.card-image img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transition:.7s ease;
+}
+
+.game-card:hover img{
+  transform:scale(1.08);
+}
+
+/* CARD CONTENT */
+
+.card-content{
+  padding:28px;
+}
+
+.card-content h3{
+
+  font-family:'Orbitron',sans-serif;
+
+  margin-bottom:14px;
+
+  color:white;
+
+  font-size:1.2rem;
+}
+
+.card-content p{
+
+  color:#9CA3AF;
+
+  line-height:1.8;
+
+  font-size:.95rem;
+}
+
+/* FOOTER */
+
+.footer{
+
+  margin-top:80px;
+
+  padding:34px;
+
+  text-align:center;
+
+  border-top:
+  1px solid rgba(255,255,255,.05);
+
+  color:#7C8595;
+}
+
+.footer a{
+  color:#60A5FA;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    gap:60px;
+
+    padding-top:140px;
+  }
+
+  .hero-content{
+    max-width:100%;
+  }
+
+  .hero-description{
+    margin:auto auto 38px;
+  }
+
+  .hero-character{
+    width:320px;
+  }
+
+  .games-section{
+    padding:100px 20px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+
+<div class="bg-glow glow-1"></div>
+<div class="bg-glow glow-2"></div>
+
+<!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      Gaming Galaxy
+    </div>
+
+    <ul class="nav-links">
+
+      <li><a href="index.html">Home</a></li>
+
+      <li><a href="about.html">About</a></li>
+
+      <li class="dropdown">
+
+        <a href="genres.html">Genres</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="action.html">Action</a></li>
+          <li><a href="rpg.html">RPG</a></li>
+          <li><a href="horror.html">Horror</a></li>
+          <li><a href="racing.html">Racing</a></li>
+          <li><a href="shooter.html">Shooter</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+
+        </ul>
+
+      </li>
+
+      <li><a href="trailers.html">Trailers</a></li>
+
+      <li><a href="contact.html">Contact</a></li>
+
+    </ul>
+
+  </nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+
+    <p class="subtitle">
+      THINK • PLAN • DOMINATE
+    </p>
+
+    <h1>
+      Strategy <br>
+      Games
+    </h1>
+
+    <p class="hero-description">
+
+      Command powerful armies, build unstoppable
+      empires, and outsmart every enemy with
+      tactical precision and strategic mastery.
+
+    </p>
+
+    <a href="#games" class="hero-btn">
+      Explore Games
+    </a>
+
+  </div>
+
+  <img src="images/Strategy/strategy-character.png"
+  alt="Strategy Character"
+  class="hero-character">
+
+</section>
+
+<!-- GAMES -->
+
+<section class="games-section" id="games">
+
+  <div class="section-title">
+
+    <p>
+      TACTICAL MASTERPIECES
+    </p>
+
+    <h2>
+      Popular Strategy Games
+    </h2>
+
+  </div>
+
+  <div class="games-grid">
+
+    <!-- CARD -->
+
+    <a href="https://civilization.com/"
+    target="_blank"
+    class="game-card">
+
+      <div class="card-image">
+        <img src="images/Strategy/civilization6.jpg" alt="">
+      </div>
+
+      <div class="card-content">
+
+        <h3>Civilization VI</h3>
+
+        <p>
+          Build legendary civilizations and
+          shape history through diplomacy,
+          warfare, and strategic leadership.
+        </p>
+
+      </div>
+
+    </a>
+
+    <!-- CARD -->
+
+    <a href="https://www.ageofempires.com/games/age-of-empires-iv/"
+    target="_blank"
+    class="game-card">
+
+      <div class="card-image">
+        <img src="images/Strategy/ageofempires4.jpg" alt="">
+      </div>
+
+      <div class="card-content">
+
+        <h3>Age of Empires IV</h3>
+
+        <p>
+          Lead mighty kingdoms into massive
+          battles and dominate the medieval world.
+        </p>
+
+      </div>
+
+    </a>
+
+    <!-- CARD -->
+
+    <a href="https://store.steampowered.com/app/268500/XCOM_2/"
+    target="_blank"
+    class="game-card">
+
+      <div class="card-image">
+        <img src="images/Strategy/xcom2.jpg" alt="">
+      </div>
+
+      <div class="card-content">
+
+        <h3>XCOM 2</h3>
+
+        <p>
+          Outsmart alien forces using tactical
+          turn-based combat and elite squads.
+        </p>
+
+      </div>
+
+    </a>
+
+    <!-- CARD -->
+
+    <a href="https://starcraft2.com/"
+    target="_blank"
+    class="game-card">
+
+      <div class="card-image">
+        <img src="images/Strategy/starcraft2.jpg" alt="">
+      </div>
+
+      <div class="card-content">
+
+        <h3>StarCraft II</h3>
+
+        <p>
+          Control futuristic factions and
+          survive intense intergalactic warfare.
+        </p>
+
+      </div>
+
+    </a>
+
+    <!-- CARD -->
+
+    <a href="https://www.totalwar.com/"
+    target="_blank"
+    class="game-card">
+
+      <div class="card-image">
+        <img src="images/Strategy/totalwar.jpg" alt="">
+      </div>
+
+      <div class="card-content">
+
+        <h3>Total War</h3>
+
+        <p>
+          Experience large-scale tactical wars
+          combined with deep empire management.
+        </p>
+
+      </div>
+
+    </a>
+
+    <!-- CARD -->
+
+    <a href="https://www.ea.com/games/command-and-conquer"
+    target="_blank"
+    class="game-card">
+
+      <div class="card-image">
+        <img src="images/Strategy/commandandconquer.jpg" alt="">
+      </div>
+
+      <div class="card-content">
+
+        <h3>Command & Conquer</h3>
+
+        <p>
+          Dive into iconic RTS gameplay filled
+          with explosive combat and smart tactics.
+        </p>
+
+      </div>
+
+    </a>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <p>
+    © 2026 Gaming Galaxy. All Rights Reserved.
+  </p>
+
+</footer>
+
+</body>
+
+</html>

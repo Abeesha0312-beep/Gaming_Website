@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About | Gaming Galaxy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+/* DROPDOWN */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+
+  position:absolute;
+
+  top:180%;
+  left:0;
+
+  background:rgba(10,14,30,.95);
+
+  backdrop-filter:blur(14px);
+
+  border:
+  1px solid rgba(255,255,255,.06);
+
+  border-radius:18px;
+
+  padding:14px;
+
+  min-width:180px;
+
+  list-style:none;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(10px);
+
+  transition:.35s ease;
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,.45);
+}
+
+.dropdown:hover .dropdown-menu{
+
+  opacity:1;
+  visibility:visible;
+
+  transform:translateY(0);
+}
+
+.dropdown-menu li{
+  margin:10px 0;
+}
+
+.dropdown-menu a{
+
+  color:#9CA3AF;
+
+  text-decoration:none;
+
+  font-size:.95rem;
+
+  transition:.3s ease;
+
+  display:block;
+
+  padding:8px 10px;
+
+  border-radius:10px;
+}
+
+.dropdown-menu a:hover{
+
+  background:
+  rgba(99,102,241,.12);
+
+  color:white;
+
+  padding-left:16px;
+}
+body{
+  background:#0D1016;
+  color:#fff;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+/* Soft Background Glow */
+
+.blur{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(140px);
+  z-index:-1;
+}
+
+.blur-1{
+  width:260px;
+  height:260px;
+  background:#4F46E5;
+  top:-80px;
+  left:-80px;
+  opacity:.12;
+}
+
+.blur-2{
+  width:220px;
+  height:220px;
+  background:#2563EB;
+  bottom:-80px;
+  right:-80px;
+  opacity:.10;
+}
+
+/* Navbar */
+
+.navbar{
+  width:100%;
+  padding:24px 8%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:fixed;
+  top:0;
+
+  backdrop-filter:blur(12px);
+
+  background:rgba(255,255,255,0.02);
+
+  border-bottom:1px solid rgba(255,255,255,0.04);
+
+  z-index:1000;
+}
+
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:1.1rem;
+  letter-spacing:1px;
+}
+
+.nav-links{
+  display:flex;
+  gap:40px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#9CA3AF;
+  transition:.3s;
+  font-size:.95rem;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+/* About Section */
+
+.about-section{
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:80px;
+
+  padding:140px 8%;
+}
+
+/* Left Image */
+
+.about-image{
+  flex:1;
+}
+
+.about-image img{
+  width:100%;
+  max-width:520px;
+  height:650px;
+
+  object-fit:cover;
+
+  border-radius:28px;
+
+  filter:brightness(.88);
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,.45);
+
+  transition:.5s ease;
+}
+
+.about-image img:hover{
+  transform:translateY(-10px);
+}
+
+/* Right Content */
+
+.about-content{
+  flex:1;
+  max-width:560px;
+}
+
+.small-title{
+  color:#818CF8;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  font-size:.85rem;
+}
+
+.about-content h1{
+  font-size:clamp(2.8rem,6vw,5rem);
+
+  line-height:1.1;
+
+  margin-bottom:28px;
+
+  font-family:'Orbitron',sans-serif;
+}
+
+.about-content h1 span{
+  color:#818CF8;
+}
+
+.description{
+  color:#9CA3AF;
+
+  line-height:1.9;
+
+  font-size:1.02rem;
+
+  margin-bottom:50px;
+}
+
+/* Stats */
+
+.stats{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.stat-box{
+  background:rgba(255,255,255,0.03);
+
+  border:1px solid rgba(255,255,255,0.05);
+
+  padding:24px 30px;
+
+  border-radius:18px;
+
+  min-width:160px;
+
+  transition:.4s;
+}
+
+.stat-box:hover{
+  transform:translateY(-8px);
+
+  background:rgba(255,255,255,0.05);
+}
+
+.stat-box h2{
+  margin-bottom:10px;
+  font-size:2rem;
+}
+
+.stat-box p{
+  color:#9CA3AF;
+  font-size:.95rem;
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+  .about-section{
+    flex-direction:column;
+    text-align:center;
+    padding-top:140px;
+  }
+
+  .stats{
+    justify-content:center;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .about-image img{
+    height:500px;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Blur -->
+
+  <div class="blur blur-1"></div>
+  <div class="blur blur-2"></div>
+
+  <!-- Navbar -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      Gaming Galaxy
+    </div>
+
+    <ul class="nav-links">
+
+      <li><a href="index.html">Home</a></li>
+
+      <li><a href="about.html">About</a></li>
+
+      <li class="dropdown">
+
+        <a href="genres.html">Genres</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="action.html">Action</a></li>
+          <li><a href="rpg.html">RPG</a></li>
+          <li><a href="horror.html">Horror</a></li>
+          <li><a href="racing.html">Racing</a></li>
+          <li><a href="shooter.html">Shooter</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+
+        </ul>
+
+      </li>
+
+      <li><a href="trailers.html">Trailers</a></li>
+
+      <li><a href="contact.html">Contact</a></li>
+
+    </ul>
+
+  </nav>
+
+  <!-- About Section -->
+
+  <section class="about-section">
+
+    <!-- Left Image -->
+
+    <div class="about-image">
+
+      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"
+      alt="gaming setup">
+
+    </div>
+
+    <!-- Right Content -->
+
+    <div class="about-content">
+
+      <p class="small-title">
+        ABOUT THE UNIVERSE
+      </p>
+
+      <h1>
+        A Modern Space <br>
+        For Passionate <span>Gamers</span>
+      </h1>
+
+      <p class="description">
+        Gaming Galaxy is a cinematic gaming platform designed for players who
+        love immersive adventures, futuristic worlds, and competitive gameplay.
+        From story-driven RPGs to fast-paced multiplayer experiences,
+        we bring modern gaming culture together in one premium universe.
+      </p>
+
+      <!-- Stats -->
+
+      <div class="stats">
+
+        <div class="stat-box">
+          <h2>150+</h2>
+          <p>Featured Games</p>
+        </div>
+
+        <div class="stat-box">
+          <h2>20K</h2>
+          <p>Community Members</p>
+        </div>
+
+        <div class="stat-box">
+          <h2>50+</h2>
+          <p>Live Events</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
