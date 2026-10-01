@@ -2,511 +2,1078 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>RPG Games | Gaming Galaxy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
-html{
-  scroll-behavior:smooth;
-}
+    body {
+      background: #050816;
+      color: white;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
 
-body{
-  background:#050816;
-  color:white;
-  overflow-x:hidden;
-  font-family:'Inter',sans-serif;
-}
 
-/* BACKGROUND */
+    /* =========================
+       BACKGROUND
+    ========================= */
 
-.bg-glow{
-  position:fixed;
-  border-radius:50%;
-  filter:blur(140px);
-  z-index:-1;
-}
+    .bg-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -1;
+      pointer-events: none;
+    }
 
-.glow-1{
-  width:360px;
-  height:360px;
+    .glow-1 {
+      width: 360px;
+      height: 360px;
+      background: #8B5CF6;
+      top: -120px;
+      left: -120px;
+      opacity: .16;
+    }
 
-  background:#8B5CF6;
+    .glow-2 {
+      width: 320px;
+      height: 320px;
+      background: #EC4899;
+      bottom: -120px;
+      right: -120px;
+      opacity: .12;
+    }
 
-  top:-120px;
-  left:-120px;
 
-  opacity:.16;
-}
+    /* =========================
+       NAVBAR
+    ========================= */
 
-.glow-2{
-  width:320px;
-  height:320px;
+    .navbar {
+      width: 100%;
+      padding: 25px 8%;
 
-  background:#EC4899;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-  bottom:-120px;
-  right:-120px;
+      position: fixed;
+      top: 0;
+      left: 0;
 
-  opacity:.12;
-}
+      z-index: 1000;
 
-/* NAVBAR */
+      backdrop-filter: blur(18px);
 
-.navbar{
-  width:100%;
-  padding:28px 8%;
+      background: rgba(5, 8, 22, .55);
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
 
-  position:fixed;
-  top:0;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, .18);
+    }
 
-  z-index:999;
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
-  backdrop-filter:blur(12px);
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 38px;
 
-  background:rgba(255,255,255,.03);
+      list-style: none;
 
-  border-bottom:
-  1px solid rgba(255,255,255,.05);
-}
+      margin: 0;
+      padding: 0;
+    }
 
-.logo{
-  font-family:'Orbitron',sans-serif;
-  font-size:1.1rem;
-  font-weight:700;
-}
+    .nav-links a {
+      display: block;
 
-.nav-links{
-  display:flex;
-  gap:42px;
-  list-style:none;
-}
+      text-decoration: none;
 
-.nav-links a{
-  text-decoration:none;
-  color:#9CA3AF;
+      color: #9CA3AF;
 
-  transition:.3s ease;
-}
+      font-size: .95rem;
+      font-weight: 500;
 
-.nav-links a:hover{
-  color:white;
-}
+      letter-spacing: .5px;
 
-/* DROPDOWN */
+      transition: .3s ease;
+    }
 
-.dropdown{
-  position:relative;
-}
+    .nav-links a:hover {
+      color: white;
+    }
 
-.dropdown-menu{
 
-  position:absolute;
+    /* =========================
+       DROPDOWN
+    ========================= */
 
-  top:180%;
-  left:0;
+    .dropdown {
+      position: relative;
+    }
 
-  background:rgba(10,14,30,.96);
+    .dropdown-menu {
+      position: absolute;
 
-  backdrop-filter:blur(14px);
+      top: 180%;
+      left: 0;
 
-  border:
-  1px solid rgba(255,255,255,.06);
+      background: rgba(10, 14, 30, .96);
 
-  border-radius:18px;
+      backdrop-filter: blur(16px);
 
-  padding:14px;
+      border: 1px solid rgba(255, 255, 255, .06);
 
-  min-width:180px;
+      border-radius: 18px;
 
-  list-style:none;
+      padding: 14px;
 
-  opacity:0;
-  visibility:hidden;
+      min-width: 180px;
 
-  transform:translateY(10px);
+      list-style: none;
 
-  transition:.35s ease;
-}
+      opacity: 0;
+      visibility: hidden;
 
-.dropdown:hover .dropdown-menu{
+      transform: translateY(10px);
 
-  opacity:1;
-  visibility:visible;
+      transition: .35s ease;
 
-  transform:translateY(0);
-}
+      z-index: 999;
 
-.dropdown-menu li{
-  margin:10px 0;
-}
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+    }
 
-.dropdown-menu a{
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
 
-  display:block;
+    .dropdown-menu li {
+      margin: 8px 0;
+    }
 
-  padding:8px 10px;
+    .dropdown-menu a {
+      display: block;
 
-  border-radius:10px;
-}
+      padding: 8px 10px;
 
-.dropdown-menu a:hover{
+      border-radius: 10px;
 
-  background:
-  rgba(139,92,246,.15);
+      color: #9CA3AF;
 
-  padding-left:16px;
-}
+      text-decoration: none;
 
-/* HERO */
+      transition: .3s ease;
+    }
 
-.hero{
-  width:100%;
-  min-height:100vh;
+    .dropdown-menu a:hover {
+      background: rgba(124, 92, 255, .10);
 
-  padding:
-  120px 8% 80px;
+      color: white;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
+      padding-left: 16px;
+    }
 
-  position:relative;
-}
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
+    /* =========================
+       MOBILE MENU BUTTON
+    ========================= */
 
-  background:
-  linear-gradient(to right,
-  rgba(5,8,22,.96),
-  rgba(5,8,22,.55));
+    .menu-toggle {
+      display: none;
 
-  z-index:1;
-}
+      width: 42px;
+      height: 42px;
 
-.hero-content{
-  position:relative;
-  z-index:2;
-margin-top: 40px;
-  max-width:650px;
-}
+      border: 1px solid rgba(255, 255, 255, .1);
 
-.subtitle{
-  color:#C084FC;
+      border-radius: 12px;
 
-  letter-spacing:4px;
+      background: rgba(255, 255, 255, .04);
 
-  font-size:.8rem;
+      cursor: pointer;
 
-  margin-bottom:24px;
-}
+      flex-direction: column;
 
-.hero h1{
+      justify-content: center;
+      align-items: center;
 
-  font-family:'Orbitron',sans-serif;
+      gap: 5px;
 
-  font-size:clamp(4rem,8vw,7rem);
+      transition: .3s ease;
+    }
 
-  line-height:.95;
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
 
-  text-transform:uppercase;
+      background: #D1D5DB;
 
-  margin-bottom:28px;
+      border-radius: 10px;
 
-  background:
-  linear-gradient(to bottom,#fff,#A78BFA);
+      transition: .3s ease;
+    }
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+    .menu-toggle:hover {
+      background: rgba(255, 255, 255, .07);
+      border-color: rgba(255, 255, 255, .16);
+    }
 
-.hero-description{
 
-  color:#A1A1AA;
+    /* =========================
+       HAMBURGER → X
+    ========================= */
 
-  line-height:1.9;
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
 
-  max-width:520px;
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
 
-  margin-bottom:36px;
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
 
-  font-size:1rem;
-}
 
-.hero-btn{
+    /* =========================
+       MOBILE MENU
+    ========================= */
 
-  display:inline-flex;
+    .mobile-menu {
+      position: fixed;
 
-  align-items:center;
-  justify-content:center;
+      display: none;
 
-  width:190px;
-  height:58px;
+      top: 86px;
 
-  border-radius:18px;
+      left: 5%;
+      right: 5%;
 
-  text-decoration:none;
+      background: rgba(10, 14, 30, .97);
 
-  color:#E9D5FF;
+      backdrop-filter: blur(18px);
 
-  font-weight:600;
+      border: 1px solid rgba(255, 255, 255, .08);
 
-  background:
-  rgba(139,92,246,.10);
+      border-radius: 18px;
 
-  border:
-  1px solid rgba(192,132,252,.25);
+      padding: 18px;
 
-  backdrop-filter:blur(14px);
+      z-index: 998;
 
-  transition:.4s ease;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
 
-  box-shadow:
-  0 0 20px rgba(139,92,246,.12);
-}
+      transform: translateY(-10px);
 
-.hero-btn:hover{
+      opacity: 0;
 
-  transform:
-  translateY(-6px)
-  scale(1.03);
+      transition:
+        opacity .3s ease,
+        transform .3s ease;
+    }
 
-  background:
-  rgba(192,132,252,.16);
+    .mobile-menu.active {
+      display: block;
 
-  border-color:
-  rgba(216,180,254,.4);
+      opacity: 1;
 
-  box-shadow:
-  0 0 35px rgba(168,85,247,.18);
+      transform: translateY(0);
+    }
 
-  color:white;
-}
 
-.hero-character{
+    /* TOP LEVEL MOBILE LINKS */
 
-  width:470px;
+    .mobile-menu > a {
+      display: block;
 
-  position:relative;
-  z-index:2;
+      color: #9CA3AF;
 
-  animation:floating 5s ease-in-out infinite;
+      text-decoration: none;
 
-  filter:
-  drop-shadow(0 0 50px rgba(139,92,246,.35));
-}
+      padding: 13px 14px;
 
-/* FLOAT */
+      border-radius: 10px;
 
-@keyframes floating{
+      transition: .3s ease;
+    }
 
-  0%{
-    transform:translateY(0px);
-  }
+    .mobile-menu > a:hover {
+      color: white;
 
-  50%{
-    transform:translateY(-18px);
-  }
+      background: rgba(124, 92, 255, .10);
+    }
 
-  100%{
-    transform:translateY(0px);
-  }
-}
 
-/* GAMES */
+    /* MOBILE GENRES */
 
-.games-section{
-  padding:120px 8%;
-}
+    .mobile-genres {
+      padding-left: 14px;
 
-.section-title{
-  text-align:center;
+      border-left: 1px solid #c084fc7e ;
 
-  margin-bottom:70px;
-}
+      margin-left: 10px;
 
-.section-title p{
+      margin-bottom: 4px;
+    }
 
-  color:#C084FC;
+    .mobile-genres a {
+      display: block;
 
-  letter-spacing:4px;
+      color: #9CA3AF;
 
-  font-size:.8rem;
+      text-decoration: none;
 
-  margin-bottom:18px;
-}
+      padding: 10px 14px;
 
-.section-title h2{
+      border-radius: 10px;
 
-  font-family:'Orbitron',sans-serif;
+      font-size: .95rem;
 
-  font-size:clamp(2.5rem,6vw,4.5rem);
-}
+      transition: .3s ease;
+    }
 
-.games-grid{
+    .mobile-genres a:hover {
+      color: white;
 
-  display:grid;
+      background: rgba(124, 92, 255, .10);
+    }
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
 
-  gap:34px;
-}
+    /* =========================
+       HERO
+    ========================= */
 
-/* CARD */
+    .hero {
+      width: 100%;
 
-.game-card{
+      min-height: 100vh;
 
-  background:
-  rgba(255,255,255,.03);
+      padding: 120px 8% 80px;
 
-  border:
-  1px solid rgba(255,255,255,.06);
+      display: flex;
 
-  border-radius:28px;
+      justify-content: space-between;
 
-  overflow:hidden;
+      align-items: flex-start;
 
-  text-decoration:none;
+      position: relative;
+    }
 
-  transition:.45s ease;
+    .hero-overlay {
+      position: absolute;
 
-  backdrop-filter:blur(12px);
-}
+      inset: 0;
 
-.game-card:hover{
+      background:
+        linear-gradient(
+          to right,
+          rgba(5, 8, 22, .96),
+          rgba(5, 8, 22, .55)
+        );
 
-  transform:
-  translateY(-14px);
+      z-index: 1;
+    }
 
-  border-color:
-  rgba(168,85,247,.4);
+    .hero-content {
+      position: relative;
 
-  box-shadow:
-  0 0 40px rgba(139,92,246,.18);
-}
+      z-index: 2;
 
-.card-image{
-  height:230px;
+      margin-top: 40px;
 
-  overflow:hidden;
-}
+      max-width: 650px;
+    }
 
-.card-image img{
+    .subtitle {
+      color: #C084FC;
 
-  width:100%;
-  height:100%;
+      letter-spacing: 4px;
 
-  object-fit:cover;
+      font-size: .8rem;
 
-  transition:.6s ease;
-}
+      margin-bottom: 24px;
+    }
 
-.game-card:hover img{
-  transform:scale(1.08);
-}
+    .hero h1 {
 
-.card-content{
-  padding:28px;
-}
+      font-family: 'Orbitron', sans-serif;
 
-.card-content h3{
+      font-size:
+        clamp(4rem, 8vw, 7rem);
 
-  font-family:'Orbitron',sans-serif;
+      line-height: .95;
 
-  margin-bottom:14px;
+      text-transform: uppercase;
 
-  color:white;
-}
+      margin-bottom: 28px;
 
-.card-content p{
+      background:
+        linear-gradient(
+          to bottom,
+          #fff,
+          #9CA3AF
+        );
 
-  color:#9CA3AF;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  line-height:1.8;
+    .hero-description {
+      color: #A1A1AA;
 
-  font-size:.95rem;
-}
+      line-height: 1.9;
 
-/* FOOTER */
+      max-width: 520px;
 
-.footer{
+      margin-bottom: 36px;
 
-  padding:30px;
+      font-size: 1rem;
+    }
 
-  text-align:center;
+    .hero-btn {
+      display: inline-flex;
 
-  border-top:
-  1px solid rgba(255,255,255,.05);
+      align-items: center;
+      justify-content: center;
 
-  color:#7C8595;
-}
+      width: 190px;
+      height: 58px;
 
-/* RESPONSIVE */
+      border-radius: 18px;
 
-@media(max-width:992px){
+      text-decoration: none;
 
-  .nav-links{
-    display:none;
-  }
+      color: #FFEFEF;
 
-  .hero{
+      font-weight: 500;
 
-    flex-direction:column;
+      border: 1px solid rgba(192, 132, 252, .25);
 
-    text-align:center;
+      transition: .4s ease;
+    }
 
-    gap:60px;
+    .hero-btn:hover {
+      transform: translateY(-5px);
 
-    padding-top:140px;
-  }
+      border-color: rgba(216, 180, 254, .4);
 
-  .hero-content{
-    max-width:100%;
-  }
+      box-shadow:
+        0 0 20px rgba(87, 17, 248, .12);
+    }
 
-  .hero-description{
-    margin:auto auto 36px;
-  }
+    .hero-character {
+      width: min(470px, 40vw);
 
-  .hero-character{
-    width:320px;
-  }
+      position: relative;
 
-  .games-section{
-    padding:100px 20px;
-  }
-}
+      z-index: 2;
+
+      animation: floating 5s ease-in-out infinite;
+
+      filter:
+        drop-shadow(0 0 50px rgba(139, 92, 246, .35));
+
+      flex-shrink: 0;
+    }
+
+
+    /* =========================
+       FLOAT ANIMATION
+    ========================= */
+
+    @keyframes floating {
+
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-18px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       GAMES
+    ========================= */
+
+    .games-section {
+      padding: 120px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+
+      margin-bottom: 70px;
+    }
+
+    .section-title p {
+      color: #C084FC;
+
+      letter-spacing: 4px;
+
+      font-size: .8rem;
+
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .games-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 34px;
+    }
+
+
+    /* =========================
+       GAME CARD
+    ========================= */
+
+    .game-card {
+      background: rgba(255, 255, 255, .03);
+
+      border: 1px solid rgba(255, 255, 255, .06);
+
+      border-radius: 28px;
+
+      overflow: hidden;
+
+      text-decoration: none;
+
+      transition: .45s ease;
+
+      backdrop-filter: blur(12px);
+    }
+
+    .game-card:hover {
+      transform: translateY(-14px);
+
+      border-color: rgba(168, 85, 247, .4);
+
+      box-shadow:
+        0 0 40px rgba(139, 92, 246, .18);
+    }
+
+    .card-image {
+      height: 230px;
+
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition: .6s ease;
+    }
+
+    .game-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card-content {
+      padding: 28px;
+    }
+
+    .card-content h3 {
+      font-family: 'Orbitron', sans-serif;
+
+      margin-bottom: 14px;
+
+      color: white;
+    }
+
+    .card-content p {
+      color: #9CA3AF;
+
+      line-height: 1.8;
+
+      font-size: .95rem;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+      padding: 30px;
+
+      text-align: center;
+
+      border-top:
+        1px solid rgba(255, 255, 255, .05);
+
+      color: #7C8595;
+    }
+
+
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media (max-width: 1100px) {
+
+      .navbar {
+        padding: 22px 5%;
+      }
+
+      .nav-links {
+        gap: 24px;
+      }
+
+      .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .hero-character {
+        width: 370px;
+      }
+
+      .hero-content {
+        max-width: 560px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.8rem, 8vw, 6rem);
+      }
+
+    }
+
+
+    /* =====================================================
+       TABLET / SMALL LAPTOP
+    ===================================================== */
+
+    @media (max-width: 992px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero {
+        min-height: auto;
+
+        padding-top: 150px;
+        padding-bottom: 90px;
+
+        gap: 50px;
+      }
+
+      .hero-content {
+        margin-top: 0;
+      }
+
+      .hero-character {
+        width: 320px;
+      }
+
+      .games-section {
+        padding: 100px 6%;
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+      body {
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+
+      /* =========================
+         NAVBAR
+      ========================= */
+
+      .navbar {
+        padding: 18px 6%;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .mobile-menu {
+        top: 76px;
+
+        left: 5%;
+        right: 5%;
+      }
+
+
+      /* =========================
+         HERO
+      ========================= */
+
+      .hero {
+        min-height: auto;
+
+        display: block;
+
+        text-align: center;
+
+        padding:
+          125px 6% 75px;
+      }
+
+      .hero-overlay {
+        background:
+          radial-gradient(
+            circle at center,
+            rgba(80, 40, 140, .15),
+            rgba(5, 8, 22, .95) 70%
+          );
+      }
+
+      .hero-content {
+        width: 100%;
+
+        max-width: 100%;
+
+        margin: 0 auto;
+      }
+
+      .subtitle {
+        font-size: .68rem;
+
+        letter-spacing: 2.5px;
+
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.2rem, 16vw, 5rem);
+
+        line-height: .95;
+
+        margin-bottom: 25px;
+      }
+
+      .hero-description {
+        max-width: 480px;
+
+        margin:
+          0 auto 30px;
+
+        font-size: .92rem;
+
+        line-height: 1.75;
+      }
+
+      .hero-btn {
+        width: 180px;
+        height: 54px;
+
+        border-radius: 15px;
+
+        font-size: .9rem;
+      }
+
+
+      /* =========================
+         HIDE CHARACTER
+      ========================= */
+
+      .hero-character {
+        display: none !important;
+      }
+
+
+      /* =========================
+         GAMES
+      ========================= */
+
+      .games-section {
+        padding:
+          75px 6% 80px;
+      }
+
+      .section-title {
+        margin-bottom: 42px;
+      }
+
+      .section-title p {
+        font-size: .68rem;
+
+        letter-spacing: 2.5px;
+
+        margin-bottom: 14px;
+      }
+
+      .section-title h2 {
+        font-size: clamp(2rem, 10vw, 3rem);
+
+        line-height: 1.15;
+      }
+
+      .games-grid {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+      }
+
+      .game-card {
+        border-radius: 22px;
+      }
+
+      .card-image {
+        height: 205px;
+      }
+
+      .card-content {
+        padding: 22px;
+      }
+
+      .card-content h3 {
+        font-size: 1.05rem;
+
+        margin-bottom: 10px;
+      }
+
+      .card-content p {
+        font-size: .88rem;
+
+        line-height: 1.7;
+      }
+
+      .game-card:hover {
+        transform: translateY(-6px);
+      }
+
+
+      /* =========================
+         FOOTER
+      ========================= */
+
+      .footer {
+        padding: 25px 6%;
+
+        font-size: .8rem;
+      }
+
+    }
+
+
+    /* =====================================================
+       SMALL PHONES
+    ===================================================== */
+
+    @media (max-width: 480px) {
+
+      .navbar {
+        padding: 15px 5%;
+      }
+
+      .logo {
+        font-size: .88rem;
+      }
+
+      .menu-toggle {
+        width: 39px;
+        height: 39px;
+      }
+
+      .mobile-menu {
+        top: 70px;
+      }
+
+
+      /* HERO */
+
+      .hero {
+        padding:
+          110px 5% 60px;
+      }
+
+      .subtitle {
+        font-size: .58rem;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 17px;
+      }
+
+      .hero h1 {
+        font-size:
+          clamp(2.5rem, 13vw, 3.5rem);
+
+        line-height: 1;
+
+        margin-bottom: 20px;
+      }
+
+      .hero-description {
+        font-size: .84rem;
+
+        line-height: 1.7;
+
+        margin-bottom: 26px;
+      }
+
+      .hero-btn {
+        width: 170px;
+
+        height: 52px;
+
+        font-size: .84rem;
+      }
+
+
+      /* GAMES */
+
+      .games-section {
+        padding:
+          60px 5% 65px;
+      }
+
+      .section-title {
+        margin-bottom: 34px;
+      }
+
+      .section-title p {
+        font-size: .55rem;
+
+        letter-spacing: 2px;
+      }
+
+      .section-title h2 {
+        font-size:
+          clamp(1.8rem, 9.5vw, 2.6rem);
+      }
+
+      .games-grid {
+        gap: 20px;
+      }
+
+      .card-image {
+        height: 190px;
+      }
+
+      .card-content {
+        padding: 19px;
+      }
+
+      .card-content h3 {
+        font-size: .95rem;
+      }
+
+      .card-content p {
+        font-size: .8rem;
+
+        line-height: 1.65;
+      }
+
+    }
+
+
+    /* =====================================================
+       VERY SMALL PHONES
+    ===================================================== */
+
+    @media (max-width: 360px) {
+
+      .navbar {
+        padding-left: 4%;
+        padding-right: 4%;
+      }
+
+      .hero {
+        padding-left: 4%;
+        padding-right: 4%;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-description {
+        font-size: .78rem;
+      }
+
+      .games-section {
+        padding-left: 4%;
+        padding-right: 4%;
+      }
+
+      .card-image {
+        height: 175px;
+      }
+
+    }
 
   </style>
 
 </head>
 
+
 <body>
+
 
   <!-- BACKGROUND -->
 
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
+
 
   <!-- NAVBAR -->
 
@@ -516,36 +1083,154 @@ margin-top: 40px;
       Gaming Galaxy
     </div>
 
+
+    <!-- DESKTOP NAVIGATION -->
+
     <ul class="nav-links">
 
-      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="index.html">Home</a>
+      </li>
 
-      <li><a href="about.html">About</a></li>
+      <li>
+        <a href="about.html">About</a>
+      </li>
 
       <li class="dropdown">
 
-        <a href="genres.html">Genres</a>
+        <a href="genres.html">
+          Genres
+        </a>
 
         <ul class="dropdown-menu">
 
-          <li><a href="action.html">Action</a></li>
-          <li><a href="rpg.html">RPG</a></li>
-          <li><a href="horror.html">Horror</a></li>
-          <li><a href="racing.html">Racing</a></li>
-          <li><a href="shooter.html">Shooter</a></li>
-          <li><a href="strategy.html">Strategy</a></li>
+          <li>
+            <a href="action.html">
+              Action
+            </a>
+          </li>
+
+          <li>
+            <a href="rpg.html">
+              RPG
+            </a>
+          </li>
+
+          <li>
+            <a href="horror.html">
+              Horror
+            </a>
+          </li>
+
+          <li>
+            <a href="racing.html">
+              Racing
+            </a>
+          </li>
+
+          <li>
+            <a href="shooter.html">
+              Shooter
+            </a>
+          </li>
+
+          <li>
+            <a href="strategy.html">
+              Strategy
+            </a>
+          </li>
 
         </ul>
 
       </li>
 
-      <li><a href="trailers.html">Trailers</a></li>
+      <li>
+        <a href="trailers.html">
+          Trailers
+        </a>
+      </li>
 
-      <li><a href="contact.html">Contact</a></li>
+      <li>
+        <a href="contact.html">
+          Contact
+        </a>
+      </li>
 
     </ul>
 
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      type="button"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
   </nav>
+
+
+  <!-- MOBILE MENU -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="genres.html">
+      Genres
+    </a>
+
+    <div class="mobile-genres">
+
+      <a href="action.html">
+        Action
+      </a>
+
+      <a href="rpg.html">
+        RPG
+      </a>
+
+      <a href="horror.html">
+        Horror
+      </a>
+
+      <a href="racing.html">
+        Racing
+      </a>
+
+      <a href="shooter.html">
+        Shooter
+      </a>
+
+      <a href="strategy.html">
+        Strategy
+      </a>
+
+    </div>
+
+    <a href="trailers.html">
+      Trailers
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+  </div>
+
 
   <!-- HERO -->
 
@@ -560,17 +1245,15 @@ margin-top: 40px;
       </p>
 
       <h1>
-        RPG <br>
+        RPG<br>
         Games
       </h1>
 
       <p class="hero-description">
-
         Journey through magical kingdoms,
         mysterious lands, and unforgettable
         adventures where every choice shapes
         your destiny.
-
       </p>
 
       <a href="#games" class="hero-btn">
@@ -579,11 +1262,17 @@ margin-top: 40px;
 
     </div>
 
-    <img src="images/RPG/rpg-character.png"
-    alt="RPG Character"
-    class="hero-character">
+
+    <!-- DESKTOP / TABLET CHARACTER -->
+
+    <img
+      src="images/RPG/rpg-character.png"
+      alt="RPG Character"
+      class="hero-character"
+    >
 
   </section>
+
 
   <!-- GAMES -->
 
@@ -601,21 +1290,33 @@ margin-top: 40px;
 
     </div>
 
+
     <div class="games-grid">
+
 
       <!-- CARD 1 -->
 
-      <a href="https://thewitcher.com/en/witcher3"
-      target="_blank"
-      class="game-card">
+      <a
+        href="https://thewitcher.com/en/witcher3"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/RPG/witcher3.jpg" alt="">
+
+          <img
+            src="images/RPG/witcher3.jpg"
+            alt="The Witcher 3"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>The Witcher 3</h3>
+          <h3>
+            The Witcher 3
+          </h3>
 
           <p>
             Explore a dark fantasy world
@@ -627,19 +1328,30 @@ margin-top: 40px;
 
       </a>
 
+
       <!-- CARD 2 -->
 
-      <a href="https://www.playstation.com/en-us/games/the-elder-scrolls-v-skyrim/"
-      target="_blank"
-      class="game-card">
+      <a
+        href="https://www.playstation.com/en-us/games/the-elder-scrolls-v-skyrim/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/RPG/skyrim.jpg" alt="">
+
+          <img
+            src="images/RPG/skyrim.jpg"
+            alt="Skyrim"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Skyrim</h3>
+          <h3>
+            Skyrim
+          </h3>
 
           <p>
             Become the Dragonborn and
@@ -651,19 +1363,30 @@ margin-top: 40px;
 
       </a>
 
+
       <!-- CARD 3 -->
 
-      <a href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
-      target="_blank"
-      class="game-card">
+      <a
+        href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Trailers/firewatch.png" alt="">
+
+          <img
+            src="images/Trailers/firewatch.png"
+            alt="Firewatch"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Firewatch</h3>
+          <h3>
+            Firewatch
+          </h3>
 
           <p>
             Survive brutal enemies and
@@ -675,19 +1398,30 @@ margin-top: 40px;
 
       </a>
 
+
       <!-- CARD 4 -->
 
-      <a href="https://finalfantasyxv.square-enix-games.com/en"
-      target="_blank"
-      class="game-card">
+      <a
+        href="https://finalfantasyxv.square-enix-games.com/en"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/RPG/final.jpg" alt="">
+
+          <img
+            src="images/RPG/final.jpg"
+            alt="Final Fantasy XV"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Final Fantasy XV</h3>
+          <h3>
+            Final Fantasy XV
+          </h3>
 
           <p>
             Embark on an emotional journey
@@ -699,19 +1433,30 @@ margin-top: 40px;
 
       </a>
 
+
       <!-- CARD 5 -->
 
-      <a href="https://www.cyberpunk.net/"
-      target="_blank"
-      class="game-card">
+      <a
+        href="https://www.cyberpunk.net/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/RPG/cyberpunk.jpg" alt="">
+
+          <img
+            src="images/RPG/cyberpunk.jpg"
+            alt="Cyberpunk 2077"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Cyberpunk 2077</h3>
+          <h3>
+            Cyberpunk 2077
+          </h3>
 
           <p>
             Dive into the neon streets of
@@ -723,19 +1468,30 @@ margin-top: 40px;
 
       </a>
 
+
       <!-- CARD 6 -->
 
-      <a href="https://www.ea.com/games/dragon-age/dragon-age-inquisition"
-      target="_blank"
-      class="game-card">
+      <a
+        href="https://www.ea.com/games/dragon-age/dragon-age-inquisition"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/RPG/dragonage.jpg" alt="">
+
+          <img
+            src="images/RPG/dragonage.jpg"
+            alt="Dragon Age"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Dragon Age</h3>
+          <h3>
+            Dragon Age
+          </h3>
 
           <p>
             Lead powerful warriors and
@@ -751,6 +1507,7 @@ margin-top: 40px;
 
   </section>
 
+
   <!-- FOOTER -->
 
   <footer class="footer">
@@ -761,6 +1518,114 @@ margin-top: 40px;
 
   </footer>
 
-</body>
-</html>
 
+  <!-- MOBILE NAVIGATION JS -->
+
+  <script>
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+
+    /* =========================
+       OPEN / CLOSE MENU
+    ========================= */
+
+    menuToggle.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      mobileMenu.classList.toggle("active");
+
+      menuToggle.classList.toggle("active");
+
+      const isOpen =
+        mobileMenu.classList.contains("active");
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
+
+    });
+
+
+    /* =========================
+       CLOSE AFTER CLICKING LINK
+    ========================= */
+
+    mobileMenu
+      .querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          mobileMenu.classList.remove("active");
+
+          menuToggle.classList.remove("active");
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        });
+
+      });
+
+
+    /* =========================
+       CLOSE WHEN CLICKING OUTSIDE
+    ========================= */
+
+    document.addEventListener("click", (e) => {
+
+      if (
+        !mobileMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ) {
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+
+    /* =========================
+       RESET ON DESKTOP
+    ========================= */
+
+    window.addEventListener("resize", () => {
+
+      if (window.innerWidth > 992) {
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>

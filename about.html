@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,320 +10,860 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
-    *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-/* DROPDOWN */
 
-.dropdown{
-  position:relative;
-}
 
-.dropdown-menu{
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  position:absolute;
+    html {
+      scroll-behavior: smooth;
+    }
 
-  top:180%;
-  left:0;
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0D1016;
+      color: #fff;
+      overflow-x: hidden;
+    }
 
-  background:rgba(10,14,30,.95);
 
-  backdrop-filter:blur(14px);
+    /* =========================
+       BACKGROUND GLOW
+    ========================= */
 
-  border:
-  1px solid rgba(255,255,255,.06);
+    .blur {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -1;
+      pointer-events: none;
+    }
 
-  border-radius:18px;
+    .blur-1 {
+      width: 260px;
+      height: 260px;
+      background: #4F46E5;
+      top: -80px;
+      left: -80px;
+      opacity: .12;
+    }
 
-  padding:14px;
+    .blur-2 {
+      width: 220px;
+      height: 220px;
+      background: #2563EB;
+      bottom: -80px;
+      right: -80px;
+      opacity: .10;
+    }
 
-  min-width:180px;
 
-  list-style:none;
+    /* =========================
+       NAVBAR
+    ========================= */
 
-  opacity:0;
-  visibility:hidden;
+    .navbar {
+      width: 100%;
 
-  transform:translateY(10px);
+      padding: 25px 8%;
 
-  transition:.35s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-  box-shadow:
-  0 10px 40px rgba(0,0,0,.45);
-}
+      position: fixed;
 
-.dropdown:hover .dropdown-menu{
+      top: 0;
+      left: 0;
 
-  opacity:1;
-  visibility:visible;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
 
-  transform:translateY(0);
-}
+      background: rgba(13, 16, 22, .75);
 
-.dropdown-menu li{
-  margin:10px 0;
-}
+      border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
 
-.dropdown-menu a{
+      z-index: 1000;
+    }
 
-  color:#9CA3AF;
+    .logo {
+      font-family: 'Orbitron', sans-serif;
 
-  text-decoration:none;
+      font-size: 1.2rem;
 
-  font-size:.95rem;
+      color: #fff;
 
-  transition:.3s ease;
+      white-space: nowrap;
+    }
 
-  display:block;
 
-  padding:8px 10px;
+    /* =========================
+       DESKTOP NAVIGATION
+    ========================= */
 
-  border-radius:10px;
-}
+    .nav-links {
+      display: flex;
 
-.dropdown-menu a:hover{
+      align-items: center;
 
-  background:
-  rgba(99,102,241,.12);
+      gap: 40px;
 
-  color:white;
+      list-style: none;
+    }
 
-  padding-left:16px;
-}
-body{
-  background:#0D1016;
-  color:#fff;
-  font-family:'Inter',sans-serif;
-  overflow-x:hidden;
-}
+    .nav-links a {
+      color: #ccc;
 
-/* Soft Background Glow */
+      text-decoration: none;
 
-.blur{
-  position:absolute;
-  border-radius:50%;
-  filter:blur(140px);
-  z-index:-1;
-}
+      transition: .3s ease;
 
-.blur-1{
-  width:260px;
-  height:260px;
-  background:#4F46E5;
-  top:-80px;
-  left:-80px;
-  opacity:.12;
-}
+      white-space: nowrap;
+    }
 
-.blur-2{
-  width:220px;
-  height:220px;
-  background:#2563EB;
-  bottom:-80px;
-  right:-80px;
-  opacity:.10;
-}
+    .nav-links a:hover {
+      color: #fff;
+    }
 
-/* Navbar */
 
-.navbar{
-  width:100%;
-  padding:24px 8%;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+    .dropdown {
+      position: relative;
+    }
 
-  position:fixed;
-  top:0;
+    .dropdown-menu {
+      position: absolute;
 
-  backdrop-filter:blur(12px);
+      top: 180%;
+      left: 0;
 
-  background:rgba(255,255,255,0.02);
+      background: rgba(10, 14, 30, .95);
 
-  border-bottom:1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
 
-  z-index:1000;
-}
+      border:
+        1px solid rgba(255, 255, 255, .06);
 
-.logo{
-  font-family:'Orbitron',sans-serif;
-  font-size:1.1rem;
-  letter-spacing:1px;
-}
+      border-radius: 18px;
 
-.nav-links{
-  display:flex;
-  gap:40px;
-  list-style:none;
-}
+      padding: 14px;
 
-.nav-links a{
-  text-decoration:none;
-  color:#9CA3AF;
-  transition:.3s;
-  font-size:.95rem;
-}
+      min-width: 180px;
 
-.nav-links a:hover{
-  color:#fff;
-}
+      list-style: none;
 
-/* About Section */
+      opacity: 0;
+      visibility: hidden;
 
-.about-section{
-  min-height:100vh;
+      transform: translateY(10px);
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+      transition: .35s ease;
 
-  gap:80px;
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, .45);
 
-  padding:140px 8%;
-}
+      z-index: 1001;
+    }
 
-/* Left Image */
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
 
-.about-image{
-  flex:1;
-}
+      visibility: visible;
 
-.about-image img{
-  width:100%;
-  max-width:520px;
-  height:650px;
+      transform: translateY(0);
+    }
 
-  object-fit:cover;
+    .dropdown-menu li {
+      margin: 10px 0;
+    }
 
-  border-radius:28px;
+    .dropdown-menu a {
+      color: #9CA3AF;
 
-  filter:brightness(.88);
+      text-decoration: none;
 
-  box-shadow:
-  0 20px 60px rgba(0,0,0,.45);
+      font-size: .95rem;
 
-  transition:.5s ease;
-}
+      transition: .3s ease;
 
-.about-image img:hover{
-  transform:translateY(-10px);
-}
+      display: block;
 
-/* Right Content */
+      padding: 8px 10px;
 
-.about-content{
-  flex:1;
-  max-width:560px;
-}
+      border-radius: 10px;
+    }
 
-.small-title{
-  color:#818CF8;
-  letter-spacing:2px;
-  margin-bottom:20px;
-  font-size:.85rem;
-}
+    .dropdown-menu a:hover {
+      background:
+        rgba(99, 102, 241, .12);
 
-.about-content h1{
-  font-size:clamp(2.8rem,6vw,5rem);
+      color: white;
 
-  line-height:1.1;
+      padding-left: 16px;
+    }
 
-  margin-bottom:28px;
 
-  font-family:'Orbitron',sans-serif;
-}
+    /* =========================
+       MOBILE MENU BUTTON
+    ========================= */
 
-.about-content h1 span{
-  color:#818CF8;
-}
+    .menu-toggle {
+      display: none;
 
-.description{
-  color:#9CA3AF;
+      width: 42px;
+      height: 42px;
 
-  line-height:1.9;
+      border:
+        1px solid rgba(255, 255, 255, .1);
 
-  font-size:1.02rem;
+      border-radius: 12px;
 
-  margin-bottom:50px;
-}
+      background:
+        rgba(255, 255, 255, .04);
 
-/* Stats */
+      color: white;
 
-.stats{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
+      cursor: pointer;
 
-.stat-box{
-  background:rgba(255,255,255,0.03);
+      align-items: center;
+      justify-content: center;
 
-  border:1px solid rgba(255,255,255,0.05);
+      flex-direction: column;
 
-  padding:24px 30px;
+      gap: 5px;
 
-  border-radius:18px;
+      position: relative;
 
-  min-width:160px;
+      transition:
+        background .3s ease,
+        border-color .3s ease;
+    }
 
-  transition:.4s;
-}
+    .menu-toggle:hover {
+      background:
+        rgba(255, 255, 255, .08);
 
-.stat-box:hover{
-  transform:translateY(-8px);
+      border-color:
+        rgba(255, 255, 255, .15);
+    }
 
-  background:rgba(255,255,255,0.05);
-}
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
 
-.stat-box h2{
-  margin-bottom:10px;
-  font-size:2rem;
-}
+      background: #fff;
 
-.stat-box p{
-  color:#9CA3AF;
-  font-size:.95rem;
-}
+      border-radius: 10px;
 
-/* Responsive */
+      display: block;
 
-@media(max-width:992px){
+      transition:
+        transform .35s ease,
+        opacity .25s ease;
+    }
 
-  .about-section{
-    flex-direction:column;
-    text-align:center;
-    padding-top:140px;
-  }
 
-  .stats{
-    justify-content:center;
-  }
+    /* =========================
+       HAMBURGER → X
+    ========================= */
 
-  .nav-links{
-    display:none;
-  }
+    .menu-toggle.active span:nth-child(1) {
+      transform:
+        translateY(7px)
+        rotate(45deg);
+    }
 
-  .about-image img{
-    height:500px;
-  }
-}
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+
+      transform: scaleX(0);
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform:
+        translateY(-7px)
+        rotate(-45deg);
+    }
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    .mobile-menu {
+      display: none;
+    }
+
+
+    /* =========================
+       ABOUT SECTION
+    ========================= */
+
+    .about-section {
+      min-height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 80px;
+
+      padding: 140px 8% 80px;
+
+      max-width: 1600px;
+
+      margin: 0 auto;
+    }
+
+
+    /* =========================
+       LEFT IMAGE
+    ========================= */
+
+    .about-image {
+      flex: 1;
+
+      display: flex;
+
+      justify-content: center;
+    }
+
+    .about-image img {
+      width: 100%;
+
+      max-width: 520px;
+
+      height: 650px;
+
+      object-fit: cover;
+
+      border-radius: 28px;
+
+      filter: brightness(.88);
+
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, .45);
+
+      transition: .5s ease;
+
+      display: block;
+    }
+
+    .about-image img:hover {
+      transform: translateY(-10px);
+    }
+
+
+    /* =========================
+       RIGHT CONTENT
+    ========================= */
+
+    .about-content {
+      flex: 1;
+
+      max-width: 560px;
+    }
+
+    .small-title {
+      color: #818CF8;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 20px;
+
+      font-size: .85rem;
+    }
+
+    .about-content h1 {
+      font-size:
+        clamp(2.8rem, 6vw, 5rem);
+
+      line-height: 1.1;
+
+      margin-bottom: 28px;
+
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .about-content h1 span {
+      color: #818CF8;
+    }
+
+    .description {
+      color: #9CA3AF;
+
+      line-height: 1.9;
+
+      font-size: 1.02rem;
+
+      margin-bottom: 50px;
+    }
+
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      display: flex;
+
+      gap: 20px;
+
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background:
+        rgba(255, 255, 255, 0.03);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+      padding: 24px 30px;
+
+      border-radius: 18px;
+
+      min-width: 160px;
+
+      transition: .4s;
+
+      flex: 1;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-8px);
+
+      background:
+        rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-box h2 {
+      margin-bottom: 10px;
+
+      font-size: 2rem;
+    }
+
+    .stat-box p {
+      color: #9CA3AF;
+
+      font-size: .95rem;
+    }
+
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 1100px) {
+
+      .navbar {
+        padding:
+          22px 5%;
+      }
+
+      .nav-links {
+        gap: 25px;
+      }
+
+      .about-section {
+        padding-left: 5%;
+
+        padding-right: 5%;
+
+        gap: 50px;
+      }
+
+      .about-image img {
+        height: 550px;
+      }
+
+      .about-content h1 {
+        font-size:
+          clamp(2.5rem, 5vw, 4rem);
+      }
+
+      .stat-box {
+        min-width: 140px;
+
+        padding: 20px;
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+       SAME AS INDEX PAGE
+    ========================= */
+
+    @media (max-width: 768px) {
+
+
+      /* ---------- NAVBAR ---------- */
+
+      .navbar {
+        padding:
+          18px 6%;
+      }
+
+      .menu-toggle {
+        display: flex;
+
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+
+        flex-shrink: 0;
+
+        position: relative;
+
+        z-index: 1001;
+      }
+
+
+      /* ---------- HIDE DESKTOP NAV ---------- */
+
+      .nav-links {
+        display: none;
+      }
+
+
+      /* ---------- MOBILE MENU ---------- */
+
+      .mobile-menu {
+        position: fixed;
+
+        display: none;
+
+        top: 86px;
+
+        left: 5%;
+        right: 5%;
+
+        background:
+          rgba(10, 14, 30, .97);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border:
+          1px solid rgba(255, 255, 255, .08);
+
+        border-radius: 18px;
+
+        padding: 18px;
+
+        z-index: 998;
+
+        box-shadow:
+          0 20px 50px
+          rgba(0, 0, 0, .35);
+
+        transform:
+          translateY(-10px);
+
+        opacity: 0;
+
+        transition:
+          opacity .3s ease,
+          transform .3s ease;
+      }
+
+      .mobile-menu.active {
+        display: block;
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+
+
+      /* ---------- MOBILE LINKS ---------- */
+
+      .mobile-menu > a {
+        display: block;
+
+        color: #9CA3AF;
+
+        text-decoration: none;
+
+        padding:
+          13px 14px;
+
+        border-radius: 10px;
+
+        transition:
+          .3s ease;
+      }
+
+      .mobile-menu > a:hover {
+        color: white;
+
+        background:
+          rgba(99, 102, 241, .12);
+      }
+
+
+      /* ---------- MOBILE GENRES ---------- */
+
+      .mobile-genres {
+        padding-left: 14px;
+
+        border-left:
+          1px solid
+          rgba(124, 92, 255, .3);
+
+        margin-left: 10px;
+
+        margin-bottom: 4px;
+      }
+
+      .mobile-genres a {
+        display: block;
+
+        color: #9CA3AF;
+
+        text-decoration: none;
+
+        padding:
+          10px 14px;
+
+        border-radius: 10px;
+
+        transition: .3s ease;
+
+        font-size: .95rem;
+      }
+
+      .mobile-genres a:hover {
+        color: white;
+
+        background:
+          rgba(124, 92, 255, .10);
+      }
+
+
+      /* ---------- ABOUT SECTION ---------- */
+
+      .about-section {
+        min-height: auto;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 45px;
+
+        padding:
+          120px 6% 70px;
+      }
+
+
+      /* ---------- IMAGE ---------- */
+
+      .about-image {
+        width: 100%;
+      }
+
+      .about-image img {
+        width: 100%;
+
+        max-width: 520px;
+
+        height: 420px;
+
+        border-radius: 24px;
+
+        object-fit: cover;
+      }
+
+      .about-image img:hover {
+        transform: none;
+      }
+
+
+      /* ---------- CONTENT ---------- */
+
+      .about-content {
+        width: 100%;
+
+        max-width: 650px;
+      }
+
+      .small-title {
+        font-size: .75rem;
+
+        letter-spacing: 1.5px;
+
+        margin-bottom: 16px;
+      }
+
+      .about-content h1 {
+        font-size:
+          clamp(2.3rem, 9vw, 3.8rem);
+
+        line-height: 1.15;
+
+        margin-bottom: 22px;
+      }
+
+      .description {
+        font-size: .95rem;
+
+        line-height: 1.75;
+
+        margin-bottom: 35px;
+      }
+
+
+      /* ---------- STATS ---------- */
+
+      .stats {
+        width: 100%;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        align-items: center;
+      }
+
+      .stat-box {
+        width: 100%;
+
+        max-width: 360px;
+
+        min-width: 0;
+
+        padding: 20px;
+
+        border-radius: 16px;
+      }
+
+      .stat-box:hover {
+        transform: none;
+      }
+
+      .stat-box h2 {
+        font-size: 1.8rem;
+
+        margin-bottom: 7px;
+      }
+
+      .stat-box p {
+        font-size: .9rem;
+      }
+
+    }
+
+
+    /* =========================
+       SMALL MOBILE
+    ========================= */
+
+    @media (max-width: 480px) {
+
+      .navbar {
+        padding:
+          16px 5%;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .menu-toggle {
+        width: 40px;
+
+        height: 40px;
+      }
+
+      .mobile-menu {
+        top: 76px;
+
+        left: 5%;
+        right: 5%;
+      }
+
+      .about-section {
+        padding:
+          110px 5% 60px;
+
+        gap: 35px;
+      }
+
+      .about-image img {
+        height: 340px;
+
+        border-radius: 20px;
+      }
+
+      .small-title {
+        font-size: .68rem;
+
+        letter-spacing: 1px;
+      }
+
+      .about-content h1 {
+        font-size:
+          clamp(2rem, 10vw, 3rem);
+      }
+
+      .description {
+        font-size: .9rem;
+
+        line-height: 1.7;
+
+        margin-bottom: 30px;
+      }
+
+      .stat-box {
+        max-width: 100%;
+
+        padding: 18px;
+      }
+
+      .stat-box h2 {
+        font-size: 1.6rem;
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <!-- Background Blur -->
+
+  <!-- =========================
+       BACKGROUND GLOW
+  ========================= -->
 
   <div class="blur blur-1"></div>
+
   <div class="blur blur-2"></div>
 
-  <!-- Navbar -->
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
   <nav class="navbar">
 
@@ -329,51 +871,184 @@ body{
       Gaming Galaxy
     </div>
 
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      type="button"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+
+    <!-- DESKTOP NAVIGATION -->
+
     <ul class="nav-links">
 
-      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
 
-      <li><a href="about.html">About</a></li>
+      <li>
+        <a href="about.html">
+          About
+        </a>
+      </li>
 
       <li class="dropdown">
 
-        <a href="genres.html">Genres</a>
+        <a href="genres.html">
+          Genres
+        </a>
 
         <ul class="dropdown-menu">
 
-          <li><a href="action.html">Action</a></li>
-          <li><a href="rpg.html">RPG</a></li>
-          <li><a href="horror.html">Horror</a></li>
-          <li><a href="racing.html">Racing</a></li>
-          <li><a href="shooter.html">Shooter</a></li>
-          <li><a href="strategy.html">Strategy</a></li>
+          <li>
+            <a href="action.html">
+              Action
+            </a>
+          </li>
+
+          <li>
+            <a href="rpg.html">
+              RPG
+            </a>
+          </li>
+
+          <li>
+            <a href="horror.html">
+              Horror
+            </a>
+          </li>
+
+          <li>
+            <a href="racing.html">
+              Racing
+            </a>
+          </li>
+
+          <li>
+            <a href="shooter.html">
+              Shooter
+            </a>
+          </li>
+
+          <li>
+            <a href="strategy.html">
+              Strategy
+            </a>
+          </li>
 
         </ul>
 
       </li>
 
-      <li><a href="trailers.html">Trailers</a></li>
+      <li>
+        <a href="trailers.html">
+          Trailers
+        </a>
+      </li>
 
-      <li><a href="contact.html">Contact</a></li>
+      <li>
+        <a href="contact.html">
+          Contact
+        </a>
+      </li>
 
     </ul>
 
   </nav>
 
-  <!-- About Section -->
 
-  <section class="about-section">
+  <!-- =========================
+       MOBILE MENU
+  ========================= -->
 
-    <!-- Left Image -->
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
 
-    <div class="about-image">
+    <a href="index.html">
+      Home
+    </a>
 
-      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"
-      alt="gaming setup">
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="genres.html">
+      Genres
+    </a>
+
+    <div class="mobile-genres">
+
+      <a href="action.html">
+        Action
+      </a>
+
+      <a href="rpg.html">
+        RPG
+      </a>
+
+      <a href="horror.html">
+        Horror
+      </a>
+
+      <a href="racing.html">
+        Racing
+      </a>
+
+      <a href="shooter.html">
+        Shooter
+      </a>
+
+      <a href="strategy.html">
+        Strategy
+      </a>
 
     </div>
 
-    <!-- Right Content -->
+    <a href="trailers.html">
+      Trailers
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+  </div>
+
+
+  <!-- =========================
+       ABOUT SECTION
+  ========================= -->
+
+  <section class="about-section">
+
+
+    <!-- LEFT IMAGE -->
+
+    <div class="about-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"
+        alt="Gaming setup"
+      >
+
+    </div>
+
+
+    <!-- RIGHT CONTENT -->
 
     <div class="about-content">
 
@@ -381,36 +1056,69 @@ body{
         ABOUT THE UNIVERSE
       </p>
 
+
       <h1>
+
         A Modern Space <br>
+
         For Passionate <span>Gamers</span>
+
       </h1>
 
+
       <p class="description">
+
         Gaming Galaxy is a cinematic gaming platform designed for players who
         love immersive adventures, futuristic worlds, and competitive gameplay.
         From story-driven RPGs to fast-paced multiplayer experiences,
         we bring modern gaming culture together in one premium universe.
+
       </p>
 
-      <!-- Stats -->
+
+      <!-- STATS -->
 
       <div class="stats">
 
-        <div class="stat-box">
-          <h2>150+</h2>
-          <p>Featured Games</p>
-        </div>
 
         <div class="stat-box">
-          <h2>20K</h2>
-          <p>Community Members</p>
+
+          <h2>
+            150+
+          </h2>
+
+          <p>
+            Featured Games
+          </p>
+
         </div>
 
+
         <div class="stat-box">
-          <h2>50+</h2>
-          <p>Live Events</p>
+
+          <h2>
+            20K
+          </h2>
+
+          <p>
+            Community Members
+          </p>
+
         </div>
+
+
+        <div class="stat-box">
+
+          <h2>
+            50+
+          </h2>
+
+          <p>
+            Live Events
+          </p>
+
+        </div>
+
 
       </div>
 
@@ -418,5 +1126,118 @@ body{
 
   </section>
 
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    menuToggle.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      mobileMenu.classList.toggle("active");
+
+      menuToggle.classList.toggle("active");
+
+      const isOpen =
+        mobileMenu.classList.contains("active");
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close menu"
+          : "Open menu"
+      );
+
+    });
+
+
+    /* =========================
+       CLOSE MENU AFTER LINK
+    ========================= */
+
+    mobileMenu
+      .querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          mobileMenu.classList.remove("active");
+
+          menuToggle.classList.remove("active");
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        });
+
+      });
+
+
+    /* =========================
+       CLOSE MENU OUTSIDE
+    ========================= */
+
+    document.addEventListener("click", (e) => {
+
+      if (
+        !mobileMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ) {
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+
+    /* =========================
+       RESET ON RESIZE
+    ========================= */
+
+    window.addEventListener("resize", () => {
+
+      if (window.innerWidth > 768) {
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+  </script>
+
 </body>
+
 </html>
+

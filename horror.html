@@ -10,487 +10,1033 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
-    *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
 
-html{
-  scroll-behavior:smooth;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050816;
+      color: white;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .bg-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-1 {
+      width: 350px;
+      height: 350px;
+      background: #8B5CF6;
+      top: -120px;
+      left: -120px;
+      opacity: .18;
+    }
 
-body{
-  background:#050816;
-  color:white;
-  overflow-x:hidden;
-  font-family:'Inter',sans-serif;
-}
+    .glow-2 {
+      width: 320px;
+      height: 320px;
+      background: #EC4899;
+      bottom: -120px;
+      right: -120px;
+      opacity: .14;
+    }
 
-/* BACKGROUND */
+    /* =========================
+       NAVBAR
+    ========================= */
 
-.bg-glow{
-  position:fixed;
-  border-radius:50%;
-  filter:blur(140px);
-  z-index:-1;
-}
+    .navbar {
+      width: 100%;
+      padding: 28px 8%;
 
-.glow-1{
-  width:350px;
-  height:350px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-  background:#8B5CF6;
+      position: fixed;
+      top: 0;
+      left: 0;
 
-  top:-120px;
-  left:-120px;
+      z-index: 1000;
 
-  opacity:.18;
-}
+      backdrop-filter: blur(18px);
 
-.glow-2{
-  width:320px;
-  height:320px;
+      background: rgba(5, 8, 22, .55);
 
-  background:#EC4899;
+      border-bottom:
+        1px solid rgba(255, 255, 255, .05);
 
-  bottom:-120px;
-  right:-120px;
+      box-shadow:
+        0 10px 35px rgba(0, 0, 0, .18);
+    }
 
-  opacity:.14;
-}
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
-/* NAVBAR */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 42px;
 
-.navbar{
-  width:100%;
-  padding:28px 8%;
+      list-style: none;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+      margin: 0;
+      padding: 0;
+    }
 
-  position:fixed;
-  top:0;
+    .nav-links a {
+      display: block;
 
-  z-index:999;
+      text-decoration: none;
 
-  backdrop-filter:blur(12px);
+      color: #9CA3AF;
 
-  background:rgba(255,255,255,.02);
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .5px;
 
-  border-bottom:
-  1px solid rgba(255,255,255,.05);
-}
+      transition: .3s ease;
+    }
 
-.logo{
-  font-family:'Orbitron',sans-serif;
-  font-size:1.1rem;
-  font-weight:700;
-}
+    .nav-links a:hover {
+      color: white;
+    }
 
-.nav-links{
-  display:flex;
-  gap:42px;
-  list-style:none;
-}
+    /* =========================
+       DESKTOP DROPDOWN
+    ========================= */
 
-.nav-links a{
-  text-decoration:none;
-  color:#9CA3AF;
+    .dropdown {
+      position: relative;
+    }
 
-  transition:.3s ease;
-}
+    .dropdown-menu {
 
-.nav-links a:hover{
-  color:white;
-}
+      position: absolute;
 
-/* DROPDOWN */
+      top: 180%;
+      left: 0;
 
-.dropdown{
-  position:relative;
-}
+      background: rgba(10, 14, 30, .96);
 
-.dropdown-menu{
+      backdrop-filter: blur(16px);
 
-  position:absolute;
+      border:
+        1px solid rgba(255, 255, 255, .06);
 
-  top:180%;
-  left:0;
+      border-radius: 18px;
 
-  background:rgba(10,14,30,.95);
+      padding: 14px;
 
-  border:
-  1px solid rgba(255,255,255,.06);
+      min-width: 180px;
 
-  border-radius:18px;
+      list-style: none;
 
-  padding:14px;
+      opacity: 0;
+      visibility: hidden;
 
-  min-width:180px;
+      transform: translateY(10px);
 
-  list-style:none;
+      transition: .35s ease;
 
-  opacity:0;
-  visibility:hidden;
+      z-index: 999;
 
-  transform:translateY(10px);
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, .35);
+    }
 
-  transition:.35s ease;
-}
+    .dropdown:hover .dropdown-menu {
 
-.dropdown:hover .dropdown-menu{
+      opacity: 1;
+      visibility: visible;
 
-  opacity:1;
-  visibility:visible;
+      transform: translateY(0);
+    }
 
-  transform:translateY(0);
-}
+    .dropdown-menu li {
+      margin: 8px 0;
+    }
 
-.dropdown-menu li{
-  margin:10px 0;
-}
+    .dropdown-menu a {
 
-.dropdown-menu a{
+      display: block;
 
-  display:block;
+      padding: 8px 10px;
 
-  padding:8px 10px;
+      border-radius: 10px;
 
-  border-radius:10px;
-}
+      color: #9CA3AF;
 
-.dropdown-menu a:hover{
+      text-decoration: none;
 
-  background:
-  rgba(139,92,246,.12);
+      transition: .3s ease;
+    }
 
-  padding-left:16px;
-}
+    /* SAME PURPLE HOVER AS DESKTOP */
 
-/* HERO */
+    .dropdown-menu a:hover {
 
-.hero{
-  width:100%;
-  min-height:100vh;
+      background:
+        rgba(139, 92, 246, .12);
 
-  padding:
-  120px 8% 80px;
+      color: white;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
+      padding-left: 16px;
+    }
 
-  position:relative;
-}
+    /* =========================
+       MOBILE MENU BUTTON
+       ABOUT PAGE STYLE
+    ========================= */
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
+    .menu-toggle {
 
-  background:
-  linear-gradient(to right,
-  rgba(5,8,22,.96),
-  rgba(5,8,22,.5));
+      display: none;
 
-  z-index:1;
-}
+      width: 42px;
+      height: 42px;
 
-.hero-content{
-  position:relative;
-  z-index:2;
+      border:
+        1px solid rgba(255, 255, 255, .1);
 
-  max-width:650px;
+      border-radius: 12px;
 
-  padding-top:40px;
-}
+      background:
+        rgba(255, 255, 255, .04);
 
-.subtitle{
-  color:#C084FC;
+      cursor: pointer;
 
-  letter-spacing:4px;
+      flex-direction: column;
 
-  font-size:.8rem;
+      justify-content: center;
+      align-items: center;
 
-  margin-bottom:24px;
-}
+      gap: 5px;
 
-.hero h1{
+      transition: .3s ease;
+    }
 
-  font-family:'Orbitron',sans-serif;
+    .menu-toggle span {
 
-  font-size:clamp(3.5rem,8vw,7rem);
+      width: 20px;
+      height: 2px;
 
-  line-height:.95;
+      background: #D1D5DB;
 
-  text-transform:uppercase;
+      border-radius: 10px;
 
-  margin-bottom:30px;
+      transition: .3s ease;
+    }
 
-  background:
-  linear-gradient(to bottom,#fff,#C084FC);
+    /* HAMBURGER → X */
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+    .menu-toggle.active span:nth-child(1) {
 
-.hero-description{
+      transform:
+        translateY(7px)
+        rotate(45deg);
+    }
 
-  color:#9CA3AF;
+    .menu-toggle.active span:nth-child(2) {
 
-  line-height:1.9;
+      opacity: 0;
 
-  max-width:520px;
+      transform:
+        scale(0);
+    }
 
-  margin-bottom:36px;
-}
+    .menu-toggle.active span:nth-child(3) {
 
-.hero-btn{
+      transform:
+        translateY(-7px)
+        rotate(-45deg);
+    }
 
-  display:inline-flex;
+    /* =========================
+       MOBILE MENU
+    ========================= */
 
-  align-items:center;
-  justify-content:center;
+    .mobile-menu {
 
-  width:190px;
-  height:58px;
+      position: fixed;
 
-  border-radius:18px;
+      display: none;
 
-  text-decoration:none;
+      top: 86px;
 
-  color:#FDF4FF;
+      left: 5%;
+      right: 5%;
 
-  font-weight:500;
+      background:
+        rgba(10, 14, 30, .97);
 
-  background:
-  rgba(168,85,247,.08);
+      backdrop-filter: blur(18px);
 
-  border:
-  1px solid rgba(236,72,153,.22);
+      border:
+        1px solid rgba(255, 255, 255, .08);
 
-  backdrop-filter:blur(12px);
+      border-radius: 18px;
 
-  transition:.4s ease;
+      padding: 18px;
 
-  box-shadow:
-  0 0 24px rgba(168,85,247,.12);
-}
+      z-index: 998;
 
-.hero-btn:hover{
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, .35);
 
-  transform:
-  translateY(-5px);
+      transform:
+        translateY(-10px);
 
-  background:
-  rgba(236,72,153,.12);
+      opacity: 0;
 
-  border-color:
-  rgba(236,72,153,.45);
+      transition:
+        opacity .3s ease,
+        transform .3s ease;
+    }
 
-  box-shadow:
-  0 0 32px rgba(236,72,153,.20);
-}
+    .mobile-menu.active {
 
-.hero-character{
+      display: block;
 
-  width:430px;
+      opacity: 1;
 
-  position:relative;
-  z-index:2;
+      transform:
+        translateY(0);
+    }
 
-  animation:floating 5s ease-in-out infinite;
+    .mobile-menu > a {
 
-  filter:
-  drop-shadow(0 0 45px rgba(192,132,252,.4));
-}
+      display: block;
 
-/* FLOAT */
+      color: #9CA3AF;
 
-@keyframes floating{
+      text-decoration: none;
 
-  0%{
-    transform:translateY(0px);
-  }
+      padding: 13px 14px;
 
-  50%{
-    transform:translateY(-18px);
-  }
+      border-radius: 10px;
 
-  100%{
-    transform:translateY(0px);
-  }
-}
+      transition: .3s ease;
+    }
 
-/* GAMES */
+    /* DESKTOP DROPDOWN KA SAME PURPLE HOVER */
 
-.games-section{
-  padding:120px 8%;
-}
+    .mobile-menu > a:hover {
 
-.section-title{
-  text-align:center;
+      color: white;
 
-  margin-bottom:70px;
-}
+      background:
+        rgba(139, 92, 246, .12);
+    }
 
-.section-title p{
+    /* =========================
+       MOBILE GENRES
+    ========================= */
 
-  color:#C084FC;
+    .mobile-genres {
 
-  letter-spacing:4px;
+      padding-left: 14px;
 
-  font-size:.8rem;
+      border-left:
+        1px solid rgba(97, 34, 245, 0.25);
 
-  margin-bottom:18px;
-}
+      margin-left: 10px;
 
-.section-title h2{
+      margin-bottom: 4px;
+    }
 
-  font-family:'Orbitron',sans-serif;
+    .mobile-genres a {
 
-  font-size:clamp(2.5rem,6vw,4.5rem);
-}
+      display: block;
 
-.games-grid{
+      color: #9CA3AF;
 
-  display:grid;
+      text-decoration: none;
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
+      padding: 10px 14px;
 
-  gap:34px;
-}
+      border-radius: 10px;
 
-/* CARD */
+      font-size: .95rem;
 
-.game-card{
+      transition: .3s ease;
+    }
 
-  background:
-  rgba(255,255,255,.03);
+    .mobile-genres a:hover {
 
-  border:
-  1px solid rgba(255,255,255,.06);
+      color: white;
 
-  border-radius:28px;
+      background:
+        rgba(139, 92, 246, .12);
+    }
 
-  overflow:hidden;
+    /* =========================
+       HERO
+    ========================= */
 
-  text-decoration:none;
+    .hero {
 
-  transition:.45s ease;
+      width: 100%;
+      min-height: 100vh;
 
-  backdrop-filter:blur(12px);
-}
+      padding:
+        120px 8% 80px;
 
-.game-card:hover{
+      display: flex;
 
-  transform:
-  translateY(-14px);
+      justify-content: space-between;
 
-  border-color:
-  rgba(192,132,252,.45);
+      align-items: flex-start;
 
-  box-shadow:
-  0 0 40px rgba(192,132,252,.18);
-}
+      position: relative;
+    }
 
-.card-image{
-  height:230px;
+    .hero-overlay {
 
-  overflow:hidden;
-}
+      position: absolute;
 
-.card-image img{
+      inset: 0;
 
-  width:100%;
-  height:100%;
+      background:
+        linear-gradient(
+          to right,
+          rgba(5, 8, 22, .96),
+          rgba(5, 8, 22, .5)
+        );
 
-  object-fit:cover;
+      z-index: 1;
+    }
 
-  transition:.6s ease;
-}
+    .hero-content {
 
-.game-card:hover img{
-  transform:scale(1.08);
-}
+      position: relative;
 
-.card-content{
-  padding:28px;
-}
+      z-index: 2;
 
-.card-content h3{
+      max-width: 650px;
 
-  font-family:'Orbitron',sans-serif;
+      padding-top: 40px;
+    }
 
-  margin-bottom:14px;
+    .subtitle {
 
-  color:white;
-}
+      color: #C084FC;
 
-.card-content p{
+      letter-spacing: 4px;
 
-  color:#9CA3AF;
+      font-size: .8rem;
 
-  line-height:1.8;
+      margin-bottom: 24px;
+    }
 
-  font-size:.95rem;
-}
+    .hero h1 {
 
-/* FOOTER */
+      font-family: 'Orbitron', sans-serif;
 
-.footer{
+      font-size:
+        clamp(4rem, 8vw, 7rem);
 
-  padding:30px;
+      line-height: .95;
 
-  text-align:center;
+      text-transform: uppercase;
 
-  border-top:
-  1px solid rgba(255,255,255,.05);
+      margin-bottom: 28px;
 
-  color:#7C8595;
-}
+      background:
+        linear-gradient(
+          to bottom,
+          #fff,
+          #9CA3AF
+        );
 
-/* RESPONSIVE */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-@media(max-width:992px){
+    .hero-description {
 
-  .nav-links{
-    display:none;
-  }
+      color: #9CA3AF;
 
-  .hero{
+      line-height: 1.9;
 
-    flex-direction:column;
+      max-width: 520px;
 
-    text-align:center;
+      margin-bottom: 36px;
 
-    gap:60px;
-  }
+      font-size: 1rem;
+    }
 
-  .hero-content{
-    max-width:100%;
-  }
+    .hero-btn {
 
-  .hero-description{
-    margin:auto auto 36px;
-  }
+      display: inline-flex;
 
-  .hero-character{
-    width:300px;
-  }
+      align-items: center;
+      justify-content: center;
 
-  .games-section{
-    padding:100px 20px;
-  }
-}
+      width: 190px;
+      height: 58px;
+
+      border-radius: 18px;
+
+      text-decoration: none;
+
+      color: #FFEFEF;
+
+      font-weight: 500;
+
+      border:
+        1px solid rgba(236, 72, 153, .22);
+
+      transition: .4s ease;
+    }
+
+    .hero-btn:hover {
+
+      transform:
+        translateY(-5px);
+
+      border-color:
+        rgba(236, 72, 153, .45);
+
+      box-shadow:
+        0 0 32px rgba(236, 72, 154, .096);
+    }
+
+    /* =========================
+       HERO CHARACTER
+    ========================= */
+
+    .hero-character {
+
+      width:
+        min(430px, 38vw);
+
+      position: relative;
+
+      z-index: 2;
+
+      animation:
+        floating 5s ease-in-out infinite;
+
+      filter:
+        drop-shadow(
+          0 0 45px rgba(192, 132, 252, .4)
+        );
+
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       FLOAT
+    ========================= */
+
+    @keyframes floating {
+
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-18px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       GAMES
+    ========================= */
+
+    .games-section {
+
+      padding:
+        120px 8%;
+    }
+
+    .section-title {
+
+      text-align: center;
+
+      margin-bottom: 70px;
+    }
+
+    .section-title p {
+
+      color: #C084FC;
+
+      letter-spacing: 4px;
+
+      font-size: .8rem;
+
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+
+      font-family: 'Orbitron', sans-serif;
+
+      font-size:
+        clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .games-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(280px, 1fr)
+        );
+
+      gap: 34px;
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .game-card {
+
+      background:
+        rgba(255, 255, 255, .03);
+
+      border:
+        1px solid rgba(255, 255, 255, .06);
+
+      border-radius: 28px;
+
+      overflow: hidden;
+
+      text-decoration: none;
+
+      transition: .45s ease;
+
+      backdrop-filter: blur(12px);
+    }
+
+    .game-card:hover {
+
+      transform:
+        translateY(-14px);
+
+      border-color:
+        rgba(192, 132, 252, .45);
+
+      box-shadow:
+        0 0 40px rgba(192, 132, 252, .18);
+    }
+
+    .card-image {
+
+      height: 230px;
+
+      overflow: hidden;
+    }
+
+    .card-image img {
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition: .6s ease;
+    }
+
+    .game-card:hover img {
+
+      transform:
+        scale(1.08);
+    }
+
+    .card-content {
+
+      padding: 28px;
+    }
+
+    .card-content h3 {
+
+      font-family:
+        'Orbitron', sans-serif;
+
+      margin-bottom: 14px;
+
+      color: white;
+    }
+
+    .card-content p {
+
+      color: #9CA3AF;
+
+      line-height: 1.8;
+
+      font-size: .95rem;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+
+      padding: 30px;
+
+      text-align: center;
+
+      border-top:
+        1px solid rgba(255, 255, 255, .05);
+
+      color: #7C8595;
+    }
+
+    /* =====================================================
+       TABLET / SMALL LAPTOP
+    ===================================================== */
+
+    @media (max-width: 1100px) {
+
+      .navbar {
+
+        padding:
+          24px 5%;
+      }
+
+      .nav-links {
+
+        gap: 25px;
+      }
+
+      .hero {
+
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .hero-character {
+
+        width: 360px;
+      }
+
+      .hero-content {
+
+        max-width: 560px;
+      }
+
+      .games-section {
+
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+    }
+
+    /* =====================================================
+       MOBILE NAVBAR / TABLET
+    ===================================================== */
+
+    @media (max-width: 768px) {
+
+      /* Navbar */
+
+      .navbar {
+
+        padding:
+          18px 6%;
+      }
+
+      .nav-links {
+
+        display: none;
+      }
+
+      .menu-toggle {
+
+        display: flex;
+      }
+
+      /* Mobile menu */
+
+      .mobile-menu {
+
+        top: 86px;
+
+        left: 5%;
+        right: 5%;
+      }
+
+      /* Hero */
+
+      .hero {
+
+        min-height: auto;
+
+        display: block;
+
+        text-align: center;
+
+        padding:
+          125px 6% 75px;
+      }
+
+      .hero-overlay {
+
+        background:
+          radial-gradient(
+            circle at center,
+            rgba(100, 40, 140, .16),
+            rgba(5, 8, 22, .96) 70%
+          );
+      }
+
+      .hero-content {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        padding: 0;
+
+        margin: 0 auto;
+      }
+
+      .subtitle {
+
+        font-size: .68rem;
+
+        letter-spacing: 2.5px;
+
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+
+        font-size:
+          clamp(3.2rem, 16vw, 5rem);
+
+        line-height: .95;
+
+        margin-bottom: 25px;
+      }
+
+      .hero-description {
+
+        max-width: 480px;
+
+        margin:
+          0 auto 30px;
+
+        font-size: .92rem;
+
+        line-height: 1.75;
+      }
+
+      .hero-btn {
+
+        width: 180px;
+
+        height: 54px;
+
+        border-radius: 15px;
+
+        font-size: .9rem;
+      }
+
+      /* Hide Horror character on mobile */
+
+      .hero-character {
+
+        display: none !important;
+      }
+
+      /* Games */
+
+      .games-section {
+
+        padding:
+          75px 6% 80px;
+      }
+
+      .section-title {
+
+        margin-bottom: 42px;
+      }
+
+      .section-title p {
+
+        font-size: .68rem;
+
+        letter-spacing: 2.5px;
+
+        margin-bottom: 14px;
+      }
+
+      .section-title h2 {
+
+        font-size:
+          clamp(2rem, 10vw, 3rem);
+
+        line-height: 1.15;
+      }
+
+      .games-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+      }
+
+      .game-card {
+
+        border-radius: 22px;
+      }
+
+      .card-image {
+
+        height: 205px;
+      }
+
+      .card-content {
+
+        padding: 22px;
+      }
+
+      .card-content h3 {
+
+        font-size: 1.05rem;
+
+        margin-bottom: 10px;
+      }
+
+      .card-content p {
+
+        font-size: .88rem;
+
+        line-height: 1.7;
+      }
+
+      .game-card:hover {
+
+        transform:
+          translateY(-6px);
+      }
+
+      /* Footer */
+
+      .footer {
+
+        padding:
+          25px 6%;
+
+        font-size: .8rem;
+      }
+    }
+
+    /* =====================================================
+       SMALL PHONES
+    ===================================================== */
+
+    @media (max-width: 480px) {
+
+      .navbar {
+
+        padding:
+          16px 5%;
+      }
+
+      .logo {
+
+        font-size: .95rem;
+      }
+
+      .menu-toggle {
+
+        width: 42px;
+        height: 42px;
+      }
+
+      .mobile-menu {
+
+        top: 76px;
+
+        left: 5%;
+        right: 5%;
+
+        padding: 16px;
+      }
+
+      .hero {
+
+        padding:
+          115px 5% 65px;
+      }
+
+      .hero h1 {
+
+        font-size: 3rem;
+      }
+
+      .hero-description {
+
+        font-size: .86rem;
+      }
+
+      .hero-btn {
+
+        width: 170px;
+
+        height: 52px;
+      }
+
+      .games-section {
+
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .card-image {
+
+        height: 190px;
+      }
+
+      .card-content {
+
+        padding: 20px;
+      }
+    }
+
   </style>
 
 </head>
+
 
 <body>
 
@@ -498,6 +1044,7 @@ body{
 
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
+
 
   <!-- NAVBAR -->
 
@@ -509,34 +1056,136 @@ body{
 
     <ul class="nav-links">
 
-      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="index.html">Home</a>
+      </li>
 
-      <li><a href="about.html">About</a></li>
+      <li>
+        <a href="about.html">About</a>
+      </li>
 
       <li class="dropdown">
 
-        <a href="genres.html">Genres</a>
+        <a href="genres.html">
+          Genres
+        </a>
 
         <ul class="dropdown-menu">
 
-          <li><a href="action.html">Action</a></li>
-          <li><a href="rpg.html">RPG</a></li>
-          <li><a href="horror.html">Horror</a></li>
-          <li><a href="racing.html">Racing</a></li>
-          <li><a href="shooter.html">Shooter</a></li>
-          <li><a href="strategy.html">Strategy</a></li>
+          <li>
+            <a href="action.html">Action</a>
+          </li>
+
+          <li>
+            <a href="rpg.html">RPG</a>
+          </li>
+
+          <li>
+            <a href="horror.html">Horror</a>
+          </li>
+
+          <li>
+            <a href="racing.html">Racing</a>
+          </li>
+
+          <li>
+            <a href="shooter.html">Shooter</a>
+          </li>
+
+          <li>
+            <a href="strategy.html">Strategy</a>
+          </li>
 
         </ul>
 
       </li>
 
-      <li><a href="trailers.html">Trailers</a></li>
+      <li>
+        <a href="trailers.html">Trailers</a>
+      </li>
 
-      <li><a href="contact.html">Contact</a></li>
+      <li>
+        <a href="contact.html">Contact</a>
+      </li>
 
     </ul>
 
+
+    <!-- MOBILE BUTTON -->
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      type="button"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
   </nav>
+
+
+  <!-- MOBILE MENU -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="genres.html">
+      Genres
+    </a>
+
+    <div class="mobile-genres">
+
+      <a href="action.html">
+        Action
+      </a>
+
+      <a href="rpg.html">
+        RPG
+      </a>
+
+      <a href="horror.html">
+        Horror
+      </a>
+
+      <a href="racing.html">
+        Racing
+      </a>
+
+      <a href="shooter.html">
+        Shooter
+      </a>
+
+      <a href="strategy.html">
+        Strategy
+      </a>
+
+    </div>
+
+    <a href="trailers.html">
+      Trailers
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+  </div>
+
 
   <!-- HERO -->
 
@@ -551,38 +1200,48 @@ body{
       </p>
 
       <h1>
-        Horror <br>
+        Horror<br>
         Games
       </h1>
 
       <p class="hero-description">
-
         Step into terrifying worlds filled with psychological fear,
         supernatural creatures, and cinematic survival experiences.
-
       </p>
 
-      <a href="#games" class="hero-btn">
+      <a
+        href="#games"
+        class="hero-btn"
+      >
         Explore Games
       </a>
 
     </div>
 
+
     <!-- CHARACTER -->
 
-    <img src="images/Horror/horror-character.png"
-    alt="Horror Character"
-    class="hero-character">
+    <img
+      src="images/Horror/horror-character.png"
+      alt="Horror Character"
+      class="hero-character"
+    >
 
   </section>
 
+
   <!-- GAMES -->
 
-  <section class="games-section" id="games">
+  <section
+    class="games-section"
+    id="games"
+  >
 
     <div class="section-title">
 
-      <p>TOP HORROR TITLES</p>
+      <p>
+        TOP HORROR TITLES
+      </p>
 
       <h2>
         Face Your Fears
@@ -590,24 +1249,33 @@ body{
 
     </div>
 
+
     <div class="games-grid">
 
-      <!-- CARD -->
 
-      <a href="https://residentevil.com/village/"
-      target="_blank"
-      class="game-card">
+      <!-- CARD 1 -->
+
+      <a
+        href="https://residentevil.com/village/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
 
-          <img src="images/Horror/residentevil.jpg"
-          alt="Resident Evil">
+          <img
+            src="images/Horror/residentevil.jpg"
+            alt="Resident Evil"
+          >
 
         </div>
 
         <div class="card-content">
 
-          <h3>Resident Evil Village</h3>
+          <h3>
+            Resident Evil Village
+          </h3>
 
           <p>
             Survive terrifying creatures and dark secrets
@@ -618,22 +1286,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.alanwake.com/"
-      target="_blank"
-      class="game-card">
+      <!-- CARD 2 -->
+
+      <a
+        href="https://www.alanwake.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
 
-          <img src="images/Trailers/outlast.jpg"
-          alt="Alan Wake">
+          <img
+            src="images/Trailers/outlast.jpg"
+            alt="Alan Wake"
+          >
 
         </div>
 
         <div class="card-content">
 
-          <h3>Outlast</h3>
+          <h3>
+            Outlast
+          </h3>
 
           <p>
             Fight darkness using light in this cinematic
@@ -644,22 +1320,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://deadbydaylight.com/"
-      target="_blank"
-      class="game-card">
+      <!-- CARD 3 -->
+
+      <a
+        href="https://deadbydaylight.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
 
-          <img src="images/Horror/dead.jpg"
-          alt="Dead by Daylight">
+          <img
+            src="images/Horror/dead.jpg"
+            alt="Dead by Daylight"
+          >
 
         </div>
 
         <div class="card-content">
 
-          <h3>Dead By Daylight</h3>
+          <h3>
+            Dead By Daylight
+          </h3>
 
           <p>
             Escape terrifying killers in this intense
@@ -670,22 +1354,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.amnesiarebirth.com/"
-      target="_blank"
-      class="game-card">
+      <!-- CARD 4 -->
+
+      <a
+        href="https://www.amnesiarebirth.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
 
-          <img src="images/Horror/amnesia.jpg"
-          alt="Amnesia">
+          <img
+            src="images/Horror/amnesia.jpg"
+            alt="Amnesia"
+          >
 
         </div>
 
         <div class="card-content">
 
-          <h3>Amnesia Rebirth</h3>
+          <h3>
+            Amnesia Rebirth
+          </h3>
 
           <p>
             Discover horrifying memories hidden deep
@@ -696,22 +1388,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://quarrygame.2k.com/"
-      target="_blank"
-      class="game-card">
+      <!-- CARD 5 -->
+
+      <a
+        href="https://quarrygame.2k.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
 
-          <img src="images/Horror/quarry.jpg"
-          alt="The Quarry">
+          <img
+            src="images/Horror/quarry.jpg"
+            alt="The Quarry"
+          >
 
         </div>
 
         <div class="card-content">
 
-          <h3>The Quarry</h3>
+          <h3>
+            The Quarry
+          </h3>
 
           <p>
             Every decision changes your fate in this
@@ -722,22 +1422,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.blooberteam.com/layers-of-fear"
-      target="_blank"
-      class="game-card">
+      <!-- CARD 6 -->
+
+      <a
+        href="https://www.blooberteam.com/layers-of-fear"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
 
-          <img src="images/Horror/layersoffear.jpg"
-          alt="Layers of Fear">
+          <img
+            src="images/Horror/layersoffear.jpg"
+            alt="Layers of Fear"
+          >
 
         </div>
 
         <div class="card-content">
 
-          <h3>Layers Of Fear</h3>
+          <h3>
+            Layers Of Fear
+          </h3>
 
           <p>
             Enter a twisted psychological nightmare
@@ -752,6 +1460,7 @@ body{
 
   </section>
 
+
   <!-- FOOTER -->
 
   <footer class="footer">
@@ -761,6 +1470,113 @@ body{
     </p>
 
   </footer>
+
+
+  <!-- MOBILE MENU JS -->
+
+  <script>
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+
+    /* =========================
+       OPEN / CLOSE MENU
+    ========================= */
+
+    menuToggle.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      mobileMenu.classList.toggle("active");
+
+      menuToggle.classList.toggle("active");
+
+      const isOpen =
+        mobileMenu.classList.contains("active");
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
+
+    });
+
+
+    /* =========================
+       CLOSE AFTER CLICKING LINK
+    ========================= */
+
+    mobileMenu
+      .querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          mobileMenu.classList.remove("active");
+
+          menuToggle.classList.remove("active");
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        });
+
+      });
+
+
+    /* =========================
+       CLOSE WHEN CLICKING OUTSIDE
+    ========================= */
+
+    document.addEventListener("click", (e) => {
+
+      if (
+        !mobileMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ) {
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+
+    /* =========================
+       RESET ON DESKTOP
+    ========================= */
+
+    window.addEventListener("resize", () => {
+
+      if (window.innerWidth > 768) {
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+  </script>
 
 </body>
 

@@ -13,484 +13,677 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+
     *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+      font-family:'Inter',sans-serif;
+    }
+
+    /* BACKGROUND */
+
+    .bg-glow{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(140px);
+      z-index:-1;
+    }
+
+    .glow-1{
+      width:350px;
+      height:350px;
+      background:#00d9ff;
+      top:-120px;
+      left:-120px;
+      opacity:.15;
+    }
+
+    .glow-2{
+      width:320px;
+      height:320px;
+      background:#0066ff;
+      bottom:-120px;
+      right:-120px;
+      opacity:.12;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      width:100%;
+      padding:25px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      backdrop-filter:blur(18px);
+      background:rgba(5,8,22,.55);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      box-shadow:0 10px 35px rgba(0,0,0,.18);
+    }
+
+    .logo{
+      font-family:'Orbitron',sans-serif;
+      font-size:1.1rem;
+      font-weight:700;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:38px;
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+
+    .nav-links a{
+      display:block;
+      text-decoration:none;
+      color:#9CA3AF;
+      font-size:.95rem;
+      font-weight:500;
+      letter-spacing:.5px;
+      transition:.3s ease;
+    }
+
+    .nav-links a:hover{
+      color:white;
+    }
+
+    /* DROPDOWN */
+
+    .dropdown{
+      position:relative;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:180%;
+      left:0;
+
+      background:rgba(10,14,30,.96);
+      backdrop-filter:blur(16px);
 
-html{
-  scroll-behavior:smooth;
-}
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:18px;
 
-body{
-  background:#050816;
-  color:white;
-  overflow-x:hidden;
-  font-family:'Inter',sans-serif;
-}
+      padding:14px;
+      min-width:180px;
 
-/* BACKGROUND */
+      list-style:none;
 
-.bg-glow{
-  position:fixed;
-  border-radius:50%;
-  filter:blur(140px);
-  z-index:-1;
-}
+      opacity:0;
+      visibility:hidden;
 
-.glow-1{
-  width:350px;
-  height:350px;
+      transform:translateY(10px);
 
-  background:#00d9ff;
+      transition:.35s ease;
 
-  top:-120px;
-  left:-120px;
+      z-index:999;
 
-  opacity:.15;
-}
+      box-shadow:0 20px 50px rgba(0,0,0,.35);
+    }
 
-.glow-2{
-  width:320px;
-  height:320px;
+    .dropdown:hover .dropdown-menu{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
 
-  background:#0066ff;
+    .dropdown-menu li{
+      margin:8px 0;
+    }
 
-  bottom:-120px;
-  right:-120px;
+    .dropdown-menu a{
+      display:block;
+      padding:8px 10px;
+      border-radius:10px;
+      color:#9CA3AF;
+      text-decoration:none;
+      transition:.3s ease;
+    }
 
-  opacity:.12;
-}
+    /* SAME DESKTOP HOVER COLOR */
 
-/* NAVBAR */
+    .dropdown-menu a:hover{
+      background:rgba(0,217,255,.12);
+      color:white;
+      padding-left:16px;
+    }
 
-.navbar{
-  width:100%;
-  padding:28px 8%;
+    /* MOBILE MENU BUTTON */
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+    .menu-toggle{
+      display:none;
 
-  position:fixed;
-  top:0;
+      width:42px;
+      height:42px;
 
-  z-index:999;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:12px;
 
-  backdrop-filter:blur(12px);
+      background:rgba(255,255,255,.04);
 
-  background:rgba(255,255,255,.02);
+      cursor:pointer;
 
-  border-bottom:
-  1px solid rgba(255,255,255,.05);
-}
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
 
-.logo{
-  font-family:'Orbitron',sans-serif;
-  font-size:1.1rem;
-  font-weight:700;
-}
+      gap:5px;
 
-.nav-links{
-  display:flex;
-  gap:42px;
-  list-style:none;
-}
+      transition:.3s ease;
+    }
 
-.nav-links a{
-  text-decoration:none;
-  color:#9CA3AF;
+    .menu-toggle span{
+      width:20px;
+      height:2px;
 
-  transition:.3s ease;
-}
+      background:#D1D5DB;
 
-.nav-links a:hover{
-  color:white;
-}
+      border-radius:10px;
 
-/* DROPDOWN */
+      transition:.3s ease;
+    }
 
-.dropdown{
-  position:relative;
-}
+    /* ABOUT PAGE HAMBURGER → X ANIMATION */
 
-.dropdown-menu{
+    .menu-toggle.active span:nth-child(1){
+      transform:translateY(7px) rotate(45deg);
+    }
 
-  position:absolute;
+    .menu-toggle.active span:nth-child(2){
+      opacity:0;
+      transform:scale(0);
+    }
 
-  top:180%;
-  left:0;
+    .menu-toggle.active span:nth-child(3){
+      transform:translateY(-7px) rotate(-45deg);
+    }
 
-  background:rgba(10,14,30,.95);
+    /* MOBILE MENU */
 
-  backdrop-filter:blur(14px);
+    .mobile-menu{
+      position:fixed;
 
-  border:
-  1px solid rgba(255,255,255,.06);
+      display:none;
 
-  border-radius:18px;
+      top:86px;
+      left:5%;
+      right:5%;
 
-  padding:14px;
+      background:rgba(10,14,30,.97);
 
-  min-width:180px;
+      backdrop-filter:blur(18px);
 
-  list-style:none;
+      border:1px solid rgba(255,255,255,.08);
 
-  opacity:0;
-  visibility:hidden;
+      border-radius:18px;
 
-  transform:translateY(10px);
+      padding:18px;
 
-  transition:.35s ease;
-}
+      z-index:998;
 
-.dropdown:hover .dropdown-menu{
+      box-shadow:0 20px 50px rgba(0,0,0,.35);
 
-  opacity:1;
-  visibility:visible;
+      transform:translateY(-10px);
+      opacity:0;
 
-  transform:translateY(0);
-}
+      transition:
+        opacity .3s ease,
+        transform .3s ease;
+    }
 
-.dropdown-menu li{
-  margin:10px 0;
-}
+    .mobile-menu.active{
+      display:block;
+      opacity:1;
+      transform:translateY(0);
+    }
 
-.dropdown-menu a{
+    .mobile-menu > a{
+      display:block;
 
-  display:block;
+      color:#9CA3AF;
 
-  padding:8px 10px;
+      text-decoration:none;
 
-  border-radius:10px;
-}
+      padding:13px 14px;
 
-.dropdown-menu a:hover{
+      border-radius:10px;
 
-  background:
-  rgba(0,217,255,.12);
+      transition:.3s ease;
+    }
 
-  padding-left:16px;
-}
+    /* SAME CYAN HOVER AS DESKTOP */
 
-/* HERO */
+    .mobile-menu > a:hover{
+      color:white;
+      background:rgba(0,217,255,.12);
+    }
 
-.hero{
-  width:100%;
-  min-height:100vh;
+    .mobile-genres{
+      padding-left:14px;
 
-  padding:
-  120px 8% 80px;
+      border-left:1px solid rgba(0,217,255,.30);
 
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
+      margin-left:10px;
+      margin-bottom:4px;
+    }
 
-  position:relative;
-}
+    .mobile-genres a{
+      display:block;
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
+      color:#9CA3AF;
 
-  background:
-  linear-gradient(to right,
-  rgba(5,8,22,.95),
-  rgba(5,8,22,.55));
+      text-decoration:none;
 
-  z-index:1;
-}
+      padding:10px 14px;
 
-.hero-content{
-  position:relative;
-  z-index:2;
-  padding-top:40px;
-  max-width:650px;
-}
+      border-radius:10px;
 
-.subtitle{
-  color:#00d9ff;
+      font-size:.95rem;
 
-  letter-spacing:4px;
+      transition:.3s ease;
+    }
 
-  font-size:.8rem;
+    /* SAME CYAN HOVER AS DESKTOP */
 
-  margin-bottom:24px;
-}
+    .mobile-genres a:hover{
+      color:white;
+      background:rgba(0,217,255,.12);
+    }
 
-.hero h1{
+    /* HERO */
 
-  font-family:'Orbitron',sans-serif;
+    .hero{
+      width:100%;
+      min-height:100vh;
 
-  font-size:clamp(4rem,8vw,7rem);
+      padding:120px 8% 80px;
 
-  line-height:.95;
+      display:flex;
 
-  text-transform:uppercase;
+      justify-content:space-between;
+      align-items:flex-start;
 
-  margin-bottom:30px;
+      position:relative;
+    }
 
-  background:
-  linear-gradient(to bottom,#fff,#9CA3AF);
+    .hero-overlay{
+      position:absolute;
+      inset:0;
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+      background:
+      linear-gradient(
+        to right,
+        rgba(5,8,22,.95),
+        rgba(5,8,22,.55)
+      );
 
-.hero-description{
+      z-index:1;
+    }
 
-  color:#9CA3AF;
+    .hero-content{
+      position:relative;
+      z-index:2;
 
-  line-height:1.9;
+      padding-top:40px;
 
-  max-width:520px;
+      max-width:650px;
+    }
 
-  margin-bottom:36px;
-}
+    .subtitle{
+      color:#00d9ff;
 
-.hero-btn{
+      letter-spacing:4px;
 
-  display:inline-flex;
+      font-size:.8rem;
 
-  align-items:center;
-  justify-content:center;
+      margin-bottom:24px;
+    }
 
-  width:190px;
-  height:58px;
+    .hero h1{
+      font-family:'Orbitron',sans-serif;
 
-  border-radius:18px;
+      font-size:clamp(4rem,8vw,7rem);
 
-  text-decoration:none;
+      line-height:.95;
 
-  color:#EAFBFF;
+      text-transform:uppercase;
 
-  font-weight:500;
+      margin-bottom:30px;
 
-  background:
-  rgba(0,217,255,.08);
+      background:
+      linear-gradient(to bottom,#fff,#9CA3AF);
 
-  border:
-  1px solid rgba(0,217,255,.22);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-  backdrop-filter:blur(12px);
+    .hero-description{
+      color:#9CA3AF;
 
-  transition:.4s ease;
+      line-height:1.9;
 
-  box-shadow:
-  0 0 20px rgba(0,217,255,.10);
-}
+      max-width:520px;
 
-.hero-btn:hover{
+      margin-bottom:36px;
+    }
 
-  transform:
-  translateY(-5px);
+    .hero-btn{
+      display:inline-flex;
 
-  background:
-  rgba(0,217,255,.14);
+      align-items:center;
+      justify-content:center;
 
-  border-color:
-  rgba(0,217,255,.45);
+      width:190px;
+      height:58px;
 
-  box-shadow:
-  0 0 28px rgba(0,217,255,.20);
-}
+      border-radius:18px;
 
-.hero-character{
+      text-decoration:none;
 
-  width:460px;
+      color:#FFEFEF;
 
-  position:relative;
-  z-index:2;
+      font-weight:500;
 
-  animation:floating 5s ease-in-out infinite;
+      border:1px solid rgba(0,217,255,.22);
 
-  filter:
-  drop-shadow(0 0 45px rgba(0,217,255,.45));
-}
+      transition:.4s ease;
+    }
 
-/* FLOAT */
+    .hero-btn:hover{
+      transform:translateY(-5px);
 
-@keyframes floating{
+      border-color:rgba(0,217,255,.45);
 
-  0%{
-    transform:translateY(0px);
-  }
+      box-shadow:
+      0 0 28px rgba(0,217,255,.082);
+    }
 
-  50%{
-    transform:translateY(-18px);
-  }
+    .hero-character{
+      width:460px;
 
-  100%{
-    transform:translateY(0px);
-  }
-}
+      position:relative;
+      z-index:2;
 
-/* GAMES */
+      animation:floating 5s ease-in-out infinite;
 
-.games-section{
-  padding:120px 8%;
-}
+      filter:
+      drop-shadow(0 0 45px rgba(0,217,255,.45));
+    }
 
-.section-title{
-  text-align:center;
+    /* FLOAT */
 
-  margin-bottom:70px;
-}
+    @keyframes floating{
 
-.section-title p{
+      0%{
+        transform:translateY(0px);
+      }
 
-  color:#00d9ff;
+      50%{
+        transform:translateY(-18px);
+      }
 
-  letter-spacing:4px;
+      100%{
+        transform:translateY(0px);
+      }
 
-  font-size:.8rem;
+    }
 
-  margin-bottom:18px;
-}
+    /* GAMES */
 
-.section-title h2{
+    .games-section{
+      padding:120px 8%;
+    }
 
-  font-family:'Orbitron',sans-serif;
+    .section-title{
+      text-align:center;
 
-  font-size:clamp(2.5rem,6vw,4.5rem);
-}
+      margin-bottom:70px;
+    }
 
-.games-grid{
+    .section-title p{
+      color:#00d9ff;
 
-  display:grid;
+      letter-spacing:4px;
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
+      font-size:.8rem;
 
-  gap:34px;
-}
+      margin-bottom:18px;
+    }
 
-/* CARD */
+    .section-title h2{
+      font-family:'Orbitron',sans-serif;
 
-.game-card{
+      font-size:clamp(2.5rem,6vw,4.5rem);
+    }
 
-  background:
-  rgba(255,255,255,.03);
+    .games-grid{
+      display:grid;
 
-  border:
-  1px solid rgba(255,255,255,.06);
+      grid-template-columns:
+      repeat(auto-fit,minmax(280px,1fr));
 
-  border-radius:28px;
+      gap:34px;
+    }
 
-  overflow:hidden;
+    /* CARD */
 
-  text-decoration:none;
+    .game-card{
+      background:
+      rgba(255,255,255,.03);
 
-  transition:.45s ease;
+      border:
+      1px solid rgba(255,255,255,.06);
 
-  backdrop-filter:blur(12px);
-}
+      border-radius:28px;
 
-.game-card:hover{
+      overflow:hidden;
 
-  transform:
-  translateY(-14px);
+      text-decoration:none;
 
-  border-color:
-  rgba(0,217,255,.45);
+      transition:.45s ease;
 
-  box-shadow:
-  0 0 40px rgba(0,217,255,.18);
-}
+      backdrop-filter:blur(12px);
+    }
 
-.card-image{
-  height:230px;
+    .game-card:hover{
+      transform:translateY(-14px);
 
-  overflow:hidden;
-}
+      border-color:
+      rgba(0,217,255,.45);
 
-.card-image img{
+      box-shadow:
+      0 0 40px rgba(0,217,255,.18);
+    }
 
-  width:100%;
-  height:100%;
+    .card-image{
+      height:230px;
+      overflow:hidden;
+    }
 
-  object-fit:cover;
+    .card-image img{
+      width:100%;
+      height:100%;
 
-  transition:.6s ease;
-}
+      object-fit:cover;
 
-.game-card:hover img{
-  transform:scale(1.08);
-}
+      transition:.6s ease;
+    }
 
-.card-content{
-  padding:28px;
-}
+    .game-card:hover img{
+      transform:scale(1.08);
+    }
 
-.card-content h3{
+    .card-content{
+      padding:28px;
+    }
 
-  font-family:'Orbitron',sans-serif;
+    .card-content h3{
+      font-family:'Orbitron',sans-serif;
 
-  margin-bottom:14px;
+      margin-bottom:14px;
 
-  color:white;
-}
+      color:white;
+    }
 
-.card-content p{
+    .card-content p{
+      color:#9CA3AF;
 
-  color:#9CA3AF;
+      line-height:1.8;
 
-  line-height:1.8;
+      font-size:.95rem;
+    }
 
-  font-size:.95rem;
-}
+    /* FOOTER */
 
-/* FOOTER */
+    .footer{
+      padding:30px;
 
-.footer{
+      text-align:center;
 
-  padding:30px;
+      border-top:
+      1px solid rgba(255,255,255,.05);
 
-  text-align:center;
+      color:#7C8595;
+    }
 
-  border-top:
-  1px solid rgba(255,255,255,.05);
+    /* TABLET */
 
-  color:#7C8595;
-}
+    @media(max-width:992px){
 
-/* RESPONSIVE */
+      .hero{
+        flex-direction:column;
 
-@media(max-width:992px){
+        text-align:center;
 
-  .nav-links{
-    display:none;
-  }
+        align-items:center;
 
-  .hero{
+        gap:60px;
 
-    flex-direction:column;
+        padding-top:140px;
+      }
 
-    text-align:center;
+      .hero-content{
+        max-width:100%;
+      }
 
-    gap:60px;
+      .hero-description{
+        margin:auto auto 36px;
+      }
 
-    padding-top:140px;
-  }
+      .hero-character{
+        width:320px;
+      }
 
-  .hero-content{
-    max-width:100%;
-  }
+      .games-section{
+        padding:100px 20px;
+      }
 
-  .hero-description{
-    margin:auto auto 36px;
-  }
+    }
 
-  .hero-character{
-    width:320px;
-  }
+    /* MOBILE NAVBAR */
 
-  .games-section{
-    padding:100px 20px;
-  }
+    @media(max-width:768px){
 
-}
+      .navbar{
+        padding:18px 6%;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .menu-toggle{
+        display:flex;
+      }
+
+      .hero{
+        padding-left:6%;
+        padding-right:6%;
+      }
+
+      .hero h1{
+        font-size:clamp(3rem,13vw,5rem);
+      }
+
+      .hero-description{
+        font-size:.95rem;
+      }
+
+      .hero-character{
+        display: none !important;
+      }
+
+      .games-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    /* SMALL MOBILE */
+
+    @media(max-width:480px){
+
+      .navbar{
+        padding:16px 5%;
+      }
+
+      .mobile-menu{
+        top:76px;
+        left:5%;
+        right:5%;
+      }
+
+      .logo{
+        font-size:1rem;
+      }
+
+      .hero{
+        padding-top:120px;
+        gap:40px;
+      }
+
+      .subtitle{
+        font-size:.7rem;
+        letter-spacing:3px;
+      }
+
+      .hero h1{
+        font-size:clamp(2.7rem,14vw,4rem);
+      }
+
+
+      .games-section{
+        padding:80px 16px;
+      }
+
+      .section-title{
+        margin-bottom:50px;
+      }
+
+      .card-content{
+        padding:22px;
+      }
+
+    }
+
   </style>
 
 </head>
@@ -502,6 +695,7 @@ body{
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
 
+
   <!-- NAVBAR -->
 
   <nav class="navbar">
@@ -510,11 +704,17 @@ body{
       Gaming Galaxy
     </div>
 
+    <!-- DESKTOP NAV -->
+
     <ul class="nav-links">
 
-      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="index.html">Home</a>
+      </li>
 
-      <li><a href="about.html">About</a></li>
+      <li>
+        <a href="about.html">About</a>
+      </li>
 
       <li class="dropdown">
 
@@ -522,24 +722,117 @@ body{
 
         <ul class="dropdown-menu">
 
-          <li><a href="action.html">Action</a></li>
-          <li><a href="rpg.html">RPG</a></li>
-          <li><a href="horror.html">Horror</a></li>
-          <li><a href="racing.html">Racing</a></li>
-          <li><a href="shooter.html">Shooter</a></li>
-          <li><a href="strategy.html">Strategy</a></li>
+          <li>
+            <a href="action.html">Action</a>
+          </li>
+
+          <li>
+            <a href="rpg.html">RPG</a>
+          </li>
+
+          <li>
+            <a href="horror.html">Horror</a>
+          </li>
+
+          <li>
+            <a href="racing.html">Racing</a>
+          </li>
+
+          <li>
+            <a href="shooter.html">Shooter</a>
+          </li>
+
+          <li>
+            <a href="strategy.html">Strategy</a>
+          </li>
 
         </ul>
 
       </li>
 
-      <li><a href="trailers.html">Trailers</a></li>
+      <li>
+        <a href="trailers.html">Trailers</a>
+      </li>
 
-      <li><a href="contact.html">Contact</a></li>
+      <li>
+        <a href="contact.html">Contact</a>
+      </li>
 
     </ul>
 
+
+    <!-- ABOUT-STYLE HAMBURGER -->
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      type="button"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
   </nav>
+
+
+  <!-- MOBILE MENU -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="genres.html">
+      Genres
+    </a>
+
+    <div class="mobile-genres">
+
+      <a href="action.html">
+        Action
+      </a>
+
+      <a href="rpg.html">
+        RPG
+      </a>
+
+      <a href="horror.html">
+        Horror
+      </a>
+
+      <a href="racing.html">
+        Racing
+      </a>
+
+      <a href="shooter.html">
+        Shooter
+      </a>
+
+      <a href="strategy.html">
+        Strategy
+      </a>
+
+    </div>
+
+    <a href="trailers.html">
+      Trailers
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+  </div>
+
 
   <!-- HERO -->
 
@@ -580,6 +873,7 @@ body{
 
   </section>
 
+
   <!-- GAMES -->
 
   <section class="games-section" id="games">
@@ -596,19 +890,32 @@ body{
 
     </div>
 
+
     <div class="games-grid">
 
-      <!-- CARD -->
 
-      <a href="https://www.callofduty.com/" target="_blank" class="game-card">
+      <!-- CALL OF DUTY -->
+
+      <a
+        href="https://www.callofduty.com/"
+        target="_blank"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Shooter/call.jpg" alt="Call of Duty">
+
+          <img
+            src="images/Shooter/call.jpg"
+            alt="Call of Duty"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Call of Duty</h3>
+          <h3>
+            Call of Duty
+          </h3>
 
           <p>
             Experience cinematic warfare,
@@ -620,17 +927,29 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://playvalorant.com/" target="_blank" class="game-card">
+      <!-- VALORANT -->
+
+      <a
+        href="https://playvalorant.com/"
+        target="_blank"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Shooter/Valorant.jpg" alt="Valorant">
+
+          <img
+            src="images/Shooter/Valorant.jpg"
+            alt="Valorant"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Valorant</h3>
+          <h3>
+            Valorant
+          </h3>
 
           <p>
             Tactical shooting meets
@@ -642,17 +961,29 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.ea.com/games/apex-legends" target="_blank" class="game-card">
+      <!-- APEX LEGENDS -->
+
+      <a
+        href="https://www.ea.com/games/apex-legends"
+        target="_blank"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Shooter/apex.jpg" alt="Apex Legends">
+
+          <img
+            src="images/Shooter/apex.jpg"
+            alt="Apex Legends"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Apex Legends</h3>
+          <h3>
+            Apex Legends
+          </h3>
 
           <p>
             Fast-paced battle royale
@@ -664,17 +995,29 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://pubg.com/" target="_blank" class="game-card">
+      <!-- PUBG -->
+
+      <a
+        href="https://pubg.com/"
+        target="_blank"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Shooter/pubg.jpg" alt="PUBG">
+
+          <img
+            src="images/Shooter/pubg.jpg"
+            alt="PUBG"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>PUBG</h3>
+          <h3>
+            PUBG
+          </h3>
 
           <p>
             Survive brutal battlegrounds
@@ -686,17 +1029,29 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://blog.counter-strike.net/" target="_blank" class="game-card">
+      <!-- CS:GO -->
+
+      <a
+        href="https://blog.counter-strike.net/"
+        target="_blank"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Shooter/csgo.jpg" alt="CSGO">
+
+          <img
+            src="images/Shooter/csgo.jpg"
+            alt="CSGO"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>CS:GO</h3>
+          <h3>
+            CS:GO
+          </h3>
 
           <p>
             The legendary competitive FPS
@@ -708,17 +1063,29 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://overwatch.blizzard.com/" target="_blank" class="game-card">
+      <!-- OVERWATCH -->
+
+      <a
+        href="https://overwatch.blizzard.com/"
+        target="_blank"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Shooter/overwatch.jpg" alt="Overwatch 2">
+
+          <img
+            src="images/Shooter/overwatch.jpg"
+            alt="Overwatch 2"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Overwatch 2</h3>
+          <h3>
+            Overwatch 2
+          </h3>
 
           <p>
             Team-based shooter with
@@ -734,6 +1101,7 @@ body{
 
   </section>
 
+
   <!-- FOOTER -->
 
   <footer class="footer">
@@ -744,7 +1112,103 @@ body{
 
   </footer>
 
+
+  <!-- MOBILE MENU JS -->
+
+  <script>
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+
+    menuToggle.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      mobileMenu.classList.toggle("active");
+
+      menuToggle.classList.toggle("active");
+
+      const isOpen =
+        mobileMenu.classList.contains("active");
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
+
+    });
+
+
+    /* CLOSE WHEN LINK IS CLICKED */
+
+    mobileMenu
+      .querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          mobileMenu.classList.remove("active");
+
+          menuToggle.classList.remove("active");
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        });
+
+      });
+
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", (e) => {
+
+      if(
+        !mobileMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ){
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+
+    /* RESET ON DESKTOP */
+
+    window.addEventListener("resize", () => {
+
+      if(window.innerWidth > 768){
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+  </script>
+
 </body>
 
 </html>
-

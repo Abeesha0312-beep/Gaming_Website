@@ -60,21 +60,27 @@ body{
 
 .navbar{
   width:100%;
-  padding:26px 8%;
-
-  position:fixed;
-  top:0;
-  z-index:999;
+  padding:25px 8%;
 
   display:flex;
   justify-content:space-between;
   align-items:center;
 
-  background:rgba(255,255,255,.03);
-  backdrop-filter:blur(14px);
+  position:fixed;
+  top:0;
+  left:0;
+
+  z-index:1000;
+
+  backdrop-filter:blur(18px);
+
+  background:rgba(5,8,22,.55);
 
   border-bottom:
   1px solid rgba(255,255,255,.05);
+
+  box-shadow:
+  0 10px 35px rgba(0,0,0,.18);
 }
 
 .logo{
@@ -86,13 +92,26 @@ body{
 .nav-links{
   display:flex;
   align-items:center;
-  gap:40px;
+  gap:38px;
+
   list-style:none;
+
+  margin:0;
+  padding:0;
 }
 
 .nav-links a{
+  display:block;
+
   text-decoration:none;
+
   color:#9CA3AF;
+
+  font-size:.95rem;
+  font-weight:500;
+
+  letter-spacing:.5px;
+
   transition:.3s ease;
 }
 
@@ -134,6 +153,11 @@ body{
   transform:translateY(12px);
 
   transition:.35s ease;
+
+  z-index:999;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,.35);
 }
 
 .dropdown:hover .dropdown-menu{
@@ -143,7 +167,7 @@ body{
 }
 
 .dropdown-menu li{
-  margin:10px 0;
+  margin:8px 0;
 }
 
 .dropdown-menu a{
@@ -153,15 +177,199 @@ body{
   padding:10px 12px;
 
   border-radius:12px;
+
+  color:#9CA3AF;
+
+  text-decoration:none;
+
+  transition:.3s ease;
 }
+
+/* SAME BLUE HOVER AS DESKTOP */
 
 .dropdown-menu a:hover{
 
   background:
   rgba(37,99,235,.15);
 
+  color:white;
+
   padding-left:18px;
 }
+
+
+/* MOBILE MENU BUTTON */
+
+.menu-toggle{
+  display:none;
+
+  width:42px;
+  height:42px;
+
+  border:
+  1px solid rgba(255,255,255,.1);
+
+  border-radius:12px;
+
+  background:
+  rgba(255,255,255,.04);
+
+  cursor:pointer;
+
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  gap:5px;
+
+  transition:.3s ease;
+}
+
+.menu-toggle span{
+
+  width:20px;
+  height:2px;
+
+  background:#D1D5DB;
+
+  border-radius:10px;
+
+  transition:.3s ease;
+}
+
+/* ABOUT STYLE HAMBURGER → X */
+
+.menu-toggle.active span:nth-child(1){
+  transform:
+  translateY(7px)
+  rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+  opacity:0;
+  transform:scale(0);
+}
+
+.menu-toggle.active span:nth-child(3){
+  transform:
+  translateY(-7px)
+  rotate(-45deg);
+}
+
+
+/* MOBILE MENU */
+
+.mobile-menu{
+
+  position:fixed;
+
+  display:none;
+
+  top:86px;
+  left:5%;
+  right:5%;
+
+  background:
+  rgba(10,14,30,.97);
+
+  backdrop-filter:blur(18px);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  border-radius:18px;
+
+  padding:18px;
+
+  z-index:998;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,.35);
+
+  transform:translateY(-10px);
+
+  opacity:0;
+
+  transition:
+  opacity .3s ease,
+  transform .3s ease;
+}
+
+.mobile-menu.active{
+  display:block;
+
+  opacity:1;
+
+  transform:translateY(0);
+}
+
+.mobile-menu > a{
+
+  display:block;
+
+  color:#9CA3AF;
+
+  text-decoration:none;
+
+  padding:13px 14px;
+
+  border-radius:10px;
+
+  transition:.3s ease;
+}
+
+/* SAME BLUE HOVER AS DESKTOP */
+
+.mobile-menu > a:hover{
+
+  color:white;
+
+  background:
+  rgba(37,99,235,.15);
+}
+
+
+/* MOBILE GENRES */
+
+.mobile-genres{
+
+  padding-left:14px;
+
+  border-left:
+  1px solid rgba(37,99,235,.30);
+
+  margin-left:10px;
+
+  margin-bottom:4px;
+}
+
+.mobile-genres a{
+
+  display:block;
+
+  color:#9CA3AF;
+
+  text-decoration:none;
+
+  padding:10px 14px;
+
+  border-radius:10px;
+
+  font-size:.95rem;
+
+  transition:.3s ease;
+}
+
+/* SAME BLUE HOVER AS DESKTOP */
+
+.mobile-genres a:hover{
+
+  color:white;
+
+  background:
+  rgba(37,99,235,.15);
+}
+
 
 /* HERO */
 
@@ -172,7 +380,9 @@ body{
   padding:120px 8% 80px;
 
   display:flex;
+
   justify-content:space-between;
+
   align-items:flex-start;
 
   position:relative;
@@ -184,9 +394,11 @@ body{
   inset:0;
 
   background:
-  linear-gradient(to right,
-  rgba(5,8,22,.96),
-  rgba(5,8,22,.55));
+  linear-gradient(
+    to right,
+    rgba(5,8,22,.96),
+    rgba(5,8,22,.55)
+  );
 
   z-index:1;
 }
@@ -194,6 +406,7 @@ body{
 .hero-content{
 
   position:relative;
+
   z-index:2;
 
   max-width:650px;
@@ -216,7 +429,8 @@ body{
 
   font-family:'Orbitron',sans-serif;
 
-  font-size:clamp(4rem,7.3vw,7rem);
+  font-size:
+  clamp(4rem,7.3vw,7rem);
 
   line-height:.95;
 
@@ -225,9 +439,11 @@ body{
   text-transform:uppercase;
 
   background:
-  linear-gradient(to bottom,
-  #ffffff,
-  #93C5FD);
+  linear-gradient(
+          to bottom,
+          #fff,
+          #9CA3AF
+        );
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -235,23 +451,24 @@ body{
 
 .hero-description{
 
-    line-height:1.9;
+  line-height:1.9;
 
   max-width:520px;
 
   margin-bottom:36px;
+
   color:#A1A1AA;
-
-
 }
+
 
 /* BUTTON */
 
 .hero-btn{
 
   display:inline-flex;
-  justify-content:center;
+
   align-items:center;
+  justify-content:center;
 
   width:190px;
   height:58px;
@@ -260,21 +477,14 @@ body{
 
   text-decoration:none;
 
-  font-weight:500;
-  color:#DCEBFF;
+  color:#FFEFEF;
 
-  background:
-  rgba(255,255,255,.04);
+  font-weight:500;
 
   border:
   1px solid rgba(96,165,250,.22);
 
-  backdrop-filter:blur(18px);
-
   transition:.4s ease;
-
-  box-shadow:
-  0 0 18px rgba(59,130,246,.10);
 }
 
 .hero-btn:hover{
@@ -282,16 +492,11 @@ body{
   transform:
   translateY(-5px);
 
-  background:
-  rgba(96,165,250,.08);
-
   border-color:
   rgba(147,197,253,.38);
 
   box-shadow:
   0 0 28px rgba(59,130,246,.18);
-
-  color:white;
 }
 
 
@@ -302,13 +507,18 @@ body{
   width:470px;
 
   position:relative;
+
   z-index:2;
 
-  animation:floating 5s ease-in-out infinite;
+  animation:
+  floating 5s ease-in-out infinite;
 
   filter:
-  drop-shadow(0 0 45px rgba(37,99,235,.35));
+  drop-shadow(
+    0 0 45px rgba(37,99,235,.35)
+  );
 }
+
 
 /* FLOAT */
 
@@ -327,6 +537,7 @@ body{
   }
 }
 
+
 /* GAMES SECTION */
 
 .games-section{
@@ -334,7 +545,9 @@ body{
 }
 
 .section-title{
+
   text-align:center;
+
   margin-bottom:70px;
 }
 
@@ -353,8 +566,10 @@ body{
 
   font-family:'Orbitron',sans-serif;
 
-  font-size:clamp(2.7rem,6vw,4.6rem);
+  font-size:
+  clamp(2.7rem,6vw,4.6rem);
 }
+
 
 /* GRID */
 
@@ -367,6 +582,7 @@ body{
 
   gap:34px;
 }
+
 
 /* CARD */
 
@@ -404,7 +620,9 @@ body{
 }
 
 .card-image{
+
   height:230px;
+
   overflow:hidden;
 }
 
@@ -421,6 +639,7 @@ body{
 .game-card:hover img{
   transform:scale(1.08);
 }
+
 
 /* CARD CONTENT */
 
@@ -448,6 +667,7 @@ body{
   font-size:.95rem;
 }
 
+
 /* FOOTER */
 
 .footer{
@@ -465,7 +685,9 @@ body{
 }
 
 .footer a{
+
   color:#60A5FA;
+
   text-decoration:none;
 }
 
@@ -473,13 +695,10 @@ body{
   text-decoration:underline;
 }
 
-/* RESPONSIVE */
+
+/* TABLET */
 
 @media(max-width:992px){
-
-  .nav-links{
-    display:none;
-  }
 
   .hero{
 
@@ -509,6 +728,100 @@ body{
   .games-section{
     padding:100px 20px;
   }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .navbar{
+    padding:18px 6%;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:flex;
+  }
+
+  .hero{
+    padding-left:6%;
+    padding-right:6%;
+  }
+
+  .hero h1{
+    font-size:
+    clamp(3rem,13vw,5rem);
+  }
+
+  .hero-description{
+    font-size:.95rem;
+  }
+
+  .hero-character{
+    display: none !important;
+  }
+
+  .games-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media(max-width:480px){
+
+  .navbar{
+    padding:16px 5%;
+  }
+
+  .mobile-menu{
+    top:76px;
+
+    left:5%;
+    right:5%;
+  }
+
+  .logo{
+    font-size:1rem;
+  }
+
+  .hero{
+
+    padding-top:120px;
+
+    gap:40px;
+  }
+
+  .subtitle{
+    font-size:.7rem;
+    letter-spacing:3px;
+  }
+
+  .hero h1{
+    font-size:
+    clamp(2.7rem,14vw,4rem);
+  }
+
+
+  .games-section{
+    padding:80px 16px;
+  }
+
+  .section-title{
+    margin-bottom:50px;
+  }
+
+  .card-content{
+    padding:22px;
+  }
+
 }
 
 </style>
@@ -522,44 +835,163 @@ body{
 <div class="bg-glow glow-1"></div>
 <div class="bg-glow glow-2"></div>
 
+
 <!-- NAVBAR -->
 
-  <nav class="navbar">
+<nav class="navbar">
 
-    <div class="logo">
-      Gaming Galaxy
-    </div>
+  <div class="logo">
+    Gaming Galaxy
+  </div>
 
-    <ul class="nav-links">
 
-      <li><a href="index.html">Home</a></li>
+  <!-- DESKTOP NAV -->
 
-      <li><a href="about.html">About</a></li>
+  <ul class="nav-links">
 
-      <li class="dropdown">
+    <li>
+      <a href="index.html">Home</a>
+    </li>
 
-        <a href="genres.html">Genres</a>
+    <li>
+      <a href="about.html">About</a>
+    </li>
 
-        <ul class="dropdown-menu">
+    <li class="dropdown">
 
-          <li><a href="action.html">Action</a></li>
-          <li><a href="rpg.html">RPG</a></li>
-          <li><a href="horror.html">Horror</a></li>
-          <li><a href="racing.html">Racing</a></li>
-          <li><a href="shooter.html">Shooter</a></li>
-          <li><a href="strategy.html">Strategy</a></li>
+      <a href="genres.html">
+        Genres
+      </a>
 
-        </ul>
+      <ul class="dropdown-menu">
 
-      </li>
+        <li>
+          <a href="action.html">
+            Action
+          </a>
+        </li>
 
-      <li><a href="trailers.html">Trailers</a></li>
+        <li>
+          <a href="rpg.html">
+            RPG
+          </a>
+        </li>
 
-      <li><a href="contact.html">Contact</a></li>
+        <li>
+          <a href="horror.html">
+            Horror
+          </a>
+        </li>
 
-    </ul>
+        <li>
+          <a href="racing.html">
+            Racing
+          </a>
+        </li>
 
-  </nav>
+        <li>
+          <a href="shooter.html">
+            Shooter
+          </a>
+        </li>
+
+        <li>
+          <a href="strategy.html">
+            Strategy
+          </a>
+        </li>
+
+      </ul>
+
+    </li>
+
+    <li>
+      <a href="trailers.html">
+        Trailers
+      </a>
+    </li>
+
+    <li>
+      <a href="contact.html">
+        Contact
+      </a>
+    </li>
+
+  </ul>
+
+
+  <!-- ABOUT STYLE HAMBURGER -->
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open menu"
+    type="button"
+  >
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </button>
+
+</nav>
+
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="about.html">
+    About
+  </a>
+
+  <a href="genres.html">
+    Genres
+  </a>
+
+  <div class="mobile-genres">
+
+    <a href="action.html">
+      Action
+    </a>
+
+    <a href="rpg.html">
+      RPG
+    </a>
+
+    <a href="horror.html">
+      Horror
+    </a>
+
+    <a href="racing.html">
+      Racing
+    </a>
+
+    <a href="shooter.html">
+      Shooter
+    </a>
+
+    <a href="strategy.html">
+      Strategy
+    </a>
+
+  </div>
+
+  <a href="trailers.html">
+    Trailers
+  </a>
+
+  <a href="contact.html">
+    Contact
+  </a>
+
+</div>
+
 
 <!-- HERO -->
 
@@ -592,11 +1024,14 @@ body{
 
   </div>
 
-  <img src="images/Strategy/strategy-character.png"
-  alt="Strategy Character"
-  class="hero-character">
+  <img
+    src="images/Strategy/strategy-character.png"
+    alt="Strategy Character"
+    class="hero-character"
+  >
 
 </section>
+
 
 <!-- GAMES -->
 
@@ -614,21 +1049,32 @@ body{
 
   </div>
 
+
   <div class="games-grid">
 
-    <!-- CARD -->
 
-    <a href="https://civilization.com/"
-    target="_blank"
-    class="game-card">
+    <!-- CIVILIZATION VI -->
+
+    <a
+      href="https://civilization.com/"
+      target="_blank"
+      class="game-card"
+    >
 
       <div class="card-image">
-        <img src="images/Strategy/civilization6.jpg" alt="">
+
+        <img
+          src="images/Strategy/civilization6.jpg"
+          alt="Civilization VI"
+        >
+
       </div>
 
       <div class="card-content">
 
-        <h3>Civilization VI</h3>
+        <h3>
+          Civilization VI
+        </h3>
 
         <p>
           Build legendary civilizations and
@@ -640,19 +1086,29 @@ body{
 
     </a>
 
-    <!-- CARD -->
 
-    <a href="https://www.ageofempires.com/games/age-of-empires-iv/"
-    target="_blank"
-    class="game-card">
+    <!-- AGE OF EMPIRES IV -->
+
+    <a
+      href="https://www.ageofempires.com/games/age-of-empires-iv/"
+      target="_blank"
+      class="game-card"
+    >
 
       <div class="card-image">
-        <img src="images/Strategy/ageofempires4.jpg" alt="">
+
+        <img
+          src="images/Strategy/ageofempires4.jpg"
+          alt="Age of Empires IV"
+        >
+
       </div>
 
       <div class="card-content">
 
-        <h3>Age of Empires IV</h3>
+        <h3>
+          Age of Empires IV
+        </h3>
 
         <p>
           Lead mighty kingdoms into massive
@@ -663,19 +1119,29 @@ body{
 
     </a>
 
-    <!-- CARD -->
 
-    <a href="https://store.steampowered.com/app/268500/XCOM_2/"
-    target="_blank"
-    class="game-card">
+    <!-- XCOM 2 -->
+
+    <a
+      href="https://store.steampowered.com/app/268500/XCOM_2/"
+      target="_blank"
+      class="game-card"
+    >
 
       <div class="card-image">
-        <img src="images/Strategy/xcom2.jpg" alt="">
+
+        <img
+          src="images/Strategy/xcom2.jpg"
+          alt="XCOM 2"
+        >
+
       </div>
 
       <div class="card-content">
 
-        <h3>XCOM 2</h3>
+        <h3>
+          XCOM 2
+        </h3>
 
         <p>
           Outsmart alien forces using tactical
@@ -686,19 +1152,29 @@ body{
 
     </a>
 
-    <!-- CARD -->
 
-    <a href="https://starcraft2.com/"
-    target="_blank"
-    class="game-card">
+    <!-- STARCRAFT II -->
+
+    <a
+      href="https://starcraft2.com/"
+      target="_blank"
+      class="game-card"
+    >
 
       <div class="card-image">
-        <img src="images/Strategy/starcraft2.jpg" alt="">
+
+        <img
+          src="images/Strategy/starcraft2.jpg"
+          alt="StarCraft II"
+        >
+
       </div>
 
       <div class="card-content">
 
-        <h3>StarCraft II</h3>
+        <h3>
+          StarCraft II
+        </h3>
 
         <p>
           Control futuristic factions and
@@ -709,19 +1185,29 @@ body{
 
     </a>
 
-    <!-- CARD -->
 
-    <a href="https://www.totalwar.com/"
-    target="_blank"
-    class="game-card">
+    <!-- TOTAL WAR -->
+
+    <a
+      href="https://www.totalwar.com/"
+      target="_blank"
+      class="game-card"
+    >
 
       <div class="card-image">
-        <img src="images/Strategy/totalwar.jpg" alt="">
+
+        <img
+          src="images/Strategy/totalwar.jpg"
+          alt="Total War"
+        >
+
       </div>
 
       <div class="card-content">
 
-        <h3>Total War</h3>
+        <h3>
+          Total War
+        </h3>
 
         <p>
           Experience large-scale tactical wars
@@ -732,19 +1218,29 @@ body{
 
     </a>
 
-    <!-- CARD -->
 
-    <a href="https://www.ea.com/games/command-and-conquer"
-    target="_blank"
-    class="game-card">
+    <!-- COMMAND & CONQUER -->
+
+    <a
+      href="https://www.ea.com/games/command-and-conquer"
+      target="_blank"
+      class="game-card"
+    >
 
       <div class="card-image">
-        <img src="images/Strategy/commandandconquer.jpg" alt="">
+
+        <img
+          src="images/Strategy/commandandconquer.jpg"
+          alt="Command and Conquer"
+        >
+
       </div>
 
       <div class="card-content">
 
-        <h3>Command & Conquer</h3>
+        <h3>
+          Command &amp; Conquer
+        </h3>
 
         <p>
           Dive into iconic RTS gameplay filled
@@ -759,6 +1255,7 @@ body{
 
 </section>
 
+
 <!-- FOOTER -->
 
 <footer class="footer">
@@ -768,6 +1265,105 @@ body{
   </p>
 
 </footer>
+
+
+<!-- MOBILE MENU JS -->
+
+<script>
+
+const menuToggle =
+  document.getElementById("menuToggle");
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+
+/* OPEN / CLOSE MENU */
+
+menuToggle.addEventListener("click", (e) => {
+
+  e.stopPropagation();
+
+  mobileMenu.classList.toggle("active");
+
+  menuToggle.classList.toggle("active");
+
+  const isOpen =
+    mobileMenu.classList.contains("active");
+
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close menu" : "Open menu"
+  );
+
+});
+
+
+/* CLOSE AFTER CLICKING A LINK */
+
+mobileMenu
+  .querySelectorAll("a")
+  .forEach(link => {
+
+    link.addEventListener("click", () => {
+
+      mobileMenu.classList.remove("active");
+
+      menuToggle.classList.remove("active");
+
+      menuToggle.setAttribute(
+        "aria-label",
+        "Open menu"
+      );
+
+    });
+
+  });
+
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+document.addEventListener("click", (e) => {
+
+  if(
+    !mobileMenu.contains(e.target) &&
+    !menuToggle.contains(e.target)
+  ){
+
+    mobileMenu.classList.remove("active");
+
+    menuToggle.classList.remove("active");
+
+    menuToggle.setAttribute(
+      "aria-label",
+      "Open menu"
+    );
+
+  }
+
+});
+
+
+/* RESET WHEN RETURNING TO DESKTOP */
+
+window.addEventListener("resize", () => {
+
+  if(window.innerWidth > 768){
+
+    mobileMenu.classList.remove("active");
+
+    menuToggle.classList.remove("active");
+
+    menuToggle.setAttribute(
+      "aria-label",
+      "Open menu"
+    );
+
+  }
+
+});
+
+</script>
 
 </body>
 

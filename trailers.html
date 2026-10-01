@@ -31,46 +31,44 @@ body{
   font-family:'Inter',sans-serif;
 }
 
-/* BACKGROUND */
+/* =========================
+   BACKGROUND
+========================= */
 
 .bg-glow{
   position:fixed;
   border-radius:50%;
   filter:blur(140px);
   z-index:-1;
+  pointer-events:none;
 }
 
 .glow-1{
   width:420px;
   height:420px;
-
   background:#7C3AED;
-
   top:-160px;
   left:-160px;
-
   opacity:.14;
 }
 
 .glow-2{
   width:360px;
   height:360px;
-
   background:#2563EB;
-
   bottom:-140px;
   right:-140px;
-
   opacity:.12;
 }
 
-/* NAVBAR */
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar{
-
   width:100%;
-
-  padding:24px 8%;
+  padding:25px 8%;
 
   display:flex;
   justify-content:space-between;
@@ -78,51 +76,41 @@ body{
 
   position:fixed;
   top:0;
+  left:0;
 
   z-index:1000;
 
   backdrop-filter:blur(18px);
 
-  background:
-  rgba(5,8,22,.55);
+  background:rgba(5,8,22,.55);
 
-  border-bottom:
-  1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
 
-  box-shadow:
-  0 10px 35px rgba(0,0,0,.18);
+  box-shadow:0 10px 35px rgba(0,0,0,.18);
 }
 
 .logo{
-
   font-family:'Orbitron',sans-serif;
-
   font-size:1.15rem;
-
   font-weight:700;
-
   color:white;
 }
 
+
+/* DESKTOP NAV */
+
 .nav-links{
-
   display:flex;
-
   gap:38px;
-
   list-style:none;
 }
 
 .nav-links a{
-
   text-decoration:none;
-
-  color:#C4CBD7;
+  color:#9CA3AF;
 
   font-size:.95rem;
-
   font-weight:500;
-
   letter-spacing:.5px;
 
   transition:.3s ease;
@@ -132,68 +120,65 @@ body{
   color:white;
 }
 
-/* DROPDOWN */
+
+/* =========================
+   DESKTOP GENRES DROPDOWN
+========================= */
 
 .dropdown{
   position:relative;
 }
 
 .dropdown-menu{
-
   position:absolute;
 
   top:180%;
   left:0;
 
-  background:
-  rgba(10,14,30,.96);
+  background:rgba(10,14,30,.96);
 
   backdrop-filter:blur(16px);
 
-  border:
-  1px solid rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.06);
 
-  border-radius:20px;
+  border-radius:18px;
 
   padding:14px;
 
-  min-width:210px;
+  min-width:180px;
 
   list-style:none;
 
   opacity:0;
   visibility:hidden;
 
-  transform:
-  translateY(10px);
+  transform:translateY(10px);
 
   transition:.35s ease;
 
   z-index:999;
+
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
 .dropdown:hover .dropdown-menu{
-
   opacity:1;
   visibility:visible;
-
-  transform:
-  translateY(0);
+  transform:translateY(0);
 }
 
 .dropdown-menu li{
-  margin:10px 0;
+  margin:8px 0;
 }
 
 .dropdown-menu a{
-
   display:block;
 
-  padding:10px 14px;
+  padding:8px 10px;
 
-  border-radius:12px;
+  border-radius:10px;
 
-  color:#D1D5DB;
+  color:#9CA3AF;
 
   text-decoration:none;
 
@@ -201,19 +186,180 @@ body{
 }
 
 .dropdown-menu a:hover{
-
-  background:
-  rgba(255,255,255,.05);
-
+  background:rgba(124,92,255,.10);
   color:white;
-
-  padding-left:18px;
+  padding-left:16px;
 }
 
-/* HERO */
+
+/* =========================
+   MOBILE MENU BUTTON
+   SAME AS ABOUT PAGE
+========================= */
+
+.menu-toggle{
+  display:none;
+
+  width:42px;
+  height:42px;
+
+  border:1px solid rgba(255,255,255,.1);
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,.04);
+
+  cursor:pointer;
+
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  gap:5px;
+
+  transition:.3s ease;
+}
+
+.menu-toggle span{
+  width:20px;
+  height:2px;
+
+  background:#D1D5DB;
+
+  border-radius:10px;
+
+  transition:.3s ease;
+}
+
+.menu-toggle:hover{
+  background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.16);
+}
+
+
+/* HAMBURGER → X */
+
+.menu-toggle.active span:nth-child(1){
+  transform:translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+  opacity:0;
+  transform:scale(0);
+}
+
+.menu-toggle.active span:nth-child(3){
+  transform:translateY(-7px) rotate(-45deg);
+}
+
+
+/* =========================
+   MOBILE MENU
+   EXACT ABOUT STYLE
+========================= */
+
+.mobile-menu{
+  position:fixed;
+
+  display:none;
+
+  top:86px;
+  left:5%;
+  right:5%;
+
+  background:rgba(10,14,30,.97);
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:18px;
+
+  padding:18px;
+
+  z-index:998;
+
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+
+  transform:translateY(-10px);
+
+  opacity:0;
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+.mobile-menu.active{
+  display:block;
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+/* TOP LEVEL LINKS */
+
+.mobile-menu > a{
+  display:block;
+
+  color:#9CA3AF;
+
+  text-decoration:none;
+
+  padding:13px 14px;
+
+  border-radius:10px;
+
+  transition:.3s ease;
+}
+
+.mobile-menu > a:hover{
+  color:white;
+
+  background:rgba(99,102,241,.12);
+}
+
+
+/* MOBILE GENRES */
+
+.mobile-genres{
+  padding-left:14px;
+
+  border-left:1px solid rgba(124,92,255,.3);
+
+  margin-left:10px;
+
+  margin-bottom:4px;
+}
+
+.mobile-genres a{
+  display:block;
+
+  color:#9CA3AF;
+
+  text-decoration:none;
+
+  padding:10px 14px;
+
+  border-radius:10px;
+
+  font-size:.95rem;
+
+  transition:.3s ease;
+}
+
+.mobile-genres a:hover{
+  color:white;
+
+  background:rgba(124,92,255,.10);
+}
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
-
   width:100%;
   min-height:100vh;
 
@@ -228,10 +374,7 @@ body{
   padding:150px 8% 90px;
 }
 
-/* HERO VIDEO */
-
 .hero video{
-
   position:absolute;
 
   width:100%;
@@ -245,25 +388,24 @@ body{
   z-index:-3;
 }
 
-/* OVERLAY */
-
 .hero-overlay{
-
   position:absolute;
   inset:0;
 
   background:
-  linear-gradient(to bottom,
-  rgba(5,8,22,.40),
-  rgba(5,8,22,.94));
+  linear-gradient(
+    to bottom,
+    rgba(5,8,22,.40),
+    rgba(5,8,22,.94)
+  );
 
   z-index:-2;
 }
 
+
 /* HERO CONTENT */
 
 .hero-content{
-
   text-align:center;
 
   max-width:860px;
@@ -274,7 +416,6 @@ body{
 }
 
 .subtitle{
-
   color:#A78BFA;
 
   letter-spacing:5px;
@@ -285,7 +426,6 @@ body{
 }
 
 .hero h1{
-
   font-family:'Orbitron',sans-serif;
 
   font-size:clamp(4rem,9vw,8rem);
@@ -297,14 +437,17 @@ body{
   margin-bottom:30px;
 
   background:
-  linear-gradient(to bottom,#fff,#AEB7C7);
+  linear-gradient(
+    to bottom,
+    #fff,
+    #AEB7C7
+  );
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .hero-description{
-
   color:#B8C1D1;
 
   line-height:1.9;
@@ -314,10 +457,10 @@ body{
   margin:auto auto 42px;
 }
 
-/* BUTTON */
+
+/* HERO BUTTON */
 
 .hero-btn{
-
   display:inline-flex;
 
   align-items:center;
@@ -334,11 +477,9 @@ body{
 
   font-weight:500;
 
-  background:
-  rgba(255,255,255,.05);
+  background:rgba(255,255,255,.05);
 
-  border:
-  1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
 
   backdrop-filter:blur(14px);
 
@@ -349,35 +490,32 @@ body{
 }
 
 .hero-btn:hover{
+  transform:translateY(-5px);
 
-  transform:
-  translateY(-5px);
+  background:rgba(255,255,255,.08);
 
-  background:
-  rgba(255,255,255,.08);
-
-  border-color:
-  rgba(167,139,250,.35);
+  border-color:rgba(167,139,250,.35);
 
   box-shadow:
   0 0 35px rgba(124,58,237,.12);
 }
 
-/* TRAILERS */
+
+/* =========================
+   TRAILERS SECTION
+========================= */
 
 .trailers-section{
   padding:120px 8%;
 }
 
 .section-title{
-
   text-align:center;
 
   margin-bottom:70px;
 }
 
 .section-title p{
-
   color:#A78BFA;
 
   letter-spacing:4px;
@@ -388,16 +526,19 @@ body{
 }
 
 .section-title h2{
-
   font-family:'Orbitron',sans-serif;
 
   font-size:clamp(2.7rem,6vw,5rem);
+
+  line-height:1.1;
 }
 
-/* GRID */
+
+/* =========================
+   GRID
+========================= */
 
 .trailers-grid{
-
   display:grid;
 
   grid-template-columns:
@@ -406,10 +547,12 @@ body{
   gap:28px;
 }
 
-/* CARD */
+
+/* =========================
+   CARD
+========================= */
 
 .trailer-card{
-
   position:relative;
 
   height:390px;
@@ -418,11 +561,9 @@ body{
 
   overflow:hidden;
 
-  background:
-  rgba(255,255,255,.03);
+  background:rgba(255,255,255,.03);
 
-  border:
-  1px solid rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.06);
 
   transition:
   transform .45s ease,
@@ -435,24 +576,22 @@ body{
 }
 
 .trailer-card:hover{
-
   transform:
   perspective(1200px)
   rotateX(3deg)
   rotateY(-3deg)
   translateY(-8px);
 
-  border-color:
-  rgba(167,139,250,.18);
+  border-color:rgba(167,139,250,.18);
 
   box-shadow:
   0 14px 35px rgba(0,0,0,.35);
 }
 
+
 /* IMAGE */
 
 .trailer-thumbnail{
-
   position:absolute;
 
   width:100%;
@@ -463,10 +602,10 @@ body{
   transition:.45s ease;
 }
 
+
 /* VIDEO */
 
 .trailer-video{
-
   position:absolute;
 
   width:100%;
@@ -487,25 +626,27 @@ body{
   opacity:1;
 }
 
-/* OVERLAY */
+
+/* CARD OVERLAY */
 
 .card-overlay{
-
   position:absolute;
   inset:0;
 
   background:
-  linear-gradient(to top,
-  rgba(5,8,22,.95),
-  rgba(5,8,22,.05));
+  linear-gradient(
+    to top,
+    rgba(5,8,22,.95),
+    rgba(5,8,22,.05)
+  );
 
   z-index:2;
 }
 
-/* CONTENT */
+
+/* CARD CONTENT */
 
 .card-content{
-
   position:absolute;
 
   bottom:0;
@@ -519,7 +660,6 @@ body{
 }
 
 .genre-tag{
-
   display:inline-flex;
 
   align-items:center;
@@ -531,11 +671,9 @@ body{
 
   border-radius:40px;
 
-  background:
-  rgba(255,255,255,.05);
+  background:rgba(255,255,255,.05);
 
-  border:
-  1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
 
   color:#D1D5DB;
 
@@ -547,7 +685,6 @@ body{
 }
 
 .card-content h3{
-
   font-family:'Orbitron',sans-serif;
 
   font-size:1.45rem;
@@ -556,7 +693,6 @@ body{
 }
 
 .card-content p{
-
   color:#B7C0D0;
 
   line-height:1.8;
@@ -566,10 +702,10 @@ body{
   font-size:.93rem;
 }
 
-/* BUTTON */
+
+/* CARD BUTTON */
 
 .watch-btn{
-
   display:inline-flex;
 
   align-items:center;
@@ -584,62 +720,504 @@ body{
 
   color:white;
 
-  background:
-  rgba(255,255,255,.05);
+  background:rgba(255,255,255,.05);
 
-  border:
-  1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
 
   transition:.35s ease;
 }
 
 .watch-btn:hover{
-
   transform:translateY(-4px);
 
-  background:
-  rgba(255,255,255,.08);
+  background:rgba(255,255,255,.08);
 
-  border-color:
-  rgba(167,139,250,.25);
+  border-color:rgba(167,139,250,.25);
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
-
   padding:32px;
 
   text-align:center;
 
-  border-top:
-  1px solid rgba(255,255,255,.05);
+  border-top:1px solid rgba(255,255,255,.05);
 
   color:#7C8595;
+
+  font-size:.9rem;
 }
 
-/* RESPONSIVE */
 
-@media(max-width:992px){
+/* =================================================
+   TABLET
+================================================= */
+
+@media(max-width:1100px){
+
+  .navbar{
+    padding:22px 5%;
+  }
+
+  .nav-links{
+    gap:24px;
+  }
+
+  .hero{
+    padding-left:6%;
+    padding-right:6%;
+  }
+
+  .hero-content{
+    max-width:700px;
+  }
+
+  .trailers-section{
+    padding:100px 5%;
+  }
+
+  .trailers-grid{
+    grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+    gap:22px;
+  }
+
+  .trailer-card{
+    height:380px;
+  }
+
+}
+
+
+/* =================================================
+   MOBILE
+   SAME ABOUT NAVBAR BREAKPOINT
+================================================= */
+
+@media(max-width:768px){
+
+  /* NAVBAR */
+
+  .navbar{
+    padding:18px 6%;
+  }
 
   .nav-links{
     display:none;
   }
 
+  .menu-toggle{
+    display:flex;
+  }
+
+
+  /* MOBILE MENU */
+
+  .mobile-menu{
+    display:none;
+
+    top:86px;
+    left:5%;
+    right:5%;
+  }
+
+  .mobile-menu.active{
+    display:block;
+  }
+
+
+  /* HERO */
+
   .hero{
     min-height:90vh;
+
+    padding:
+    125px 6% 70px;
+  }
+
+  .hero-content{
+    max-width:620px;
+  }
+
+  .subtitle{
+    font-size:.68rem;
+
+    letter-spacing:3px;
+
+    line-height:1.6;
+
+    margin-bottom:18px;
   }
 
   .hero h1{
-    font-size:3.6rem;
+    font-size:clamp(2.8rem,10vw,4.8rem);
+
+    line-height:.98;
+
+    margin-bottom:24px;
   }
 
+  .hero-description{
+    font-size:.9rem;
+
+    line-height:1.75;
+
+    max-width:520px;
+
+    margin-bottom:32px;
+  }
+
+  .hero-btn{
+    width:200px;
+    height:54px;
+
+    border-radius:15px;
+
+    font-size:.9rem;
+  }
+
+
+  /* TRAILERS */
+
   .trailers-section{
-    padding:100px 20px;
+    padding:
+    85px 6% 70px;
+  }
+
+  .section-title{
+    margin-bottom:45px;
+  }
+
+  .section-title p{
+    font-size:.68rem;
+
+    letter-spacing:3px;
+
+    margin-bottom:14px;
+  }
+
+  .section-title h2{
+    font-size:
+    clamp(2rem,8vw,3.2rem);
+
+    line-height:1.15;
+  }
+
+
+  /* GRID */
+
+  .trailers-grid{
+    grid-template-columns:1fr;
+
+    gap:22px;
+  }
+
+
+  /* CARD */
+
+  .trailer-card{
+    height:400px;
+
+    border-radius:24px;
+  }
+
+  .trailer-card:hover{
+    transform:translateY(-5px);
+  }
+
+  .card-content{
+    padding:24px;
+  }
+
+  .genre-tag{
+    height:32px;
+
+    padding:0 13px;
+
+    font-size:.65rem;
+
+    letter-spacing:1.5px;
+
+    margin-bottom:15px;
+  }
+
+  .card-content h3{
+    font-size:1.25rem;
+
+    margin-bottom:10px;
+  }
+
+  .card-content p{
+    font-size:.84rem;
+
+    line-height:1.65;
+
+    margin-bottom:20px;
+  }
+
+  .watch-btn{
+    width:135px;
+    height:44px;
+
+    border-radius:14px;
+
+    font-size:.88rem;
+  }
+
+
+  /* FOOTER */
+
+  .footer{
+    padding:26px 6%;
+
+    font-size:.78rem;
+
+    line-height:1.6;
+  }
+
+}
+
+
+/* =================================================
+   SMALL MOBILE
+================================================= */
+
+@media(max-width:480px){
+
+  .navbar{
+    padding:16px 5%;
+  }
+
+  .logo{
+    font-size:1rem;
+  }
+
+  .menu-toggle{
+    width:42px;
+    height:42px;
+  }
+
+
+  /* MOBILE MENU */
+
+  .mobile-menu{
+    top:76px;
+
+    left:5%;
+    right:5%;
+
+    padding:18px;
+  }
+
+
+  /* HERO */
+
+  .hero{
+    min-height:88vh;
+
+    padding:
+    110px 5% 60px;
+  }
+
+  .subtitle{
+    font-size:.58rem;
+
+    letter-spacing:2.5px;
+
+    margin-bottom:15px;
+  }
+
+  .hero h1{
+    font-size:
+    clamp(2.35rem,11vw,3.5rem);
+
+    line-height:1;
+  }
+
+  .hero-description{
+    font-size:.8rem;
+
+    line-height:1.7;
+
+    margin-bottom:27px;
+  }
+
+  .hero-btn{
+    width:185px;
+    height:50px;
+
+    font-size:.82rem;
+
+    border-radius:14px;
+  }
+
+
+  /* SECTION */
+
+  .trailers-section{
+    padding:
+    70px 5% 55px;
+  }
+
+  .section-title{
+    margin-bottom:35px;
+  }
+
+  .section-title p{
+    font-size:.58rem;
+
+    letter-spacing:2.5px;
+  }
+
+  .section-title h2{
+    font-size:
+    clamp(1.75rem,9vw,2.6rem);
+  }
+
+
+  /* CARDS */
+
+  .trailers-grid{
+    gap:18px;
   }
 
   .trailer-card{
-    height:380px;
+    height:360px;
+
+    border-radius:21px;
+  }
+
+  .card-content{
+    padding:20px;
+  }
+
+  .genre-tag{
+    height:29px;
+
+    padding:0 11px;
+
+    font-size:.58rem;
+
+    margin-bottom:13px;
+  }
+
+  .card-content h3{
+    font-size:1.1rem;
+
+    margin-bottom:9px;
+  }
+
+  .card-content p{
+    font-size:.76rem;
+
+    line-height:1.6;
+
+    margin-bottom:18px;
+  }
+
+  .watch-btn{
+    width:125px;
+    height:41px;
+
+    font-size:.8rem;
+
+    border-radius:12px;
+  }
+
+}
+
+
+/* =================================================
+   VERY SMALL MOBILE
+================================================= */
+
+@media(max-width:360px){
+
+  .logo{
+    font-size:.9rem;
+  }
+
+  .hero{
+    padding-left:4%;
+    padding-right:4%;
+  }
+
+  .hero h1{
+    font-size:2.05rem;
+  }
+
+  .hero-description{
+    font-size:.73rem;
+  }
+
+  .hero-btn{
+    width:170px;
+    height:47px;
+  }
+
+  .trailers-section{
+    padding-left:4%;
+    padding-right:4%;
+  }
+
+  .section-title h2{
+    font-size:1.7rem;
+  }
+
+  .trailer-card{
+    height:345px;
+  }
+
+  .card-content{
+    padding:18px;
+  }
+
+  .card-content h3{
+    font-size:1rem;
+  }
+
+  .card-content p{
+    font-size:.7rem;
+  }
+
+}
+
+
+/* =================================================
+   TOUCH DEVICES
+   Keep thumbnail visible instead of relying on hover
+================================================= */
+
+@media(hover:none){
+
+  .trailer-card:hover{
+    transform:none;
+
+    border-color:
+    rgba(255,255,255,.06);
+
+    box-shadow:none;
+  }
+
+  .trailer-card:hover .trailer-thumbnail{
+    opacity:1;
+  }
+
+  .trailer-card:hover .trailer-video{
+    opacity:0;
+  }
+
+  .hero-btn:hover{
+    transform:none;
+  }
+
+  .watch-btn:hover{
+    transform:none;
   }
 
 }
@@ -650,63 +1228,195 @@ body{
 
 <body>
 
-<!-- GLOW -->
+<!-- =========================
+     BACKGROUND GLOW
+========================= -->
 
 <div class="bg-glow glow-1"></div>
 <div class="bg-glow glow-2"></div>
 
-<!-- NAVBAR -->
 
-  <nav class="navbar">
+<!-- =========================
+     NAVBAR
+========================= -->
 
-    <div class="logo">
-      Gaming Galaxy
-    </div>
+<nav class="navbar">
 
-    <ul class="nav-links">
+  <div class="logo">
+    Gaming Galaxy
+  </div>
 
-      <li><a href="index.html">Home</a></li>
 
-      <li><a href="about.html">About</a></li>
+  <!-- DESKTOP NAV -->
 
-      <li class="dropdown">
+  <ul class="nav-links">
 
-        <a href="genres.html">Genres</a>
+    <li>
+      <a href="index.html">Home</a>
+    </li>
 
-        <ul class="dropdown-menu">
+    <li>
+      <a href="about.html">About</a>
+    </li>
 
-          <li><a href="action.html">Action</a></li>
-          <li><a href="rpg.html">RPG</a></li>
-          <li><a href="horror.html">Horror</a></li>
-          <li><a href="racing.html">Racing</a></li>
-          <li><a href="shooter.html">Shooter</a></li>
-          <li><a href="strategy.html">Strategy</a></li>
+    <li class="dropdown">
 
-        </ul>
+      <a href="genres.html">
+        Genres
+      </a>
 
-      </li>
+      <ul class="dropdown-menu">
 
-      <li><a href="trailers.html">Trailers</a></li>
+        <li>
+          <a href="action.html">
+            Action
+          </a>
+        </li>
 
-      <li><a href="contact.html">Contact</a></li>
+        <li>
+          <a href="rpg.html">
+            RPG
+          </a>
+        </li>
 
-    </ul>
+        <li>
+          <a href="horror.html">
+            Horror
+          </a>
+        </li>
 
-  </nav>
+        <li>
+          <a href="racing.html">
+            Racing
+          </a>
+        </li>
 
-<!-- HERO -->
+        <li>
+          <a href="shooter.html">
+            Shooter
+          </a>
+        </li>
+
+        <li>
+          <a href="strategy.html">
+            Strategy
+          </a>
+        </li>
+
+      </ul>
+
+    </li>
+
+    <li>
+      <a href="trailers.html">
+        Trailers
+      </a>
+    </li>
+
+    <li>
+      <a href="contact.html">
+        Contact
+      </a>
+    </li>
+
+  </ul>
+
+
+  <!-- MOBILE MENU BUTTON -->
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open menu"
+    type="button"
+  >
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </button>
+
+</nav>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="about.html">
+    About
+  </a>
+
+  <a href="genres.html">
+    Genres
+  </a>
+
+
+  <div class="mobile-genres">
+
+    <a href="action.html">
+      Action
+    </a>
+
+    <a href="rpg.html">
+      RPG
+    </a>
+
+    <a href="horror.html">
+      Horror
+    </a>
+
+    <a href="racing.html">
+      Racing
+    </a>
+
+    <a href="shooter.html">
+      Shooter
+    </a>
+
+    <a href="strategy.html">
+      Strategy
+    </a>
+
+  </div>
+
+
+  <a href="trailers.html">
+    Trailers
+  </a>
+
+  <a href="contact.html">
+    Contact
+  </a>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
   <video autoplay muted loop playsinline>
-    <source src="videos/trailers.mp4" type="video/mp4">
+
+    <source
+      src="videos/trailers.mp4"
+      type="video/mp4"
+    >
+
   </video>
+
 
   <div class="hero-overlay"></div>
 
-
-
-  <!-- CONTENT -->
 
   <div class="hero-content">
 
@@ -727,7 +1437,10 @@ body{
 
     </p>
 
-    <a href="#trailers" class="hero-btn">
+    <a
+      href="#trailers"
+      class="hero-btn"
+    >
       Explore Trailers
     </a>
 
@@ -735,9 +1448,15 @@ body{
 
 </section>
 
-<!-- TRAILERS -->
 
-<section class="trailers-section" id="trailers">
+<!-- =========================
+     TRAILERS
+========================= -->
+
+<section
+  class="trailers-section"
+  id="trailers"
+>
 
   <div class="section-title">
 
@@ -751,20 +1470,31 @@ body{
 
   </div>
 
+
   <div class="trailers-grid">
+
 
     <!-- CARD 1 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/callofduty.jpg"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/callofduty.jpg"
+        class="trailer-thumbnail"
+        alt="Call Of Duty trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/callofduty.mp4"
-        type="video/mp4">
+        <source
+          src="videos/callofduty.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -784,8 +1514,10 @@ body{
           Explosive multiplayer warfare and cinematic combat missions.
         </p>
 
-        <a href="shooter.html"
-        class="watch-btn">
+        <a
+          href="shooter.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -793,18 +1525,28 @@ body{
 
     </div>
 
+
     <!-- CARD 2 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/forza.jpg"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/forza.jpg"
+        class="trailer-thumbnail"
+        alt="Forza Horizon trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/forza.mp4"
-        type="video/mp4">
+        <source
+          src="videos/forza.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -824,8 +1566,10 @@ body{
           Open-world racing with stunning visuals and extreme speed.
         </p>
 
-        <a href="racing.html"
-        class="watch-btn">
+        <a
+          href="racing.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -833,18 +1577,28 @@ body{
 
     </div>
 
+
     <!-- CARD 3 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/godofwar.jpg"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/godofwar.jpg"
+        class="trailer-thumbnail"
+        alt="God Of War trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/godofwar.mp4"
-        type="video/mp4">
+        <source
+          src="videos/godofwar.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -864,8 +1618,10 @@ body{
           Mythological warfare with emotional storytelling and action.
         </p>
 
-        <a href="action.html"
-        class="watch-btn">
+        <a
+          href="action.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -873,18 +1629,28 @@ body{
 
     </div>
 
+
     <!-- CARD 4 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/outlast.jpg"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/outlast.jpg"
+        class="trailer-thumbnail"
+        alt="Outlast trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/outlast.mp4"
-        type="video/mp4">
+        <source
+          src="videos/outlast.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -904,8 +1670,10 @@ body{
           Survive terrifying nightmares hidden deep inside darkness.
         </p>
 
-        <a href="horror.html"
-        class="watch-btn">
+        <a
+          href="horror.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -913,18 +1681,28 @@ body{
 
     </div>
 
+
     <!-- CARD 5 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/skyrim.jpeg"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/skyrim.jpeg"
+        class="trailer-thumbnail"
+        alt="Skyrim trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/Skyrim.mp4"
-        type="video/mp4">
+        <source
+          src="videos/Skyrim.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -944,8 +1722,10 @@ body{
           Explore magical kingdoms filled with dragons and mystery.
         </p>
 
-        <a href="rpg.html"
-        class="watch-btn">
+        <a
+          href="rpg.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -953,18 +1733,28 @@ body{
 
     </div>
 
+
     <!-- CARD 6 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/quarry.jpg"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/quarry.jpg"
+        class="trailer-thumbnail"
+        alt="The Quarry trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/the-quarry.mp4"
-        type="video/mp4">
+        <source
+          src="videos/the-quarry.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -984,8 +1774,10 @@ body{
           Every decision changes the fate of terrified survivors.
         </p>
 
-        <a href="horror.html"
-        class="watch-btn">
+        <a
+          href="horror.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -993,18 +1785,28 @@ body{
 
     </div>
 
+
     <!-- CARD 7 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/firewatch.png"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/firewatch.png"
+        class="trailer-thumbnail"
+        alt="Firewatch trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/firewatch.mp4"
-        type="video/mp4">
+        <source
+          src="videos/firewatch.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -1024,8 +1826,10 @@ body{
           Mystery and emotional storytelling in isolated wilderness.
         </p>
 
-        <a href="rpg.html"
-        class="watch-btn">
+        <a
+          href="rpg.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -1033,18 +1837,28 @@ body{
 
     </div>
 
+
     <!-- CARD 8 -->
 
     <div class="trailer-card">
 
-      <img src="images/Trailers/hitman.jpeg"
-      class="trailer-thumbnail">
+      <img
+        src="images/Trailers/hitman.jpeg"
+        class="trailer-thumbnail"
+        alt="Hitman trailer"
+      >
 
-      <video class="trailer-video"
-      muted loop playsinline>
+      <video
+        class="trailer-video"
+        muted
+        loop
+        playsinline
+      >
 
-        <source src="videos/hitman.mp4"
-        type="video/mp4">
+        <source
+          src="videos/hitman.mp4"
+          type="video/mp4"
+        >
 
       </video>
 
@@ -1064,8 +1878,10 @@ body{
           Tactical stealth assassinations with cinematic gameplay.
         </p>
 
-        <a href="action.html"
-        class="watch-btn">
+        <a
+          href="action.html"
+          class="watch-btn"
+        >
           Explore
         </a>
 
@@ -1077,7 +1893,10 @@ body{
 
 </section>
 
-<!-- FOOTER -->
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer class="footer">
 
@@ -1087,29 +1906,150 @@ body{
 
 </footer>
 
-<!-- VIDEO HOVER -->
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script>
 
-document.querySelectorAll(".trailer-card").forEach(card => {
+/* =========================
+   MOBILE NAVBAR
+========================= */
 
-  const video = card.querySelector(".trailer-video");
+const menuToggle =
+  document.getElementById("menuToggle");
 
-  card.addEventListener("mouseenter", () => {
+const mobileMenu =
+  document.getElementById("mobileMenu");
 
-    video.play();
 
-  });
+menuToggle.addEventListener("click", (e) => {
 
-  card.addEventListener("mouseleave", () => {
+  e.stopPropagation();
 
-    video.pause();
+  mobileMenu.classList.toggle("active");
 
-    video.currentTime = 0;
+  menuToggle.classList.toggle("active");
 
-  });
+  const isOpen =
+    mobileMenu.classList.contains("active");
+
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close menu" : "Open menu"
+  );
 
 });
+
+
+/* CLOSE AFTER CLICKING LINK */
+
+mobileMenu
+  .querySelectorAll("a")
+  .forEach(link => {
+
+    link.addEventListener("click", () => {
+
+      mobileMenu.classList.remove("active");
+
+      menuToggle.classList.remove("active");
+
+      menuToggle.setAttribute(
+        "aria-label",
+        "Open menu"
+      );
+
+    });
+
+  });
+
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+document.addEventListener("click", (e) => {
+
+  if(
+    !mobileMenu.contains(e.target) &&
+    !menuToggle.contains(e.target)
+  ){
+
+    mobileMenu.classList.remove("active");
+
+    menuToggle.classList.remove("active");
+
+    menuToggle.setAttribute(
+      "aria-label",
+      "Open menu"
+    );
+
+  }
+
+});
+
+
+/* RESET MOBILE MENU ON DESKTOP */
+
+window.addEventListener("resize", () => {
+
+  if(window.innerWidth > 768){
+
+    mobileMenu.classList.remove("active");
+
+    menuToggle.classList.remove("active");
+
+    menuToggle.setAttribute(
+      "aria-label",
+      "Open menu"
+    );
+
+  }
+
+});
+
+
+/* =========================
+   DESKTOP TRAILER HOVER
+========================= */
+
+document
+  .querySelectorAll(".trailer-card")
+  .forEach(card => {
+
+    const video =
+      card.querySelector(".trailer-video");
+
+
+    card.addEventListener(
+      "mouseenter",
+      () => {
+
+        if(window.matchMedia("(hover:hover)").matches){
+
+          video.play().catch(() => {});
+
+        }
+
+      }
+    );
+
+
+    card.addEventListener(
+      "mouseleave",
+      () => {
+
+        if(window.matchMedia("(hover:hover)").matches){
+
+          video.pause();
+
+          video.currentTime = 0;
+
+        }
+
+      }
+    );
+
+  });
 
 </script>
 

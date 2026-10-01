@@ -10,501 +10,1113 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
+
     *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-html{
-  scroll-behavior:smooth;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-body{
-  background:#050816;
-  color:white;
-  overflow-x:hidden;
-  font-family:'Inter',sans-serif;
-}
+    body{
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+      font-family:'Inter',sans-serif;
+    }
 
-/* BACKGROUND */
 
-.bg-glow{
-  position:fixed;
-  border-radius:50%;
-  filter:blur(140px);
-  z-index:-1;
-}
+    /* =========================
+       BACKGROUND
+    ========================= */
 
-.glow-1{
-  width:350px;
-  height:350px;
+    .bg-glow{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(140px);
+      z-index:-1;
+      pointer-events:none;
+    }
 
-  background:#ff3b3b;
+    .glow-1{
+      width:350px;
+      height:350px;
+      background:#ff3b3b;
+      top:-120px;
+      left:-120px;
+      opacity:.15;
+    }
 
-  top:-120px;
-  left:-120px;
+    .glow-2{
+      width:300px;
+      height:300px;
+      background:#ff6b2c;
+      bottom:-120px;
+      right:-120px;
+      opacity:.12;
+    }
 
-  opacity:.15;
-}
 
-.glow-2{
-  width:300px;
-  height:300px;
+    /* =========================
+       NAVBAR
+    ========================= */
 
-  background:#ff6b2c;
+    .navbar{
+      width:100%;
 
-  bottom:-120px;
-  right:-120px;
+      padding:25px 8%;
 
-  opacity:.12;
-}
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
 
-/* NAVBAR */
+      position:fixed;
+      top:0;
+      left:0;
 
-.navbar{
-  width:100%;
-  padding:28px 8%;
+      z-index:1000;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+      backdrop-filter:blur(18px);
 
-  position:fixed;
-  top:0;
+      background:rgba(5,8,22,.55);
 
-  z-index:999;
+      border-bottom:1px solid rgba(255,255,255,.05);
 
-  backdrop-filter:blur(12px);
+      box-shadow:0 10px 35px rgba(0,0,0,.18);
+    }
 
-  background:rgba(255,255,255,.02);
+    .logo{
+      font-family:'Orbitron',sans-serif;
+      font-size:1.15rem;
+      font-weight:700;
+      color:white;
+      white-space:nowrap;
+    }
 
-  border-bottom:
-  1px solid rgba(255,255,255,.05);
-}
 
-.logo{
-  font-family:'Orbitron',sans-serif;
-  font-size:1.1rem;
-  font-weight:700;
-}
+    /* =========================
+       DESKTOP NAV
+    ========================= */
 
-.nav-links{
-  display:flex;
-  gap:42px;
-  list-style:none;
-}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:38px;
 
-.nav-links a{
-  text-decoration:none;
-  color:#9CA3AF;
+      list-style:none;
 
-  transition:.3s ease;
-}
+      margin:0;
+      padding:0;
+    }
 
-.nav-links a:hover{
-  color:white;
-}
+    .nav-links li{
+      position:relative;
+    }
 
-/* DROPDOWN */
+    .nav-links a{
+      display:block;
 
-.dropdown{
-  position:relative;
-}
+      text-decoration:none;
 
-.dropdown-menu{
+      color:#9CA3AF;
 
-  position:absolute;
+      font-size:.95rem;
 
-  top:180%;
-  left:0;
+      font-weight:500;
 
-  background:rgba(10,14,30,.95);
+      letter-spacing:.5px;
 
-  backdrop-filter:blur(14px);
+      transition:.3s ease;
+    }
 
-  border:
-  1px solid rgba(255,255,255,.06);
+    .nav-links a:hover{
+      color:white;
+    }
 
-  border-radius:18px;
 
-  padding:14px;
+    /* =========================
+       DESKTOP DROPDOWN
+    ========================= */
 
-  min-width:180px;
+    .dropdown{
+      position:relative;
+    }
 
-  list-style:none;
+    .dropdown-menu{
+      display:block !important;
 
-  opacity:0;
-  visibility:hidden;
+      position:absolute;
 
-  transform:translateY(10px);
+      top:180%;
+      left:0;
 
-  transition:.35s ease;
-}
+      background:rgba(10,14,30,.95);
 
-.dropdown:hover .dropdown-menu{
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
 
-  opacity:1;
-  visibility:visible;
+      border:1px solid rgba(255,255,255,.06);
 
-  transform:translateY(0);
-}
+      border-radius:18px;
 
-.dropdown-menu li{
-  margin:10px 0;
-}
+      padding:14px;
 
-.dropdown-menu a{
+      min-width:180px;
 
-  display:block;
+      list-style:none;
 
-  padding:8px 10px;
+      margin:0;
 
-  border-radius:10px;
-}
+      opacity:0;
+      visibility:hidden;
 
-.dropdown-menu a:hover{
+      transform:translateY(10px);
 
-  background:
-  rgba(255,59,59,.12);
+      transition:
+        opacity .35s ease,
+        visibility .35s ease,
+        transform .35s ease;
 
-  padding-left:16px;
-}
+      box-shadow:
+        0 10px 40px rgba(0,0,0,.45);
 
-/* HERO */
+      z-index:1001;
+    }
 
+    .dropdown:hover .dropdown-menu{
+      display:block !important;
 
+      opacity:1;
+      visibility:visible;
 
-.hero{
-  width:100%;
-  min-height:100vh;
+      transform:translateY(0);
+    }
 
-  padding:120px 8% 80px;
+    .dropdown-menu li{
+      margin:8px 0;
+    }
 
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
+    .dropdown-menu a{
+      display:block;
 
-  position:relative;
-}
+      color:#9CA3AF;
 
-.hero-content{
-  position:relative;
-  z-index:2;
+      text-decoration:none;
 
-  max-width:650px;
+      font-size:.95rem;
 
-  padding-top:40px;
-}
+      padding:8px 10px;
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
+      border-radius:10px;
 
-  background:
-  linear-gradient(to right,
-  rgba(5,8,22,.95),
-  rgba(5,8,22,.55));
+      transition:.3s ease;
+    }
 
-  z-index:1;
-}
+    .dropdown-menu a:hover{
+      background:rgba(255,59,59,.12);
 
+      color:white;
 
+      padding-left:16px;
+    }
 
-.subtitle{
-  color:#ff6b6b;
 
-  letter-spacing:4px;
+    /* =========================
+       MOBILE MENU BUTTON
+       SAME AS ABOUT
+    ========================= */
 
-  font-size:.8rem;
+    .menu-toggle{
+      display:none;
 
-  margin-bottom:24px;
-}
+      width:42px;
+      height:42px;
 
-.hero h1{
+      border:1px solid rgba(255,255,255,.1);
 
-  font-family:'Orbitron',sans-serif;
+      border-radius:12px;
 
-  font-size:clamp(4rem,8vw,7rem);
+      background:rgba(255,255,255,.04);
 
-  line-height:.95;
+      cursor:pointer;
 
-  text-transform:uppercase;
+      flex-direction:column;
 
-  margin-bottom:30px;
+      justify-content:center;
+      align-items:center;
 
-  background:
-  linear-gradient(to bottom,#fff,#9CA3AF);
+      gap:5px;
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+      transition:.3s ease;
+    }
 
-.hero-description{
+    .menu-toggle span{
+      width:20px;
+      height:2px;
 
-  color:#9CA3AF;
+      background:#D1D5DB;
 
-  line-height:1.9;
+      border-radius:10px;
 
-  max-width:520px;
+      transition:.3s ease;
+    }
 
-  margin-bottom:36px;
-}
+    .menu-toggle:hover{
+      background:rgba(255,255,255,.07);
 
-.hero-btn{
+      border-color:rgba(255,255,255,.16);
+    }
 
-  display:inline-flex;
 
-  align-items:center;
-  justify-content:center;
+    /* =========================
+       HAMBURGER → X
+    ========================= */
 
-  width:190px;
-  height:58px;
+    .menu-toggle.active span:nth-child(1){
+      transform:translateY(7px) rotate(45deg);
+    }
 
-  border-radius:18px;
+    .menu-toggle.active span:nth-child(2){
+      opacity:0;
+      transform:scale(0);
+    }
 
-  text-decoration:none;
+    .menu-toggle.active span:nth-child(3){
+      transform:translateY(-7px) rotate(-45deg);
+    }
 
-  color:#FFEFEF;
 
-  font-weight:500;
 
-  background:
-  rgba(255,59,59,.08);
+    .mobile-menu{
+      position:fixed;
 
-  border:
-  1px solid rgba(255,59,59,.22);
+      display:none;
 
-  backdrop-filter:blur(12px);
+      top:86px;
 
-  transition:.4s ease;
+      left:5%;
+      right:5%;
 
-  box-shadow:
-  0 0 22px rgba(255,59,59,.10);
-}
+      background:rgba(10,14,30,.97);
 
-.hero-btn:hover{
+      backdrop-filter:blur(18px);
 
-  transform:
-  translateY(-5px);
+      border:1px solid rgba(255,255,255,.08);
 
-  background:
-  rgba(255,59,59,.14);
+      border-radius:18px;
 
-  border-color:
-  rgba(255,107,44,.45);
+      padding:18px;
 
-  box-shadow:
-  0 0 30px rgba(255,59,59,.18);
-}
+      z-index:998;
 
-.hero-character{
+      box-shadow:0 20px 50px rgba(0,0,0,.35);
 
-  width:480px;
+      transform:translateY(-10px);
 
-  position:relative;
-  z-index:2;
+      opacity:0;
 
-  animation:floating 5s ease-in-out infinite;
+      transition:
+        opacity .3s ease,
+        transform .3s ease;
+    }
 
-  filter:
-  drop-shadow(0 0 45px rgba(255,59,59,.45));
-}
+    .mobile-menu.active{
+      display:block;
 
-/* FLOAT */
+      opacity:1;
 
-@keyframes floating{
+      transform:translateY(0);
+    }
 
-  0%{
-    transform:translateY(0px);
-  }
 
-  50%{
-    transform:translateY(-18px);
-  }
+    /* TOP LEVEL MOBILE LINKS */
 
-  100%{
-    transform:translateY(0px);
-  }
-}
+    .mobile-menu > a{
+      display:block;
 
-/* GAMES */
+      color:#9CA3AF;
 
-.games-section{
-  padding:120px 8%;
-}
+      text-decoration:none;
 
-.section-title{
-  text-align:center;
+      padding:13px 14px;
 
-  margin-bottom:70px;
-}
+      border-radius:10px;
 
-.section-title p{
+      transition:.3s ease;
+    }
 
-  color:#ff6b6b;
+    .mobile-menu > a:hover{
+      color:white;
 
-  letter-spacing:4px;
+      background:rgba(255,59,59,.12);
+    }
 
-  font-size:.8rem;
 
-  margin-bottom:18px;
-}
+    /* MOBILE GENRES */
 
-.section-title h2{
+    .mobile-genres{
+      padding-left:14px;
 
-  font-family:'Orbitron',sans-serif;
+      border-left:1px solid rgba(255,59,59,.3);
 
-  font-size:clamp(2.5rem,6vw,4.5rem);
-}
+      margin-left:10px;
 
-.games-grid{
+      margin-bottom:4px;
+    }
 
-  display:grid;
+    .mobile-genres a{
+      display:block;
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
+      color:#9CA3AF;
 
-  gap:34px;
-}
+      text-decoration:none;
 
-/* CARD */
+      padding:10px 14px;
 
-.game-card{
+      border-radius:10px;
 
-  background:
-  rgba(255,255,255,.03);
+      font-size:.95rem;
 
-  border:
-  1px solid rgba(255,255,255,.06);
+      transition:.3s ease;
+    }
 
-  border-radius:28px;
+    .mobile-genres a:hover{
+      color:white;
 
-  overflow:hidden;
+      background:rgba(255,59,59,.12);
+    }
 
-  text-decoration:none;
 
-  transition:.45s ease;
+    /* =========================
+       HERO
+    ========================= */
 
-  backdrop-filter:blur(12px);
-}
+    .hero{
+      width: 100%;
+      min-height: 100vh;
 
-.game-card:hover{
+      padding: 120px 8% 80px;
 
-  transform:
-  translateY(-14px);
+      display: flex;
 
-  border-color:
-  rgba(255,59,59,.45);
+      justify-content: space-between;
 
-  box-shadow:
-  0 0 40px rgba(255,59,59,.18);
-}
+      align-items: flex-start;
 
-.card-image{
-  height:230px;
+      position: relative;
+    }
 
-  overflow:hidden;
-}
+    .hero-content{
+      position:relative;
 
-.card-image img{
+      z-index:2;
 
-  width:100%;
-  height:100%;
+      max-width:650px;
 
-  object-fit:cover;
+      padding-top:20px;
+    }
 
-  transition:.6s ease;
-}
+    .hero-overlay{
+      position:absolute;
 
-.game-card:hover img{
-  transform:scale(1.08);
-}
+      inset:0;
 
-.card-content{
-  padding:28px;
-}
+      background:
+        linear-gradient(
+          to right,
+          rgba(5,8,22,.95),
+          rgba(5,8,22,.55)
+        );
 
-.card-content h3{
+      z-index:1;
+    }
 
-  font-family:'Orbitron',sans-serif;
+    .subtitle{
+      color:#ff6b6b;
 
-  margin-bottom:14px;
+      letter-spacing:4px;
 
-  color:white;
-}
+      font-size:.8rem;
 
-.card-content p{
+      margin-bottom:24px;
+    }
 
-  color:#9CA3AF;
+    .hero h1{
+      font-family:'Orbitron',sans-serif;
 
-  line-height:1.8;
+      font-size:clamp(4rem,8vw,7rem);
 
-  font-size:.95rem;
-}
+      line-height:.95;
 
-/* FOOTER */
+      text-transform:uppercase;
 
-.footer{
+      margin-bottom:30px;
 
-  padding:30px;
+      background:
+        linear-gradient(to bottom,#fff,#9CA3AF);
 
-  text-align:center;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-  border-top:
-  1px solid rgba(255,255,255,.05);
+    .hero-description{
+      color:#9CA3AF;
 
-  color:#7C8595;
-}
+      line-height:1.9;
 
-/* RESPONSIVE */
+      max-width:520px;
 
-@media(max-width:992px){
+      margin-bottom:36px;
+    }
 
-  .nav-links{
-    display:none;
-  }
+    .hero-btn{
+      display:inline-flex;
 
-  .hero{
+      align-items:center;
+      justify-content:center;
 
-    flex-direction:column;
+      width:190px;
+      height:58px;
 
-    text-align:center;
+      border-radius:18px;
 
-    gap:60px;
-  }
+      text-decoration:none;
 
-  .hero-content{
-    max-width:100%;
-  }
+      color:#FFEFEF;
 
-  .hero-description{
-    margin:auto auto 36px;
-  }
+      font-weight:500;
 
-  .hero-character{
-    width:320px;
-  }
+      border:1px solid rgba(255, 99, 99, 0.212);
 
-  .games-section{
-    padding:100px 20px;
-  }
-}
+      transition:.4s ease;
+    }
+
+    .hero-btn:hover{
+      transform:translateY(-5px);
+
+      border-color:rgba(255,59,59,.45);
+
+      box-shadow:
+        0 0 30px rgba(255,59,59,.075);
+    }
+
+    .hero-character{
+      width:480px;
+
+      position:relative;
+
+      z-index:2;
+
+      animation:floating 5s ease-in-out infinite;
+
+      filter:
+        drop-shadow(0 0 45px rgba(255,59,59,.45));
+    }
+
+
+    /* =========================
+       FLOAT
+    ========================= */
+
+    @keyframes floating{
+
+      0%{
+        transform:translateY(0);
+      }
+
+      50%{
+        transform:translateY(-18px);
+      }
+
+      100%{
+        transform:translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       GAMES
+    ========================= */
+
+    .games-section{
+      padding:120px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+
+      margin-bottom:70px;
+    }
+
+    .section-title p{
+      color:#ff6b6b;
+
+      letter-spacing:4px;
+
+      font-size:.8rem;
+
+      margin-bottom:18px;
+    }
+
+    .section-title h2{
+      font-family:'Orbitron',sans-serif;
+
+      font-size:clamp(2.5rem,6vw,4.5rem);
+    }
+
+    .games-grid{
+      display:grid;
+
+      grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+      gap:34px;
+    }
+
+
+    /* =========================
+       GAME CARD
+    ========================= */
+
+    .game-card{
+      background:rgba(255,255,255,.03);
+
+      border:1px solid rgba(255,255,255,.06);
+
+      border-radius:28px;
+
+      overflow:hidden;
+
+      text-decoration:none;
+
+      transition:.45s ease;
+
+      backdrop-filter:blur(12px);
+    }
+
+    .game-card:hover{
+      transform:translateY(-14px);
+
+      border-color:
+        rgba(255,59,59,.45);
+
+      box-shadow:
+        0 0 30px rgba(255,59,59,.075);
+    }
+
+    .card-image{
+      height:230px;
+
+      overflow:hidden;
+    }
+
+    .card-image img{
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      transition:.6s ease;
+    }
+
+    .game-card:hover img{
+      transform:scale(1.08);
+    }
+
+    .card-content{
+      padding:28px;
+    }
+
+    .card-content h3{
+      font-family:'Orbitron',sans-serif;
+
+      margin-bottom:14px;
+
+      color:white;
+    }
+
+    .card-content p{
+      color:#9CA3AF;
+
+      line-height:1.8;
+
+      font-size:.95rem;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer{
+      padding:30px;
+
+      text-align:center;
+
+      border-top:
+        1px solid rgba(255,255,255,.05);
+
+      color:#7C8595;
+    }
+
+
+    /* =================================================
+       TABLET
+    ================================================= */
+
+    @media(max-width:1100px){
+
+      .navbar{
+        padding:22px 5%;
+      }
+
+      .nav-links{
+        gap:24px;
+      }
+
+      .hero{
+        padding:120px 5% 70px;
+      }
+
+      .hero-content{
+        max-width:550px;
+      }
+
+      .hero h1{
+        font-size:clamp(3.5rem,7vw,5.5rem);
+      }
+
+      .hero-character{
+        width:360px;
+      }
+
+      .games-section{
+        padding:100px 5%;
+      }
+
+    }
+
+
+    /* =================================================
+       MOBILE
+       SAME ABOUT NAVBAR
+    ================================================= */
+
+    @media(max-width:768px){
+
+      body{
+        overflow-x:hidden;
+        overflow-y:auto;
+      }
+
+
+      /* NAVBAR */
+
+      .navbar{
+        padding:18px 6%;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .menu-toggle{
+        display:flex;
+      }
+
+
+      /* MOBILE MENU */
+
+      .mobile-menu{
+        display:none;
+
+        top:86px;
+
+        left:5%;
+        right:5%;
+      }
+
+      .mobile-menu.active{
+        display:block;
+      }
+
+
+      /* HERO */
+
+      .hero{
+        min-height:auto;
+
+        padding:
+          125px 6% 70px;
+
+        display:block;
+
+        text-align:center;
+      }
+
+      .hero-overlay{
+        display:none;
+      }
+
+      .hero-content{
+        width:100%;
+
+        max-width:620px;
+
+        padding:0;
+
+        margin:0 auto;
+      }
+
+      .subtitle{
+        font-size:.68rem;
+
+        letter-spacing:3px;
+
+        line-height:1.6;
+
+        margin-bottom:18px;
+      }
+
+      .hero h1{
+        font-size:
+          clamp(2.8rem,10vw,4.8rem);
+
+        line-height:.98;
+
+        margin-bottom:24px;
+      }
+
+      .hero-description{
+        font-size:.9rem;
+
+        line-height:1.75;
+
+        max-width:540px;
+
+        margin:
+          0 auto 32px;
+      }
+
+      .hero-btn{
+        width:200px;
+
+        height:54px;
+
+        border-radius:15px;
+
+        font-size:.9rem;
+      }
+
+
+      /* HERO CHARACTER */
+
+      .hero-character{
+        display:none !important;
+      }
+
+
+      /* GAMES */
+
+      .games-section{
+        padding:
+          75px 6%
+          70px;
+      }
+
+      .section-title{
+        margin-bottom:40px;
+      }
+
+      .section-title p{
+        font-size:.68rem;
+
+        letter-spacing:3px;
+
+        margin-bottom:13px;
+      }
+
+      .section-title h2{
+        font-size:
+          clamp(2rem,9vw,3rem);
+
+        line-height:1.1;
+      }
+
+      .games-grid{
+        grid-template-columns:1fr;
+
+        gap:24px;
+      }
+
+      .game-card{
+        border-radius:22px;
+      }
+
+      .card-image{
+        height:215px;
+      }
+
+      .card-content{
+        padding:22px;
+      }
+
+      .card-content h3{
+        font-size:1rem;
+
+        margin-bottom:10px;
+      }
+
+      .card-content p{
+        font-size:.86rem;
+
+        line-height:1.7;
+      }
+
+      .game-card:hover{
+        transform:none;
+      }
+
+      .game-card:hover img{
+        transform:none;
+      }
+
+
+      /* FOOTER */
+
+      .footer{
+        padding:27px 6%;
+
+        font-size:.78rem;
+
+        line-height:1.6;
+      }
+
+    }
+
+
+    /* =================================================
+       SMALL MOBILE
+    ================================================= */
+
+    @media(max-width:480px){
+
+      .navbar{
+        padding:16px 5%;
+      }
+
+      .logo{
+        font-size:1rem;
+      }
+
+      .menu-toggle{
+        width:42px;
+        height:42px;
+      }
+
+
+      /* MOBILE MENU */
+
+      .mobile-menu{
+        top:76px;
+
+        left:5%;
+        right:5%;
+
+        padding:18px;
+      }
+
+
+      /* HERO */
+
+      .hero{
+        padding:
+          110px 5% 60px;
+      }
+
+      .subtitle{
+        font-size:.58rem;
+
+        letter-spacing:2.5px;
+
+        margin-bottom:15px;
+      }
+
+      .hero h1{
+        font-size:
+          clamp(2.35rem,11vw,3.5rem);
+
+        line-height:1;
+
+        margin-bottom:20px;
+      }
+
+      .hero-description{
+        font-size:.8rem;
+
+        line-height:1.7;
+
+        margin-bottom:27px;
+      }
+
+      .hero-btn{
+        width:185px;
+
+        height:50px;
+
+        font-size:.82rem;
+
+        border-radius:14px;
+      }
+
+
+      /* GAMES */
+
+      .games-section{
+        padding:
+          65px 5%
+          60px;
+      }
+
+      .section-title{
+        margin-bottom:32px;
+      }
+
+      .section-title p{
+        font-size:.58rem;
+
+        letter-spacing:2.2px;
+
+        margin-bottom:12px;
+      }
+
+      .section-title h2{
+        font-size:
+          clamp(1.85rem,10vw,2.6rem);
+      }
+
+      .games-grid{
+        gap:20px;
+      }
+
+      .card-image{
+        height:190px;
+      }
+
+      .card-content{
+        padding:19px;
+      }
+
+      .card-content h3{
+        font-size:.95rem;
+      }
+
+      .card-content p{
+        font-size:.8rem;
+
+        line-height:1.65;
+      }
+
+
+      /* FOOTER */
+
+      .footer{
+        padding:
+          24px 5%;
+
+        font-size:.7rem;
+      }
+
+    }
+
+
+    /* =================================================
+       VERY SMALL MOBILE
+    ================================================= */
+
+    @media(max-width:360px){
+
+      .logo{
+        font-size:.9rem;
+      }
+
+      .hero{
+        padding-left:4%;
+        padding-right:4%;
+      }
+
+      .hero h1{
+        font-size:2.05rem;
+      }
+
+      .hero-description{
+        font-size:.73rem;
+      }
+
+      .hero-btn{
+        width:170px;
+
+        height:47px;
+      }
+
+      .games-section{
+        padding-left:4%;
+        padding-right:4%;
+      }
+
+      .card-image{
+        height:175px;
+      }
+
+    }
+
+
+    /* =================================================
+       TOUCH DEVICES
+    ================================================= */
+
+    @media(hover:none){
+
+      .hero-btn:hover{
+        transform:none;
+      }
+
+      .game-card:hover{
+        transform:none;
+      }
+
+      .game-card:hover img{
+        transform:none;
+      }
+
+    }
+
   </style>
 
 </head>
 
+
 <body>
+
 
   <!-- BACKGROUND GLOW -->
 
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
 
-  <!-- NAVBAR -->
+
+  <!-- =========================
+       DESKTOP NAVBAR
+  ========================= -->
 
   <nav class="navbar">
 
@@ -512,42 +1124,174 @@ body{
       Gaming Galaxy
     </div>
 
+
+    <!-- DESKTOP LINKS -->
+
     <ul class="nav-links">
 
-      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
 
-      <li><a href="about.html">About</a></li>
+      <li>
+        <a href="about.html">
+          About
+        </a>
+      </li>
 
       <li class="dropdown">
 
-        <a href="genres.html">Genres</a>
+        <a href="genres.html">
+          Genres
+        </a>
 
         <ul class="dropdown-menu">
 
-          <li><a href="action.html">Action</a></li>
-          <li><a href="rpg.html">RPG</a></li>
-          <li><a href="horror.html">Horror</a></li>
-          <li><a href="racing.html">Racing</a></li>
-          <li><a href="shooter.html">Shooter</a></li>
-          <li><a href="strategy.html">Strategy</a></li>
+          <li>
+            <a href="action.html">
+              Action
+            </a>
+          </li>
+
+          <li>
+            <a href="rpg.html">
+              RPG
+            </a>
+          </li>
+
+          <li>
+            <a href="horror.html">
+              Horror
+            </a>
+          </li>
+
+          <li>
+            <a href="racing.html">
+              Racing
+            </a>
+          </li>
+
+          <li>
+            <a href="shooter.html">
+              Shooter
+            </a>
+          </li>
+
+          <li>
+            <a href="strategy.html">
+              Strategy
+            </a>
+          </li>
 
         </ul>
 
       </li>
 
-      <li><a href="trailers.html">Trailers</a></li>
+      <li>
+        <a href="trailers.html">
+          Trailers
+        </a>
+      </li>
 
-      <li><a href="contact.html">Contact</a></li>
+      <li>
+        <a href="contact.html">
+          Contact
+        </a>
+      </li>
 
     </ul>
 
+
+    <!-- MOBILE BUTTON -->
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      type="button"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
   </nav>
 
-  <!-- HERO -->
+
+  <!-- =========================
+       MOBILE MENU
+  ========================= -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="genres.html">
+      Genres
+    </a>
+
+
+    <div class="mobile-genres">
+
+      <a href="action.html">
+        Action
+      </a>
+
+      <a href="rpg.html">
+        RPG
+      </a>
+
+      <a href="horror.html">
+        Horror
+      </a>
+
+      <a href="racing.html">
+        Racing
+      </a>
+
+      <a href="shooter.html">
+        Shooter
+      </a>
+
+      <a href="strategy.html">
+        Strategy
+      </a>
+
+    </div>
+
+
+    <a href="trailers.html">
+      Trailers
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+  </div>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
 
   <section class="hero">
 
     <div class="hero-overlay"></div>
+
 
     <div class="hero-content">
 
@@ -567,23 +1311,41 @@ body{
 
       </p>
 
-      <a href="#games" class="hero-btn">
+      <a
+        href="#games"
+        class="hero-btn"
+      >
         Explore Games
       </a>
 
     </div>
 
-    <img src="images/Action/actioncharacter.png" class="hero-character">
+
+    <!-- DESKTOP / TABLET CHARACTER -->
+
+    <img
+      src="images/Action/actioncharacter.png"
+      class="hero-character"
+      alt="Action Character"
+    >
 
   </section>
 
-  <!-- TOP GAMES -->
 
-  <section class="games-section" id="games">
+  <!-- =========================
+       FEATURED GAMES
+  ========================= -->
+
+  <section
+    class="games-section"
+    id="games"
+  >
 
     <div class="section-title">
 
-      <p>TOP ACTION EXPERIENCES</p>
+      <p>
+        TOP ACTION EXPERIENCES
+      </p>
 
       <h2>
         Featured Games
@@ -591,19 +1353,33 @@ body{
 
     </div>
 
+
     <div class="games-grid">
 
-      <!-- CARD -->
 
-      <a href="https://www.rockstargames.com/V/" target="_blank" class="game-card">
+      <!-- GTA V -->
+
+      <a
+        href="https://www.rockstargames.com/V/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Action/gt.jpg" alt="">
+
+          <img
+            src="images/Action/gt.jpg"
+            alt="GTA V"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>GTA V</h3>
+          <h3>
+            GTA V
+          </h3>
 
           <p>
             Dive into a massive open world full of chaos,
@@ -614,17 +1390,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.playstation.com/en-us/god-of-war/" target="_blank" class="game-card">
+      <!-- GOD OF WAR -->
+
+      <a
+        href="https://www.playstation.com/en-us/god-of-war/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Action/godofwar.jpg" alt="">
+
+          <img
+            src="images/Action/godofwar.jpg"
+            alt="God Of War"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>God Of War</h3>
+          <h3>
+            God Of War
+          </h3>
 
           <p>
             Battle gods and monsters in brutal mythological warfare.
@@ -634,17 +1423,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.ubisoft.com/en-us/game/assassins-creed" target="_blank" class="game-card">
+      <!-- ASSASSIN'S CREED -->
+
+      <a
+        href="https://www.ubisoft.com/en-us/game/assassins-creed"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Action/assassin.jpg" alt="">
+
+          <img
+            src="images/Action/assassin.jpg"
+            alt="Assassin's Creed"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Assassin's Creed</h3>
+          <h3>
+            Assassin's Creed
+          </h3>
 
           <p>
             Stealth, parkour, and legendary assassinations across history.
@@ -654,17 +1456,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.ea.com/games/apex-legends" target="_blank" class="game-card">
+      <!-- APEX LEGENDS -->
+
+      <a
+        href="https://www.ea.com/games/apex-legends"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Action/apex.jpg" alt="">
+
+          <img
+            src="images/Action/apex.jpg"
+            alt="Apex Legends"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Apex Legends</h3>
+          <h3>
+            Apex Legends
+          </h3>
 
           <p>
             Fast-paced futuristic combat with unique squad abilities.
@@ -674,17 +1489,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.fortnite.com/" target="_blank" class="game-card">
+      <!-- FORTNITE -->
+
+      <a
+        href="https://www.fortnite.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Action/fortnite.jpg" alt="">
+
+          <img
+            src="images/Action/fortnite.jpg"
+            alt="Fortnite"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Fortnite</h3>
+          <h3>
+            Fortnite
+          </h3>
 
           <p>
             Competitive action, survival, and nonstop multiplayer chaos.
@@ -694,17 +1522,30 @@ body{
 
       </a>
 
-      <!-- CARD -->
 
-      <a href="https://www.ioi.dk/hitman/" target="_blank" class="game-card">
+      <!-- HITMAN -->
+
+      <a
+        href="https://www.ioi.dk/hitman/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-card"
+      >
 
         <div class="card-image">
-          <img src="images/Action/hitman.jpg" alt="">
+
+          <img
+            src="images/Action/hitman.jpg"
+            alt="Hitman"
+          >
+
         </div>
 
         <div class="card-content">
 
-          <h3>Hitman</h3>
+          <h3>
+            Hitman
+          </h3>
 
           <p>
             Become Agent 47 and execute silent tactical eliminations.
@@ -714,11 +1555,15 @@ body{
 
       </a>
 
+
     </div>
 
   </section>
 
-  <!-- FOOTER -->
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer class="footer">
 
@@ -727,6 +1572,115 @@ body{
     </p>
 
   </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+
+    /* =========================
+       OPEN / CLOSE MOBILE MENU
+    ========================= */
+
+    menuToggle.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      mobileMenu.classList.toggle("active");
+
+      menuToggle.classList.toggle("active");
+
+      const isOpen =
+        mobileMenu.classList.contains("active");
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
+
+    });
+
+
+    /* =========================
+       CLOSE AFTER LINK CLICK
+    ========================= */
+
+    mobileMenu
+      .querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          mobileMenu.classList.remove("active");
+
+          menuToggle.classList.remove("active");
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+          );
+
+        });
+
+      });
+
+
+    /* =========================
+       CLOSE OUTSIDE
+    ========================= */
+
+    document.addEventListener("click", (e) => {
+
+      if(
+        !mobileMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ){
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+
+    /* =========================
+       RESET ON DESKTOP
+    ========================= */
+
+    window.addEventListener("resize", () => {
+
+      if(window.innerWidth > 768){
+
+        mobileMenu.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      }
+
+    });
+
+  </script>
 
 </body>
 
